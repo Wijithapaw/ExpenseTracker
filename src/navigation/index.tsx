@@ -2,7 +2,10 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { HomeScreen, ReportsScreen, SettingsScreen, SplashScreen } from './SampleScreens'
+import { HomeScreen, ReportsScreen, SplashScreen } from './SampleScreens'
+import SettingsScreen from '../modules/settings/screens/SettingsScreen';
+import CategorySelect from '../modules/categories/CategorySelect';
+import { ScreenMode } from '../types/enums';
 
 
 const Tab = createBottomTabNavigator()
@@ -13,7 +16,6 @@ function MainTabs() {
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
-
         switch (route.name) {
           case 'Home':
             iconName = 'home';
@@ -36,12 +38,12 @@ function MainTabs() {
     }}>
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Setting" component={SettingsScreen} />
-    <Tab.Screen name="Reports" component={ReportsScreen} />
+    <Tab.Screen name="Reports" component={CategorySelect} initialParams={{mode: ScreenMode.Edit}} />
   </Tab.Navigator>
 }
 
 export default function AppRoutes() {
-  return <Stack.Navigator >
+  return <Stack.Navigator>
     <Stack.Screen name="MainTabs" component={MainTabs} />
     <Stack.Screen name="Splash" component={SplashScreen} />
   </Stack.Navigator>

@@ -9,11 +9,14 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AppRoutes from './src/navigation';
+import ThemeProvider from './src/theme/ThemeProvider';
 
 function App() {
   return (
     <NavigationContainer >
-      <AppRoutes/>
+      <ThemeProvider>
+        <AppRoutes />
+      </ThemeProvider>
     </NavigationContainer>
   );
 }
