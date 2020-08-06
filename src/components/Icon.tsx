@@ -1,14 +1,19 @@
-import React from 'react'
+import React from 'react';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
+import styled from 'styled-components/native';
 
-const MY_COMP_HIT_SLOP = { top: 5, left: 5, right: 5, bottom: 5 }
+const StyledIcon = styled(FaIcon).attrs((props: any) => ({
+  color: props.theme.button.primary,
+}))``;
 
 interface Props {
-    name: string;
-    onPress?: (e: any) => void;
-    size?: number;
+  name: string;
+  size?: number;
 }
 
-export default function Icon({ name, onPress, size }: Props) {
-    return <FaIcon name={name} onPress={onPress} size={size || 15} />
+export default function Icon({name, size}: Props) {
+  const iconSize = size || 15;
+  return (
+      <StyledIcon name={name} size={iconSize} />
+  );
 }

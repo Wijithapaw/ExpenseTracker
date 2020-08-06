@@ -3,7 +3,7 @@ import {FlatListItemData} from '../../types/shared.types';
 import {View} from 'react-native';
 import {useState, useEffect} from 'react';
 import {categoryService} from '../../services/category.service';
-import Icon from '../../components/Icon';
+import IconButton from '../../components/IconButton';
 import Button from '../../components/Button';
 import TextInput from '../../components/TextInput';
 import styled from 'styled-components/native';
@@ -115,8 +115,8 @@ export default function EditCategory({
           <LabelCol>
             <Text>Icon</Text>
           </LabelCol>
-          <ValueCol onTouchStart={() => onChangeIcon()}>
-            <Icon
+          <ValueCol>
+            <IconButton
               name={item.faIcon || 'question-circle'}
               size={20}
               onPress={onChangeIcon}

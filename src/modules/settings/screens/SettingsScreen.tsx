@@ -3,13 +3,13 @@ import {View} from 'react-native';
 import {useEffect, useState} from 'react';
 import {configService} from '../../../services/_shared/config.service';
 import {ConfigItem} from '../../../types/shared.types';
-import {ScreenMode, FontSize} from '../../../types/enums';
+import {FontSize} from '../../../types/enums';
 import Button from '../../../components/Button';
-import Icon from '../../../components/Icon';
 import Text from '../../../components/Text';
 import TextInput from '../../../components/TextInput';
 import styled from 'styled-components/native';
 import Screen from '../../../components/Screen';
+import IconButton from '../../../components/IconButton';
 
 const ItemRow = styled.View`
   flex-direction: row;
@@ -30,7 +30,11 @@ const ValueCol = styled.View`
   flex: 2
 `
 
-export default function SettingsScreen() {
+interface Props {
+  navigation: any;
+}
+
+export default function SettingsScreen({navigation}: Props) {
   const [configSettings, setConfigSettings] = useState<ConfigItem[]>();
   const [editingId, setEditingId] = useState<string>();
 
@@ -58,7 +62,7 @@ export default function SettingsScreen() {
   };
 
   const editCategories = () => {
-    // pushScreen2(componentId, 'CategorySelect', 'Edit Categories', {mode: ScreenMode.Edit})
+    navigation.navigate('CategorySelect')
   };
 
   return (
@@ -82,9 +86,9 @@ export default function SettingsScreen() {
                 </ValueCol>
                 <IconCol>
                   {(editingId == c.id && (
-                    <Icon key={i} name="save" onPress={update} />
+                    <IconButton key={i} name="save" onPress={update} />
                   )) || (
-                    <Icon
+                    <IconButton
                       key={i}
                       name="pencil"
                       onPress={() => {

@@ -10,11 +10,12 @@ import EditCategory from './EditCategory';
 import {messagingService} from '../../services/_shared/messaging.service';
 import {categoryService} from '../../services/category.service';
 import Screen from '../../components/Screen';
-import Icon from '../../components/Icon';
+import IconButton from '../../components/IconButton';
 import styled from 'styled-components/native';
 import {COLORS} from '../../types/colors';
 import Modal from '../../components/Modal';
 import IconPicker from '../../components/IconPicker';
+import Icon from '../../components/Icon';
 
 interface ItemRowProps {
   selected: boolean;
@@ -28,18 +29,21 @@ const ItemRow = styled.View<ItemRowProps>`
 `;
 
 const IconCol = styled.View`
-  width: 25px;
-  align-items: flex-start;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
 `;
 
 const TextCol = styled.View`
   flex: 1;
-  padding-left: ${(props: any) => 10 * props.level}px;
+  justify-content: center;
 `;
 
 const ActionBtnCol = styled.View`
-  width: 40px;
-  align-items: flex-end;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
 `;
 
 const AddNewRow = styled.View`
@@ -203,7 +207,7 @@ export default function CategorySelect({
     <Screen>
       {editMode && (
         <AddNewRow>
-          <Icon name="plus-circle" size={25} onPress={() => onAdd()} />
+          <IconButton name="plus-circle" size={25} onPress={() => onAdd()} />
         </AddNewRow>
       )}
       {categories
@@ -211,36 +215,36 @@ export default function CategorySelect({
         .map((l, i) => (
           <ItemRow key={i} selected={selectedId === l.id}>
             <IconCol>
-              <Icon name={l.faIcon} size={15} />
+              {l.faIcon ? <Icon name={l.faIcon} size={15} /> : null}
             </IconCol>
-            <View style={{flex: 1, paddingLeft: 10 * l.level}}>
+            <TextCol style={{paddingLeft: 10 * l.level + 5}}>
               <Text>{l.title}</Text>
-            </View>
+            </TextCol>
             {l.parentId == undefined && (
               <ActionBtnCol>
                 {editMode && (
-                  <Icon name="plus-circle" onPress={() => onAdd(l)} />
+                  <IconButton name="plus-circle" onPress={() => onAdd(l)} />
                 )}
               </ActionBtnCol>
             )}
             <ActionBtnCol>
               {editMode && !(l.parentId && l.id == l.parentId) && (
-                <Icon name="pencil" onPress={() => onEdit(l)} />
+                <IconButton name="pencil" onPress={() => onEdit(l)} />
               )}
             </ActionBtnCol>
             <ActionBtnCol>
               {(l.hasChildren && (
-                <Icon
+                <IconButton
                   name={l.expanded ? 'compress' : 'expand'}
                   onPress={() => toggleItems(l.id)}
                 />
               )) ||
                 (editMode ? (
                   !(l.parentId && l.id == l.parentId) && (
-                    <Icon name="trash" onPress={() => onDelete(l.id)} />
+                    <IconButton name="trash" onPress={() => onDelete(l.id)} />
                   )
                 ) : (
-                  <Icon name="hand-o-left" onPress={() => onItemSelect(l)} />
+                  <IconButton name="hand-o-left" onPress={() => onItemSelect(l)} />
                 ))}
             </ActionBtnCol>
           </ItemRow>

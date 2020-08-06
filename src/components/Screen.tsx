@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-const StyledView = styled.View`
+const StyledView = styled.ScrollView`
   flex: 1;
   padding: 5px;
 `;
