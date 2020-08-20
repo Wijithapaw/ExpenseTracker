@@ -21,7 +21,7 @@ interface Props {
 }
 
 export default function IconButton({name, onPress, size, color}: Props) {
-  const iconSize = size || 15;
+  const iconSize = size || 18;
   return (
     <IconContainer onPress={onPress} size={iconSize}>
       <Icon name={name} size={iconSize} color={color} />

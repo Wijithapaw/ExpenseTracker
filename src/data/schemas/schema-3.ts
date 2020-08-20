@@ -45,15 +45,15 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
 
         //Foods
         var food = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "FOOD");
-        food.faIcon = 'carrot'
+        food.faIcon = 'cutlery'
 
         //Bills
         var bills = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "BILLS");
-        bills.faIcon = 'donate'
+        bills.faIcon = 'money'
 
         //Health care
         var healthCare = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "HEALTH");
-        healthCare.faIcon = 'briefcase-medical'
+        healthCare.faIcon = 'plus-square'
 
         //Toiletries
         var toilatories = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "TOILETRIES");
@@ -69,23 +69,23 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
 
         //Pet care
         var petCare = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "PER_CARE");
-        petCare.faIcon = 'dog'
+        petCare.faIcon = 'paw'
 
         //Stationary
         var stationary = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "STATIONARY");
-        stationary.faIcon = 'book-open'
+        stationary.faIcon = 'book'
 
         //Clothing
         var cloting = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "CLOTHING");
-        cloting.faIcon = 'tshirt'
+        cloting.faIcon = 'suitcase'
 
         //Gifts
         var gifts = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "GIFTS");
-        gifts.faIcon = 'xbox'
+        gifts.faIcon = 'gift'
 
          //General
          var general = newRealm.objects<ExpenseType>(ExpenseType.schema.name).find(t => t.code == "GENERAL");
-         general.faIcon = 'creative-commons-nd'
+         general.faIcon = 'star'
     }
 }
 

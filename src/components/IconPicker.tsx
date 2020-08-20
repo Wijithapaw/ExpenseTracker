@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {View} from 'react-native';
 import {Icons} from '../types/icons';
 import IconButton from './IconButton';
 import styled from 'styled-components/native';
+import { COLORS } from '../types/colors';
 
 const Cell = styled.View`
   width: 40px;
@@ -27,7 +27,7 @@ export default function IconPicker({onSelect, onHide}: Props) {
     <Container>
       {Icons.map(s => (
         <Cell key={s}>
-          <IconButton name={s} size={25} onPress={() => onSelect(s)} />
+          <IconButton name={s} size={25} onPress={() => onSelect(s)} color={COLORS.black} />
         </Cell>
       ))}
     </Container>

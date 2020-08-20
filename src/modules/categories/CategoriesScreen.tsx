@@ -29,7 +29,7 @@ const ItemRow = styled.View<ItemRowProps>`
 `;
 
 const IconCol = styled.View`
-  width: 30px;
+  width: 35px;
   align-items: center;
   justify-content: center;
 `;
@@ -144,10 +144,6 @@ export default function CategoriesScreen({selectedId, callback}: Props) {
     setCategories(newList);
   };
 
-  const onItemSelect = (data: FlatListItemData) => {
-    callback && callback(data);
-  };
-
   const onEdit = (data: FlatListItemData) => {
     setShowEdit(true);
     setEditingItem(data);
@@ -186,8 +182,6 @@ export default function CategoriesScreen({selectedId, callback}: Props) {
     setParentItem(parent);
   };
 
-  //let editMode = true; // mode === ScreenMode.Edit;
-
   const handleIconSelect = (icon: string) => {
     setEditingItem({...editingItem, faIcon: icon});
     setShowIconPicker(false);
@@ -207,7 +201,7 @@ export default function CategoriesScreen({selectedId, callback}: Props) {
         .map((l, i) => (
           <ItemRow key={i} selected={selectedId === l.id}>
             <IconCol>
-              {l.faIcon ? <Icon name={l.faIcon} size={15} /> : null}
+              {l.faIcon ? <Icon name={l.faIcon} /> : null}
             </IconCol>
             <TextCol style={{paddingLeft: 10 * l.level + 5}}>
               <Text>{l.title}</Text>

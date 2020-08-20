@@ -11,7 +11,8 @@ const Overlay = styled.View`
   justify-content: center;
   padding: 20px;
   opacity: 1;
-  margin: 60px 0;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const ModalArea = styled.View`

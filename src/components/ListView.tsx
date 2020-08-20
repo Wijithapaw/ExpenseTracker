@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, FlatList} from 'react-native';
+import {SafeAreaView, FlatList, View} from 'react-native';
 import IconButton from './IconButton';
 import styled from 'styled-components/native';
 import Text from './Text';
@@ -51,6 +51,11 @@ const StyledHeader = styled.View`
   background-color: ${(props: any) => props.theme.button.primary};
   justify-content: center;
   padding: 5px;
+`;
+
+const NoRecordsView = styled.View`
+  padding: 10px;
+  align-items: center;
 `;
 
 interface ListViewItemProps {
@@ -113,6 +118,11 @@ export default function ListView({data, columns, actions, listTitle}: Props) {
         )}
         keyExtractor={item => item.id}
       />
+      {(!data || !data.length) && (
+        <NoRecordsView>
+          <Text italic>No Records</Text>
+        </NoRecordsView>
+      )}
       <ListMainSeparator />
     </SafeAreaView>
   );
@@ -136,7 +146,7 @@ export enum ListActionType {
   View = 2,
 }
 
-export interface  ListAction {
+export interface ListAction {
   action: ListActionType;
   onPress: (item: any) => void;
 }

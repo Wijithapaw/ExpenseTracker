@@ -65,7 +65,11 @@ export default function AppRoutes() {
         options={{title: 'Expense Tracker'}}
       />
       <Stack.Screen name="Splash" component={SplashScreen} />
-      <Stack.Screen name="CategorySelect" component={CategoriesScreen} />
+      <Stack.Screen
+        name="CategorySelect"
+        component={CategoriesScreen}
+        options={{title: 'Expense Categories'}}
+      />
     </Stack.Navigator>
   );
 }
