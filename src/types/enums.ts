@@ -16,3 +16,8 @@ export enum FontType {
     Secondary = 1,
     Error = 2,
 }
+
+export enum InputType {
+    Default = 0,
+    Numeric = 1
+}

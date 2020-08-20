@@ -17,13 +17,14 @@ interface Props {
   name: string;
   onPress?: (e: any) => void;
   size?: number;
+  color?: string;
 }
 
-export default function IconButton({name, onPress, size}: Props) {
+export default function IconButton({name, onPress, size, color}: Props) {
   const iconSize = size || 15;
   return (
     <IconContainer onPress={onPress} size={iconSize}>
-      <Icon name={name} size={iconSize} />
+      <Icon name={name} size={iconSize} color={color} />
     </IconContainer>
   );
 }

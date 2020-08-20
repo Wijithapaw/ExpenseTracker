@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {FontSize, FontType} from '../types/enums';
-import {getFontSize} from '../utills/font.utills';
+import {getFontSize} from '../utils/font.utils';
 import {Theme} from '../types/theme.types';
 
 const StyledText = styled.Text`
-    padding: 5px;
     text-align-vertical: center;
     font-weight: ${(props: Props) => (props.bold ? 'bold' : 'normal')}
     font-size: ${(props: Props) => getFontSize(props.size)}px;

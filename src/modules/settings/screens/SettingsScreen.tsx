@@ -23,11 +23,13 @@ const IconCol = styled.View`
 `;
 
 const KeyCol = styled.View`
-  flex: 1
+  flex: 1;
+  justify-content: center;
 `
 
 const ValueCol = styled.View`
-  flex: 2
+  flex: 2;
+  justify-content: center;
 `
 
 interface Props {

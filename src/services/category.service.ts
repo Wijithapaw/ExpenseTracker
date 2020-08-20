@@ -1,5 +1,5 @@
 import { realmService, realm } from "../data/realm.service";
-import { utills } from "../utills/utills";
+import { utils } from "../utils/utils";
 import { Expense, ExpenseType } from "../data/entity-types";
 import { ListItemData } from "../types/shared.types";
 
@@ -66,7 +66,7 @@ function updateCategory(id: string, title: string, icon?: string) {
 function createCategory(title: string, icon?: string, parentId?: string) {
     realm.write(() => {
         let parentCategory = realm.objects<ExpenseType>(ExpenseType.schema.name).find(c => c.id == parentId);
-        realm.create(ExpenseType.schema.name, new ExpenseType(utills.uuid(), utills.uuid(), title, false, parentCategory, icon));
+        realm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), utils.uuid(), title, false, parentCategory, icon));
     });
 }
 

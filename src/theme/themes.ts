@@ -1,5 +1,6 @@
 import { Theme } from "../types/theme.types";
 import { COLORS } from "../types/colors";
+import { rgba } from "../utils/color.utils";
 
 export const LIGHT_THEME: Theme = {
     name: 'light',
@@ -21,8 +22,8 @@ export const LIGHT_THEME: Theme = {
     },
 
     border: {
-        primary: COLORS.doveGray,
-        secondary: COLORS.shipGray,
+        primary: rgba(COLORS.doveGray, .8),
+        secondary: rgba(COLORS.doveGray, .3),
         error: COLORS.red,
     }
 }

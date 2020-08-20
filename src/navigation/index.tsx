@@ -2,12 +2,13 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {HomeScreen, ReportsScreen, SplashScreen} from './SampleScreens';
+import {ReportsScreen, SplashScreen} from './SampleScreens';
 import SettingsScreen from '../modules/settings/screens/SettingsScreen';
-import CategorySelect from '../modules/categories/CategorySelect';
+import CategoriesScreen from '../modules/categories/CategoriesScreen';
 import {ScreenMode} from '../types/enums';
 import {withTheme} from 'styled-components';
 import {Theme} from '../types/theme.types';
+import HomeScreen from '../modules/expenses/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -46,7 +47,7 @@ function MainTabsComponent({theme}: Props) {
       <Tab.Screen name="Setting" component={SettingsScreen} />
       <Tab.Screen
         name="Reports"
-        component={CategorySelect}
+        component={ReportsScreen}
         initialParams={{mode: ScreenMode.Edit}}
       />
     </Tab.Navigator>
@@ -64,7 +65,7 @@ export default function AppRoutes() {
         options={{title: 'Expense Tracker'}}
       />
       <Stack.Screen name="Splash" component={SplashScreen} />
-      <Stack.Screen name="CategorySelect" component={CategorySelect} />
+      <Stack.Screen name="CategorySelect" component={CategoriesScreen} />
     </Stack.Navigator>
   );
 }

@@ -1,5 +1,5 @@
 import * as Realm from 'realm'
-import { utills } from '../../utills/utills';
+import { utils } from '../../utils/utils';
 
 const SCHEMA_VERSION = 1;
 
@@ -65,7 +65,7 @@ export class ExpenseType {
 const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
   // only apply this change if upgrading to schemaVersion 2
   if (oldRealm.schemaVersion < SCHEMA_VERSION) {
-    let generalType = new ExpenseType(utills.uuid(), "GENERAL", "General", false);
+    let generalType = new ExpenseType(utils.uuid(), "GENERAL", "General", false);
     newRealm.create(ExpenseType.schema.name, generalType);
 
     const newObjects = newRealm.objects<Expense>(Expense.schema.name)

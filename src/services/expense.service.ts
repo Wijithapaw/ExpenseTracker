@@ -1,5 +1,5 @@
 import { realmService, realm } from "../data/realm.service";
-import { utills } from "../utills/utills";
+import { utils } from "../utils/utils";
 import { Expense } from "../data/entity-types";
 import { categoryService } from "./category.service";
 import { Alert } from "react-native";
@@ -20,7 +20,7 @@ function getAllExpenses() {
 
 function createExpense(amount: number, typeId: string, date: Date, description?: string) {
     realm.write(() => {
-        let id = utills.uuid();
+        let id = utils.uuid();
         let type = categoryService.getCategory(typeId);
         let now = new Date();
 

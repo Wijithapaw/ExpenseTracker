@@ -28,7 +28,6 @@ const ValueCol = styled.View`
 
 const ButtonRow = styled(Row)`
   margin-top: 10px;
-  flex-direction: row;
   justify-content: center;
 `;
 
@@ -55,7 +54,9 @@ export default function EditCategory({
 }: Props) {
   const [valid, setValid] = useState(true);
 
-  const rootCategory = !parentItem;
+
+  const parentTitle = parentItem && parentItem.title || item.parentTitle;
+  const rootCategory = !parentTitle;
 
   useEffect(() => {
     validate();
@@ -102,11 +103,11 @@ export default function EditCategory({
           />
         </ValueCol>
       </Row>
-      {parentItem && (
+      {parentTitle && (
         <Row>
           <LabelCol />
           <ValueCol>
-            <Text italic>{`[Parent Category:  ${parentItem.title}]`}</Text>
+            <Text italic>{`[Parent Category:  ${parentTitle}]`}</Text>
           </ValueCol>
         </Row>
       )}

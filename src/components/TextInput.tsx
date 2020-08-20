@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import {COLORS} from '../types/colors';
+import {InputType} from '../types/enums';
 
-const StyledTextInput = styled.TextInput<Props>`
-  height: 30px;
+const StyledTextInput = styled.TextInput<any>`
   padding: 5px;
   border: 1px solid
     ${(props: any) =>
-      props.invalid ? props.theme.border.error : props.theme.border.secondary};
+      props.invalid ? props.theme.border.error : props.theme.border.primary};
+  border-radius: 5px;
 `;
 
 interface Props {
@@ -15,6 +17,7 @@ interface Props {
   maxLength?: number;
   onChangeText?: (text: string) => void;
   invalid?: boolean;
+  type?: InputType;
 }
 
 export default function TextInput({
@@ -23,9 +26,18 @@ export default function TextInput({
   maxLength,
   onChangeText,
   invalid,
+  type = InputType.Default,
 }: Props) {
+  let keyboardType = 'default';
+  switch (type) {
+    case InputType.Numeric:
+      keyboardType = 'number-pad';
+      break;
+  }
+
   return (
-    <StyledTextInput
+    <StyledTextInput   
+      keyboardType={keyboardType}
       value={value}
       maxLength={maxLength}
       placeholder={placeholder}

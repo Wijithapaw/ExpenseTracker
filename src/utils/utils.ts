@@ -3,7 +3,7 @@ import { ConfigSettings } from "../types/constants";
 
 const uuidv4 = require('uuid/v4');
 
-export const utills = {
+export const utils = {
     uuid,
     currencyFormat
 }
