@@ -7,6 +7,8 @@ import {View, FlatList, TouchableHighlight} from 'react-native';
 import styled from 'styled-components/native';
 import Icon from '../../components/Icon';
 import Button from '../../components/Button';
+import { rgba } from '../../utils/color.utils';
+import IconButton from '../../components/IconButton';
 
 interface Props {
   visible: boolean;
@@ -21,7 +23,7 @@ interface ItemProps {
 
 const ItemRow = styled.TouchableHighlight.attrs((props: any) => ({
   activeOpacity: 1,
-  underlayColor: props.theme.button.primary,
+  underlayColor: rgba(props.theme.button.primary, 0.5),
 }))`
   flex-direction: row;
   padding: 10px;
@@ -38,6 +40,7 @@ const ItemIcon = styled.View`
 
 const BackButtonRow = styled.View`
   width: 100px;
+  margin-bottom: 5px;
 `;
 
 const ItemTitle = styled.View``;
@@ -90,7 +93,7 @@ export default function CategorySelect({visible, onClose, onSelect}: Props) {
       {parentItem && (
         <BackButtonRow>
           <View>
-            <Button title="Back" onPress={() => setParentItem(undefined)} />
+            <IconButton name="arrow-left" size={25} onPress={() => setParentItem(undefined)} />
           </View>
         </BackButtonRow>
       )}

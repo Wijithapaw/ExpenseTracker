@@ -3,6 +3,7 @@ import {SafeAreaView, FlatList, View} from 'react-native';
 import IconButton from './IconButton';
 import styled from 'styled-components/native';
 import Text from './Text';
+import { COLORS } from '../types/colors';
 
 const ListRow = styled.View<any>`
   flex: 1;
@@ -92,7 +93,7 @@ function ListHeader({title}) {
   return (
     <>
       <StyledHeader>
-        <Text>{title}</Text>
+        <Text color={COLORS.white}>{title}</Text>
       </StyledHeader>
       <ListMainSeparator />
     </>

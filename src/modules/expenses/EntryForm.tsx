@@ -5,9 +5,9 @@ import {expenseService} from '../../services/expense.service';
 import {SimpleListItem} from '../../types/shared.types';
 import Button from '../../components/Button';
 import TextInput from '../../components/TextInput';
-import DatePicker from '../../components/DatePicker';
 import CategorySelect from '../categories/CategorySelect';
 import { InputType } from '../../types/enums';
+import DatePicker from '../../components/DatePicker';
 
 interface Props {
   expenseId?: string;
@@ -39,9 +39,7 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
 
   const valueChange = (text: string) => {
     let sanitised = text.replace(/[^0-9][.]/g, '');
-
     let val = +sanitised;
-
     setValue(val);
   };
 

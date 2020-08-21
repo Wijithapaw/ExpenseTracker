@@ -53,4 +53,5 @@ export const Icons = [
     'fighter-jet',
     'bookmark-o',
     'glass',
+    'arrow-left',
 ]

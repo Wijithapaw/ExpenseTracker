@@ -1,9 +1,6 @@
 import React from 'react';
-import FaIcon from 'react-native-vector-icons/FontAwesome';
 import styled from 'styled-components/native';
 import Icon from './Icon';
-
-const MY_COMP_HIT_SLOP = {top: 5, left: 5, right: 5, bottom: 5};
 
 const IconContainer = styled.TouchableOpacity<any>`
   border-radius: 50px;

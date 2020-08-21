@@ -59,13 +59,6 @@ export default function HomeScreen() {
       action: ListActionType.Edit,
       onPress: (item: any) => {
         setEditingExpenseId(item.id)
-        // let props = {
-        //   expenseId: item.id,
-        //   onSave: () => {
-        //     refreshComponent();
-        //   },
-        // };
-        // openModal("ExpenseEditModal", "Edit Expense", props);
       },
     },
     {
