@@ -9,6 +9,7 @@ import {ScreenMode} from '../types/enums';
 import {withTheme} from 'styled-components';
 import {Theme} from '../types/theme.types';
 import HomeScreen from '../modules/expenses/HomeScreen';
+import AppHeader from './AppHeader';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -58,7 +59,10 @@ const MainTabs = withTheme(MainTabsComponent);
 
 export default function AppRoutes() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerTitle: props => <AppHeader />
+      }}>
       <Stack.Screen
         name="MainTabs"
         component={MainTabs}
@@ -68,7 +72,7 @@ export default function AppRoutes() {
       <Stack.Screen
         name="CategorySelect"
         component={CategoriesScreen}
-        options={{title: 'Expense Categories'}}
+        options={{headerTitle: props => <AppHeader title="Expense Categories" />}}
       />
     </Stack.Navigator>
   );
