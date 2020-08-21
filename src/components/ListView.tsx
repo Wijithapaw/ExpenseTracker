@@ -48,7 +48,7 @@ const StyledHeader = styled.View`
   height: 30px;
   background-color: ${(props: any) => props.theme.background.secondary};
   justify-content: center;
-  padding: 5px;
+  padding: 5px 10px;
 `;
 
 const NoRecordsView = styled.View`
