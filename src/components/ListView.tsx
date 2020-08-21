@@ -152,7 +152,7 @@ export interface ListAction {
 function formatData(data: any, format?: ListDataFormat) {
   switch (format) {
     case ListDataFormat.Currency:
-      return `${utils.formatCurrency(data)}`;
+      return `${utils.formatCurrency(data, false, true)}`;
     case ListDataFormat.Date:
       return data.toLocaleDateString();
     default:
