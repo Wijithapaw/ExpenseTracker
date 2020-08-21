@@ -24,7 +24,6 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
         newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_VEGITABLES", "Vegitables", false, food));
         newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_EAT_OUT", "Eat Out", false, food));
         newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_SNACKS", "Snacks", false, food));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_OTHER", "Other", false, food));
 
         //Bills
         let bills = newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS", "Bills", false));
@@ -36,7 +35,6 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
         newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_TV", "TV", false, bills));
         newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_RENT", "Rent", false, bills));
         newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_GAS", "Gas", false, bills));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_OTHER", "Other", false, bills));
       
         //Health care
         let healthCare = new ExpenseType(utils.uuid(), "HEALTH", "Health Care", false);

@@ -6,8 +6,26 @@ import {SimpleListItem} from '../../types/shared.types';
 import Button from '../../components/Button';
 import TextInput from '../../components/TextInput';
 import CategorySelect from '../categories/CategorySelect';
-import { InputType } from '../../types/enums';
+import {InputType} from '../../types/enums';
 import DatePicker from '../../components/DatePicker';
+import showToast, {ToastType} from '../../components/Toast';
+import {utils} from '../../utils/utils';
+import styled from 'styled-components/native';
+
+const FormGroup = styled.View`
+  padding: 5px 0;
+`;
+
+const DoubleCol = styled(FormGroup)`
+  flex-direction: row;
+`;
+
+const FormCol = styled.View`
+  flex: 1;
+`;
+const FormColSpace = styled.View`
+  width: 10px;
+`;
 
 interface Props {
   expenseId?: string;
@@ -15,7 +33,7 @@ interface Props {
 }
 
 const EntryForm = ({expenseId, onSaved}: Props) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<string>();
   const [category, setCategory] = useState<SimpleListItem>();
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState<string>();
@@ -24,7 +42,7 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
   useEffect(() => {
     if (expenseId) {
       let expense = expenseService.getExpense(expenseId);
-      setValue(expense.amount);
+      setValue(utils.formatNumber(expense.amount));
       let category: SimpleListItem = {
         id: expense.type.id,
         title: expense.type.displayText,
@@ -38,9 +56,8 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
   }, []);
 
   const valueChange = (text: string) => {
-    let sanitised = text.replace(/[^0-9][.]/g, '');
-    let val = +sanitised;
-    setValue(val);
+    let sanitized = text.replace(/[^0-9][.]/g, '');
+    setValue(sanitized);
   };
 
   const descriptionChange = (text: string) => {
@@ -48,21 +65,43 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
   };
 
   const save = () => {
-    if (value > 0 && category) {
-      if (expenseId)
+    if (value && category) {
+      if (expenseId) {
         expenseService.updateExpense(
           expenseId,
-          value,
+          parseFloat(value),
           category.id,
           date,
           description,
         );
-      else expenseService.createExpense(value, category.id, date, description);
+        showToast('Expense updated');
+      } else {
+        expenseService.createExpense(
+          parseFloat(value),
+          category.id,
+          date,
+          description,
+        );
+        showToast('Expense added');
+      }
 
-      setValue(0);
+      setValue(undefined);
       setCategory(undefined);
       setDescription(undefined);
       onSaved && onSaved();
+    } else {
+      const missingFields = [];
+      if (!value) missingFields.push('Amount');
+      if (!category) missingFields.push('Category');
+
+      const missingFieldsStr = missingFields.join(' and ');
+
+      showToast(
+        `${missingFieldsStr} ${
+          missingFields.length === 1 ? 'is' : 'are'
+        } required`,
+        ToastType.Error,
+      );
     }
   };
 
@@ -73,50 +112,50 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
 
   return (
     <View>
-      <View
-        style={{height: 50, alignContent: 'center', justifyContent: 'center'}}>
+      <FormGroup>
         <TextInput
-          value={value > 0 ? value.toString() : undefined}
+          value={value}
           onChangeText={valueChange}
           placeholder="Amount"
-          type={InputType.Numeric}
+          textAlign={'center'}
           maxLength={12}
+          type={InputType.Numeric}
         />
-      </View>
-      <View style={{height: 50}}>
-        <Button
-        outline
-          title={
-            category
-              ? category.title +
-                ((category.parentTitle && ` (${category.parentTitle})`) || '')
-              : 'Select Category'
-          }
-          onPress={() => setShowCategorySelect(true)}
-        />
-      </View>
-      <View style={{height: 50}}>
-        <DatePicker date={date} onChange={setDate} />
-      </View>
-      <View style={{height: 50}}>
+      </FormGroup>
+      <DoubleCol>
+        <FormCol>
+          <Button
+            outline
+            title={
+              category
+                ? category.title +
+                  ((category.parentTitle && ` (${category.parentTitle})`) || '')
+                : 'Select Category'
+            }
+            onPress={() => setShowCategorySelect(true)}
+          />
+        </FormCol>
+        <FormColSpace />
+        <FormCol>
+          <DatePicker date={date} onChange={setDate} />
+        </FormCol>
+      </DoubleCol>
+      <FormGroup>
         <TextInput
           maxLength={50}
           value={description}
           placeholder="Description (optional)"
           onChangeText={descriptionChange}
+          textAlign={'center'}
         />
-      </View>
-      <View
-        style={{
-          padding: 10,
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      />
-      <View style={{height: 50}}>
-        <Button title="Save" onPress={save} icon="save" />
-      </View>
+      </FormGroup>
+      <FormGroup>
+        <Button
+          title={expenseId ? 'Update' : 'Add'}
+          onPress={save}
+          icon="save"
+        />
+      </FormGroup>
       <CategorySelect
         visible={showCategorySelect}
         onClose={() => setShowCategorySelect(false)}

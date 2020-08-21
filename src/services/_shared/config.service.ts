@@ -5,7 +5,7 @@ import { KeyValuePair, ConfigItem } from "../../types/shared.types";
 export const configService = {
     getValue,
     updateValue,
-    getAllonfigItems
+    getAllConfigItems
 }
 
 let allConfigs: KeyValuePair[];
@@ -16,10 +16,10 @@ function loadConfigs() {
     return loadConfigs;
 }
 
-function getAllonfigItems() {
-    let cofigs: ConfigItem[] = realm.objects<ConfigItem>(ConfigSetting.schema.name)
+function getAllConfigItems() {
+    let configs: ConfigItem[] = realm.objects<ConfigItem>(ConfigSetting.schema.name)
     .map(c => ({ id: c.id, description: c.description, value: c.value}));
-    return cofigs;
+    return configs;
 }
 
 function getValue(key: string) {

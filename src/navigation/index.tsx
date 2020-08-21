@@ -28,11 +28,11 @@ function MainTabsComponent({theme}: Props) {
             case 'Home':
               iconName = 'home';
               break;
-            case 'Setting':
+            case 'Settings':
               iconName = 'cog';
               break;
             case 'Reports':
-              iconName = 'home';
+              iconName = 'line-chart';
               break;
             default:
               break;
@@ -45,7 +45,7 @@ function MainTabsComponent({theme}: Props) {
         inactiveTintColor: theme.button.secondary,
       }}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Setting" component={SettingsScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen
         name="Reports"
         component={ReportsScreen}

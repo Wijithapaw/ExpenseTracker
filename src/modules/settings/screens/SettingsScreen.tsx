@@ -10,6 +10,7 @@ import TextInput from '../../../components/TextInput';
 import styled from 'styled-components/native';
 import Screen from '../../../components/Screen';
 import IconButton from '../../../components/IconButton';
+import showToast from '../../../components/Toast';
 
 const ItemRow = styled.View`
   flex-direction: row;
@@ -18,19 +19,25 @@ const ItemRow = styled.View`
 
 const IconCol = styled.View`
   justify-content: center;
-  align-items: center;
-  width: 50px;
+  align-items: flex-end;
+  width: 70px;
 `;
 
 const KeyCol = styled.View`
-  flex: 1;
+  min-width: 120px;
   justify-content: center;
-`
+`;
 
 const ValueCol = styled.View`
   flex: 2;
+  margin-left: 5px;
   justify-content: center;
-`
+`;
+
+const EditButtons = styled.View`
+  flex-direction: row;
+  padding-left: 10px;
+`;
 
 interface Props {
   navigation: any;
@@ -45,7 +52,7 @@ export default function SettingsScreen({navigation}: Props) {
   }, []);
 
   const loadItems = () => {
-    let data = configService.getAllonfigItems();
+    let data = configService.getAllConfigItems();
     setConfigSettings(data);
   };
 
@@ -54,6 +61,11 @@ export default function SettingsScreen({navigation}: Props) {
     configService.updateValue(editingId, item.value);
     setEditingId(undefined);
     loadItems();
+    showToast('Settings updated');
+  };
+
+  const cancelEdit = () => {
+    setEditingId(undefined);
   };
 
   const handleChange = (id: string, value: string) => {
@@ -64,7 +76,7 @@ export default function SettingsScreen({navigation}: Props) {
   };
 
   const editCategories = () => {
-    navigation.navigate('CategorySelect')
+    navigation.navigate('CategorySelect');
   };
 
   return (
@@ -73,7 +85,7 @@ export default function SettingsScreen({navigation}: Props) {
         {configSettings &&
           configSettings.map((c, i) => {
             return (
-              <ItemRow key={i}>
+              <ItemRow key={c.id}>
                 <KeyCol>
                   <Text size={FontSize.Regular}>{c.description}</Text>
                 </KeyCol>
@@ -88,10 +100,12 @@ export default function SettingsScreen({navigation}: Props) {
                 </ValueCol>
                 <IconCol>
                   {(editingId == c.id && (
-                    <IconButton key={i} name="save" onPress={update} />
+                    <EditButtons>
+                      <IconButton name="ban" onPress={cancelEdit} />
+                      <IconButton name="save" onPress={update} />
+                    </EditButtons>
                   )) || (
                     <IconButton
-                      key={i}
                       name="pencil"
                       onPress={() => {
                         setEditingId(c.id);

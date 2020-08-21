@@ -15,6 +15,21 @@ import ListView, {
   ListDataFormat,
 } from '../../components/ListView';
 import ExpenseEdit from './ExpenseEdit';
+import styled from 'styled-components/native';
+
+const TotalSection = styled.View`
+  padding: 5px 0;
+  align-items: center;
+`;
+
+const EntrySection = styled.View`
+  margin-bottom: 20px;
+`;
+
+const ListSection = styled.View`
+  flex: 1;
+  margin-bottom: 30px;
+`;
 
 const columns: ListViewColumn[] = [
   {field: 'date', format: ListDataFormat.Date},
@@ -58,7 +73,7 @@ export default function HomeScreen() {
     {
       action: ListActionType.Edit,
       onPress: (item: any) => {
-        setEditingExpenseId(item.id)
+        setEditingExpenseId(item.id);
       },
     },
     {
@@ -76,29 +91,28 @@ export default function HomeScreen() {
 
   return (
     <Screen>
-      <View
-        style={{
-          height: 40,
-          marginTop: 20,
-          marginBottom: 20,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <TotalSection>
         <MonthTotal total={getCurrentMonthTotal()} />
-      </View>
-      <View style={{paddingBottom: 20}}>
+      </TotalSection>
+      <EntrySection>
         <EntryForm onSaved={() => refreshComponent()} />
-      </View>
-      <View style={{flex: 1}}>
+      </EntrySection>
+      <ListSection>
         <ListView
           data={last5Records}
           columns={columns}
           actions={listActions}
           listTitle="Last 5 Expenses..."
         />
-        <ExpenseEdit expenseId={editingExpenseId} onClose={() => setEditingExpenseId(undefined)}
-        onSave={() => { refreshComponent(); setEditingExpenseId(undefined); }} />
-      </View>
+        <ExpenseEdit
+          expenseId={editingExpenseId}
+          onClose={() => setEditingExpenseId(undefined)}
+          onSave={() => {
+            refreshComponent();
+            setEditingExpenseId(undefined);
+          }}
+        />
+      </ListSection>
     </Screen>
   );
 }

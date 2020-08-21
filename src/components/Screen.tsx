@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 const StyledView = styled.ScrollView`
   flex: 1;
-  padding: 5px;
+  padding: 10px;
 `;
 
 interface Props {

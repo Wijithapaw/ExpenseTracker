@@ -1,19 +1,31 @@
-import { configService } from "../services/_shared/config.service";
-import { ConfigSettings } from "../types/constants";
+import {configService} from '../services/_shared/config.service';
+import {ConfigSettings} from '../types/constants';
 
 const uuidv4 = require('uuid/v4');
 
 export const utils = {
-    uuid,
-    currencyFormat
-}
+  uuid,
+  formatCurrency,
+  isFloat,
+  formatNumber,
+};
 
 function uuid() {
-    return uuidv4();
+  return uuidv4();
 }
 
-function currencyFormat(num, decimals = 0) {
-    let cuuSym = configService.getValue(ConfigSettings.currencySymbol)
-    return cuuSym + num.toFixed(decimals).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+function formatCurrency(num, cutDecimal = false, hideSymbol = false) {
+  let currencySym = configService.getValue(ConfigSettings.currencySymbol);
+  return `${hideSymbol ? '' : currencySym}${formatNumber(
+    num,
+    cutDecimal,
+  ).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
 }
 
+function isFloat(n) {
+  return n === +n && n !== (n | 0);
+}
+
+function formatNumber(n: number, cutDecimal = false) {
+  return n.toFixed(!cutDecimal && isFloat(n) ? 2 : 0);
+}

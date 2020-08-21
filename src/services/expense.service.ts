@@ -2,7 +2,6 @@ import { realmService, realm } from "../data/realm.service";
 import { utils } from "../utils/utils";
 import { Expense } from "../data/entity-types";
 import { categoryService } from "./category.service";
-import { Alert } from "react-native";
 
 export const expenseService = {
     getAllExpenses,

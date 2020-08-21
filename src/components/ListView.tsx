@@ -3,14 +3,14 @@ import {SafeAreaView, FlatList, View} from 'react-native';
 import IconButton from './IconButton';
 import styled from 'styled-components/native';
 import Text from './Text';
-import { COLORS } from '../types/colors';
+import {COLORS} from '../types/colors';
+import {utils} from '../utils/utils';
 
 const ListRow = styled.View<any>`
   flex: 1;
   flex-direction: row;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
+  padding: 4px;
+  align-items: center;
 `;
 
 const ListCol = styled.View<any>`
@@ -21,15 +21,12 @@ const ListCol = styled.View<any>`
 
 const ListActions = styled.View<any>`
   width: 100px;
-  flex: 1;
   flex-direction: row;
   justify-content: flex-end;
-  padding-right: 5px;
 `;
 
 const ListActionCol = styled.View<any>`
-  width: 30px;
-  align-items: center;
+  align-items: flex-end;
 `;
 
 const ListMainSeparator = styled.View`
@@ -49,7 +46,7 @@ const ListItemSeparator = styled.View`
 const StyledHeader = styled.View`
   flex: 1;
   height: 30px;
-  background-color: ${(props: any) => props.theme.button.primary};
+  background-color: ${(props: any) => props.theme.background.secondary};
   justify-content: center;
   padding: 5px;
 `;
@@ -155,7 +152,7 @@ export interface ListAction {
 function formatData(data: any, format?: ListDataFormat) {
   switch (format) {
     case ListDataFormat.Currency:
-      return `$${data}`;
+      return `${utils.formatCurrency(data)}`;
     case ListDataFormat.Date:
       return data.toLocaleDateString();
     default:

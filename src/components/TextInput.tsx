@@ -18,6 +18,7 @@ interface Props {
   onChangeText?: (text: string) => void;
   invalid?: boolean;
   type?: InputType;
+  textAlign?: 'center' | 'left' | 'right';
 }
 
 export default function TextInput({
@@ -27,6 +28,7 @@ export default function TextInput({
   onChangeText,
   invalid,
   type = InputType.Default,
+  textAlign = 'left'
 }: Props) {
   let keyboardType = 'default';
   switch (type) {
@@ -43,6 +45,7 @@ export default function TextInput({
       placeholder={placeholder}
       onChangeText={onChangeText}
       invalid={invalid}
+      textAlign={textAlign}
     />
   );
 }

@@ -1,50 +1,38 @@
-export interface Theme {
-   colors: ThemeColors
-}
-
-export interface ThemeColors {
-    primary: string;
-    primaryLight: string;
-    secondary: string;
-    secondaryLight: string;
-    error: string;
-}
-
 export interface ListItemData {
-    id: string;
-    title: string;
-    data?: ListItemData[];
-    expanded?: boolean;
-    faIcon?: string;
-    parentId?: string;
-    parentTitle?: string
+  id: string;
+  title: string;
+  data?: ListItemData[];
+  expanded?: boolean;
+  faIcon?: string;
+  parentId?: string;
+  parentTitle?: string;
 }
 
 export interface FlatListItemData {
-    id: string;
-    title: string;
-    parentId?: string;
-    parentTitle?: string;
-    show?: boolean;
-    expanded?: boolean;
-    hasChildren?: boolean;
-    level: number;
-    faIcon?: string;
+  id: string;
+  title: string;
+  parentId?: string;
+  parentTitle?: string;
+  show?: boolean;
+  expanded?: boolean;
+  hasChildren?: boolean;
+  level: number;
+  faIcon?: string;
 }
 
 export interface SimpleListItem {
-    id: string;
-    title: string;
-    parentTitle?: string;
+  id: string;
+  title: string;
+  parentTitle?: string;
 }
 
-export interface KeyValuePair {    
-    key: string;
-    value: string;
+export interface KeyValuePair {
+  key: string;
+  value: string;
 }
 
 export interface ConfigItem {
-    id: string;
-    description: string;
-    value: string;
+  id: string;
+  description: string;
+  value: string;
 }

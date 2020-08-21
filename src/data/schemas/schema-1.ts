@@ -10,7 +10,7 @@ export class Expense {
     properties: {
       id: 'string',
       type: 'ExpenseType',
-      amount: 'int',
+      amount: 'float',
       date: 'date',
       createdDate: 'date',
       description: 'string?'
