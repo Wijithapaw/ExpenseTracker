@@ -39,7 +39,7 @@ export default function AppHeader({title}: Props) {
         <Title>{title || 'Expense Tracker'}</Title>
       </HeaderText>
       <HeaderIcon>
-        <StyledImage source={require('../assets/images/chart-icon.png')} />
+        <StyledImage source={require('../assets/images/logo.png')} />
       </HeaderIcon>
     </HeaderContainer>
   );

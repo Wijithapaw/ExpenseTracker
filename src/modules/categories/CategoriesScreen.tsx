@@ -17,15 +17,16 @@ import Modal from '../../components/Modal';
 import IconPicker from '../../components/IconPicker';
 import Icon from '../../components/Icon';
 
-interface ItemRowProps {
-  selected: boolean;
-}
-
-const ItemRow = styled.View<ItemRowProps>`
+const ItemRow = styled.View<any>`
   flex-direction: row;
-  padding: 10px;
+  padding: 4px;
   background-color: ${(props: any) =>
     props.selected ? props.theme.button.primary : COLORS.transparent};
+`;
+
+const Body = styled.View`
+  flex: 1;
+  margin-bottom: 20px;
 `;
 
 const IconCol = styled.View`
@@ -49,7 +50,6 @@ const ActionBtnCol = styled.View`
 const AddNewRow = styled.View`
   flex-direction: row;
   justify-content: flex-end;
-  padding: 5px;
 `;
 
 export interface Props {
@@ -196,39 +196,39 @@ export default function CategoriesScreen({selectedId, callback}: Props) {
       <AddNewRow>
         <IconButton name="plus-circle" size={25} onPress={() => onAdd()} />
       </AddNewRow>
-      {categories
-        .filter(c => c.show)
-        .map((l, i) => (
-          <ItemRow key={i} selected={selectedId === l.id}>
-            <IconCol>
-              {l.faIcon ? <Icon name={l.faIcon} /> : null}
-            </IconCol>
-            <TextCol style={{paddingLeft: 10 * l.level + 5}}>
-              <Text>{l.title}</Text>
-            </TextCol>
-            {l.parentId == undefined && (
-              <ActionBtnCol>
-                <IconButton name="plus-circle" onPress={() => onAdd(l)} />
-              </ActionBtnCol>
-            )}
-            <ActionBtnCol>
-              {!(l.parentId && l.id == l.parentId) && (
-                <IconButton name="pencil" onPress={() => onEdit(l)} />
+      <Body>
+        {categories
+          .filter(c => c.show)
+          .map((l, i) => (
+            <ItemRow key={i} selected={selectedId === l.id}>
+              <IconCol>{l.faIcon ? <Icon name={l.faIcon} /> : null}</IconCol>
+              <TextCol style={{paddingLeft: 10 * l.level + 5}}>
+                <Text>{l.title}</Text>
+              </TextCol>
+              {l.parentId == undefined && (
+                <ActionBtnCol>
+                  <IconButton name="plus-circle" onPress={() => onAdd(l)} />
+                </ActionBtnCol>
               )}
-            </ActionBtnCol>
-            <ActionBtnCol>
-              {(l.hasChildren && (
-                <IconButton
-                  name={l.expanded ? 'compress' : 'expand'}
-                  onPress={() => toggleItems(l.id)}
-                />
-              )) ||
-                (!(l.parentId && l.id == l.parentId) && (
-                  <IconButton name="trash" onPress={() => onDelete(l.id)} />
-                ))}
-            </ActionBtnCol>
-          </ItemRow>
-        ))}
+              <ActionBtnCol>
+                {!(l.parentId && l.id == l.parentId) && (
+                  <IconButton name="pencil" onPress={() => onEdit(l)} />
+                )}
+              </ActionBtnCol>
+              <ActionBtnCol>
+                {(l.hasChildren && (
+                  <IconButton
+                    name={l.expanded ? 'compress' : 'expand'}
+                    onPress={() => toggleItems(l.id)}
+                  />
+                )) ||
+                  (!(l.parentId && l.id == l.parentId) && (
+                    <IconButton name="trash" onPress={() => onDelete(l.id)} />
+                  ))}
+              </ActionBtnCol>
+            </ItemRow>
+          ))}
+      </Body>
 
       <Modal
         visible={showEdit}
