@@ -89,7 +89,7 @@ export default function CategorySelect({visible, onClose, onSelect}: Props) {
     <Modal
       visible={visible}
       onRequestClose={onClose}
-      title={`Select Category${parentItem ? `-${parentItem.title}` : ''}`}>
+      title={`Select Category${parentItem ? `: ${parentItem.title}` : ''}`}>
       {parentItem && (
         <BackButtonRow>
           <View>
