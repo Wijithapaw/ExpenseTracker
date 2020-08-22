@@ -27,7 +27,7 @@ export function ReportsScreen() {
 export function SplashScreen() {
   return (
     <View>
-      <Text>This is Reports</Text>
+      <Text>This is Splash</Text>
     </View>
   );
 }

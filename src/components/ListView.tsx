@@ -1,10 +1,12 @@
 import React from 'react';
-import {SafeAreaView, FlatList, View} from 'react-native';
+import {FlatList} from 'react-native';
 import IconButton from './IconButton';
 import styled from 'styled-components/native';
 import Text from './Text';
 import {COLORS} from '../types/colors';
 import {utils} from '../utils/utils';
+import Gradient from './Gradient';
+import { darken } from '../utils/color.utils';
 
 const Container = styled.View`
   flex: 1;
@@ -46,11 +48,15 @@ const ListItemSeparator = styled.View`
   border-bottom-width: 1px;
 `;
 
-const StyledHeader = styled.View`
-  flex: 1;
+const StyledHeader = styled(Gradient).attrs((props: any) => ({
+  colors: [
+    darken(props.color || props.theme.background.secondary, 60),
+    props.color || props.theme.background.secondary,
+    20,
+  ],
+}))`
   height: 30px;
-  background-color: ${(props: any) => props.theme.background.secondary};
-  justify-content: center;
+  align-items: flex-start;
   padding: 5px 10px;
 `;
 
@@ -91,12 +97,9 @@ function ListViewRow({row, columns, actions}: ListViewItemProps) {
 
 function ListHeader({title}) {
   return (
-    <>
       <StyledHeader>
         <Text color={COLORS.white}>{title}</Text>
       </StyledHeader>
-      <ListMainSeparator />
-    </>
   );
 }
 

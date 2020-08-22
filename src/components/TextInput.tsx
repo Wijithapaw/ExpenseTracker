@@ -4,6 +4,7 @@ import {COLORS} from '../types/colors';
 import {InputType} from '../types/enums';
 
 const StyledTextInput = styled.TextInput<any>`
+  height: 35px;
   padding: 5px;
   border: 1px solid
     ${(props: any) =>

@@ -5,6 +5,7 @@ import {COLORS} from '../types/colors';
 import Text from './Text';
 import {FontSize} from '../types/enums';
 import IconButton from './IconButton';
+import Gradient from './Gradient';
 
 const Overlay = styled.View`
   flex: 1;
@@ -23,9 +24,13 @@ const ModalArea = styled.View`
 `;
 
 const Title = styled.View`
-  background-color: ${(props: any) => props.theme.button.primary};
-  padding: 5px;
+  background-color: white;
+  height: 40px;
+`;
+
+const TitleGradient = styled(Gradient)`
   flex-direction: row;
+  padding: 5px 10px;
 `;
 
 const TiTleText = styled.View`
@@ -43,7 +48,6 @@ const TiTleButton = styled.View`
 const CloseButton = styled(IconButton).attrs((props: any) => ({
   name: 'times',
   size: 15,
-  color: COLORS.white,
 }))`
   align-self: flex-end;
 `;
@@ -70,7 +74,8 @@ export default function Modal({
       visible={visible}
       onRequestClose={onRequestClose}>
       <Overlay>
-          <Title>
+        <Title>
+          <TitleGradient>
             <TiTleButton />
             <TiTleText>
               <Text bold size={FontSize.Increased} color={COLORS.white}>
@@ -80,7 +85,8 @@ export default function Modal({
             <TiTleButton>
               <CloseButton onPress={onRequestClose} />
             </TiTleButton>
-          </Title>
+          </TitleGradient>
+        </Title>
         <ModalArea>{children}</ModalArea>
       </Overlay>
     </ReactModal>
