@@ -5,6 +5,7 @@ import Text from '../../components/Text';
 import {FontSize} from '../../types/enums';
 import {MonthNames, ConfigSettings} from '../../types/constants';
 import {configService} from '../../services/_shared/config.service';
+import {rgba} from '../../utils/color.utils';
 
 const Container = styled.View<any>`
   justify-content: center;
@@ -16,6 +17,11 @@ const Container = styled.View<any>`
   padding: 4px;
   border-color: ${(props: any) =>
     props.overBudget ? props.theme.border.error : props.theme.border.success};
+  background-color: ${(props: any) =>
+    rgba(
+      props.overBudget ? props.theme.border.error : props.theme.border.success,
+      0.1,
+    )};
 `;
 
 const StyledText = styled(Text).attrs((props: any) => ({
@@ -36,7 +42,7 @@ export default function MonthTotal({total}: Props) {
 
   return (
     <Container overBudget={overBudget}>
-      <StyledText orderBudger={overBudget} size={FontSize.Regular}>
+      <StyledText bold orderBudger={overBudget} size={FontSize.Regular}>
         {currencySymbol}
       </StyledText>
       <StyledText

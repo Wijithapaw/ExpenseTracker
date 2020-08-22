@@ -1,6 +1,5 @@
-import * as React from 'react';
-import {View} from 'react-native';
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import {expenseService} from '../../services/expense.service';
 import * as Realm from 'realm';
 import {Expense} from '../../data/entity-types';
@@ -42,9 +41,15 @@ export default function HomeScreen() {
   const [refresh, toggleRefresh] = useState(false);
   const [editingExpenseId, setEditingExpenseId] = useState<string>();
 
-  useEffect(() => {
-    setExpenses(expenseService.getAllExpenses());
-  }, []);
+  // useEffect(() => {
+  //   setExpenses(expenseService.getAllExpenses());
+  // }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      setExpenses(expenseService.getAllExpenses());
+    }, []),
+  );
 
   const getCurrentMonthTotal = () => {
     var date = new Date(),

@@ -6,8 +6,11 @@ import Text from './Text';
 import {COLORS} from '../types/colors';
 import {utils} from '../utils/utils';
 
-const ListRow = styled.View<any>`
+const Container = styled.View`
   flex: 1;
+`;
+
+const ListRow = styled.View<any>`
   flex-direction: row;
   padding: 4px;
   align-items: center;
@@ -106,7 +109,7 @@ interface Props {
 
 export default function ListView({data, columns, actions, listTitle}: Props) {
   return (
-    <SafeAreaView>
+    <Container>
       {listTitle && <ListHeader title={listTitle} />}
       <FlatList
         ItemSeparatorComponent={ListItemSeparator}
@@ -122,7 +125,7 @@ export default function ListView({data, columns, actions, listTitle}: Props) {
         </NoRecordsView>
       )}
       <ListMainSeparator />
-    </SafeAreaView>
+    </Container>
   );
 }
 
