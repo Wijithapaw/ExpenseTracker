@@ -14,7 +14,7 @@ const HeaderText = styled.View`
 `;
 
 const Title = styled(Text).attrs((props: any) => ({
-    color: props.theme.button.primary,
+    color: props.theme.text.header,
     size: FontSize.Huge,
     bold: true,
 }))``

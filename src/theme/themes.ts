@@ -7,7 +7,7 @@ export const LIGHT_THEME: Theme = {
   text: {
     primary: COLORS.black,
     error: COLORS.red,
-    header: COLORS.white,
+    header: COLORS.linkedInBlue,
     secondary: COLORS.doveGray,
     success: COLORS.green,
   },

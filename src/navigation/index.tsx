@@ -10,6 +10,7 @@ import {withTheme} from 'styled-components';
 import {Theme} from '../types/theme.types';
 import HomeScreen from '../modules/expenses/HomeScreen';
 import AppHeader from './AppHeader';
+import Gradient from '../components/Gradient';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -61,7 +62,7 @@ export default function AppRoutes() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitle: props => <AppHeader />
+        headerTitle: props => <AppHeader />,
       }}>
       <Stack.Screen
         name="MainTabs"
