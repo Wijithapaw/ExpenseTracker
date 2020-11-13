@@ -8,22 +8,6 @@ const StyledView = styled.View`
   align-items: center;
 `;
 
-export function SettingsScreen() {
-  return (
-    <StyledView>
-      <Text>This is Settings</Text>
-    </StyledView>
-  );
-}
-
-export function ReportsScreen() {
-  return (
-    <StyledView>
-      <Text>This is Reports</Text>
-    </StyledView>
-  );
-}
-
 export function SplashScreen() {
   return (
     <View>
