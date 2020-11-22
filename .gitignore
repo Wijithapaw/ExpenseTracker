@@ -57,3 +57,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+android/app/release/app-release.apk
+android/gradlew
+android/app/release/output.json
