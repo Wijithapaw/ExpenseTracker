@@ -5622,10 +5622,10 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-chart-kit@^6.6.0:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-chart-kit/-/react-native-chart-kit-6.6.0.tgz#d5133183d0ad25e5ade89875cd708e9443559aae"
-  integrity sha512-9jA7+KEEv4YjivRTxXxVFK7AS7W2SBKXKk3xJUAtG4wyN36BrrE2huLGjpLHjxkmBdyi0pg6eMU5m2NMfNLpYA==
+react-native-chart-kit@^6.7.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-chart-kit/-/react-native-chart-kit-6.7.0.tgz#2cecdf8cb74a7da88304d7b1e1c5ac1f81e59ca5"
+  integrity sha512-1MF7pwnPVXTh7ohEa42NHGJoCcjLWTpXkPdv3WcV+qWFrcMR6jHigEKGR3hfMWOcVRCR+2/MY/7mX/WXcZMs1g==
   dependencies:
     lodash "^4.17.13"
     paths-js "^0.4.10"
@@ -6887,6 +6887,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typescript@^3.8.3:
+  version "3.9.7"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
+  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
 
 typical@^2.6.0, typical@^2.6.1:
   version "2.6.1"

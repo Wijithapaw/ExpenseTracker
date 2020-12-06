@@ -1,5 +1,5 @@
-import {configService} from '../services/_shared/config.service';
-import {ConfigSettings} from '../types/constants';
+//import {configService} from '../services/_shared/config.service';
+import { ConfigSettings } from '../types/constants';
 
 const uuidv4 = require('uuid/v4');
 
@@ -15,7 +15,7 @@ function uuid() {
 }
 
 function formatCurrency(num, cutDecimal = false, hideSymbol = false) {
-  let currencySym = configService.getValue(ConfigSettings.currencySymbol);
+  let currencySym = 'Rs. '; //configService.getValue(ConfigSettings.currencySymbol);
   return `${hideSymbol ? '' : currencySym}${formatNumber(
     num,
     cutDecimal,

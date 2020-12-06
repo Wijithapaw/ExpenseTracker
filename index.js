@@ -11,3 +11,5 @@ import App from './App';
 import {name as appName} from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
+
+//adb reverse tcp:9090 tcp:9090

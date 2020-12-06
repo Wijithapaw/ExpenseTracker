@@ -1,15 +1,14 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import { FlatList } from 'react-native';
 import IconButton from './IconButton';
 import styled from 'styled-components/native';
 import Text from './Text';
-import {COLORS} from '../types/colors';
-import {utils} from '../utils/utils';
+import { COLORS } from '../types/colors';
+import { utils } from '../utils/utils';
 import Gradient from './Gradient';
 import { darken } from '../utils/color.utils';
 
 const Container = styled.View`
-  flex: 1;
 `;
 
 const ListRow = styled.View<any>`
@@ -71,7 +70,7 @@ interface ListViewItemProps {
   actions?: ListAction[];
 }
 
-function ListViewRow({row, columns, actions}: ListViewItemProps) {
+function ListViewRow({ row, columns, actions }: ListViewItemProps) {
   return (
     <ListRow>
       {columns.map((col, index) => (
@@ -95,11 +94,11 @@ function ListViewRow({row, columns, actions}: ListViewItemProps) {
   );
 }
 
-function ListHeader({title}) {
+function ListHeader({ title }) {
   return (
-      <StyledHeader>
-        <Text color={COLORS.white}>{title}</Text>
-      </StyledHeader>
+    <StyledHeader>
+      <Text color={COLORS.white}>{title}</Text>
+    </StyledHeader>
   );
 }
 
@@ -110,14 +109,14 @@ interface Props {
   listTitle?: string;
 }
 
-export default function ListView({data, columns, actions, listTitle}: Props) {
+export default function ListView({ data, columns, actions, listTitle }: Props) {
   return (
     <Container>
       {listTitle && <ListHeader title={listTitle} />}
       <FlatList
         ItemSeparatorComponent={ListItemSeparator}
         data={data}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <ListViewRow row={item} columns={columns} actions={actions} />
         )}
         keyExtractor={item => item.id}
@@ -142,6 +141,7 @@ export enum ListDataFormat {
   Text = 0,
   Currency = 1,
   Date = 2,
+  Percentage = 3,
 }
 
 export enum ListActionType {
@@ -161,6 +161,8 @@ function formatData(data: any, format?: ListDataFormat) {
       return `${utils.formatCurrency(data, false, true)}`;
     case ListDataFormat.Date:
       return data.toLocaleDateString();
+    case ListDataFormat.Percentage:
+      return `${data}%`;
     default:
       return data.toString();
   }

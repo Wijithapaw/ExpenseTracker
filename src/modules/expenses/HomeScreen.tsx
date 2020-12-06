@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {useFocusEffect} from '@react-navigation/native';
-import {expenseService} from '../../services/expense.service';
+import React, { useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { expenseService } from '../../services/expense.service';
 import * as Realm from 'realm';
-import {Expense} from '../../data/entity-types';
+import { Expense } from '../../data/entity-types';
 import EntryForm from './EntryForm';
-import {messagingService} from '../../services/_shared/messaging.service';
+import { messagingService } from '../../services/_shared/messaging.service';
 import Screen from '../../components/Screen';
 import MonthTotal from './MonthTotal';
 import ListView, {
@@ -31,9 +31,9 @@ const ListSection = styled.View`
 `;
 
 const columns: ListViewColumn[] = [
-  {field: 'date', format: ListDataFormat.Date},
-  {field: 'category'},
-  {field: 'amount', format: ListDataFormat.Currency, textAlign: 'right'},
+  { field: 'date', format: ListDataFormat.Date },
+  { field: 'category' },
+  { field: 'amount', format: ListDataFormat.Currency, textAlign: 'right' },
 ];
 
 export default function HomeScreen() {

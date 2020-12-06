@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ListItemData,
   FlatListItemData,
   SimpleListItem,
 } from '../../types/shared.types';
-import {View, Text, Alert} from 'react-native';
-import {ScreenMode} from '../../types/enums';
+import { Text, Alert } from 'react-native';
+import { ScreenMode } from '../../types/enums';
 import EditCategory from './EditCategory';
-import {messagingService} from '../../services/_shared/messaging.service';
-import {categoryService} from '../../services/category.service';
+import { messagingService } from '../../services/_shared/messaging.service';
+import { categoryService } from '../../services/category.service';
 import Screen from '../../components/Screen';
 import IconButton from '../../components/IconButton';
 import styled from 'styled-components/native';
-import {COLORS} from '../../types/colors';
+import { COLORS } from '../../types/colors';
 import Modal from '../../components/Modal';
 import IconPicker from '../../components/IconPicker';
 import Icon from '../../components/Icon';
@@ -58,7 +58,7 @@ export interface Props {
   mode?: ScreenMode;
 }
 
-export default function CategoriesScreen({selectedId, callback}: Props) {
+export default function CategoriesScreen({ selectedId }: Props) {
   const [categories, setCategories] = useState<FlatListItemData[]>([]);
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [editingItem, setEditingItem] = useState<FlatListItemData>();
@@ -78,7 +78,7 @@ export default function CategoriesScreen({selectedId, callback}: Props) {
   const flattenList = (data: ListItemData[]) => {
     const flatList: FlatListItemData[] = [];
 
-    data.map((val, index) => {
+    data.map((val) => {
       const items = flattenSingleItem(val, 0);
       flatList.push(...items);
     });
@@ -112,7 +112,7 @@ export default function CategoriesScreen({selectedId, callback}: Props) {
 
     let subItems =
       item.data &&
-      item.data.map((child, index) =>
+      item.data.map((child) =>
         flattenSingleItem(
           child,
           level + 1,
@@ -178,17 +178,17 @@ export default function CategoriesScreen({selectedId, callback}: Props) {
 
   const onAdd = (parent?: FlatListItemData) => {
     setShowEdit(true);
-    setEditingItem({title: '', id: '', level: 0});
+    setEditingItem({ title: '', id: '', level: 0 });
     setParentItem(parent);
   };
 
   const handleIconSelect = (icon: string) => {
-    setEditingItem({...editingItem, faIcon: icon});
+    setEditingItem({ ...editingItem, faIcon: icon });
     setShowIconPicker(false);
   };
 
   const handleEditingItemOnChange = (e: any) => {
-    setEditingItem({...editingItem, ...e});
+    setEditingItem({ ...editingItem, ...e });
   };
 
   return (
@@ -202,7 +202,7 @@ export default function CategoriesScreen({selectedId, callback}: Props) {
           .map((l, i) => (
             <ItemRow key={i} selected={selectedId === l.id}>
               <IconCol>{l.faIcon ? <Icon name={l.faIcon} /> : null}</IconCol>
-              <TextCol style={{paddingLeft: 10 * l.level + 5}}>
+              <TextCol style={{ paddingLeft: 10 * l.level + 5 }}>
                 <Text>{l.title}</Text>
               </TextCol>
               {l.parentId == undefined && (

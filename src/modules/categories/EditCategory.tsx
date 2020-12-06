@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {FlatListItemData} from '../../types/shared.types';
-import {View} from 'react-native';
-import {useState, useEffect} from 'react';
-import {categoryService} from '../../services/category.service';
+import { FlatListItemData } from '../../types/shared.types';
+import { View } from 'react-native';
+import { useState, useEffect } from 'react';
+import { categoryService } from '../../services/category.service';
 import IconButton from '../../components/IconButton';
 import Button from '../../components/Button';
 import TextInput from '../../components/TextInput';
@@ -54,16 +54,16 @@ export default function EditCategory({
 }: Props) {
   const [valid, setValid] = useState(true);
 
-
-  const parentTitle = parentItem && parentItem.title || item.parentTitle;
+  const parentTitle = (parentItem && parentItem.title) || item.parentTitle;
   const rootCategory = !parentTitle;
 
   useEffect(() => {
     validate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
   const titleChanged = (e: string) => {
-    onChange({title: e});
+    onChange({ title: e });
   };
 
   const save = () => {
