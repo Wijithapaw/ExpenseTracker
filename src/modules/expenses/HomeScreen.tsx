@@ -1,20 +1,21 @@
-import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { expenseService } from '../../services/expense.service';
+import React, { useCallback, useState } from 'react';
 import * as Realm from 'realm';
-import { Expense } from '../../data/entity-types';
-import EntryForm from './EntryForm';
-import { messagingService } from '../../services/_shared/messaging.service';
-import Screen from '../../components/Screen';
-import MonthTotal from './MonthTotal';
-import ListView, {
-  ListActionType,
-  ListAction,
-  ListViewColumn,
-  ListDataFormat,
-} from '../../components/ListView';
-import ExpenseEdit from './ExpenseEdit';
 import styled from 'styled-components/native';
+
+import ListView, {
+  ListAction,
+  ListActionType,
+  ListDataFormat,
+  ListViewColumn,
+} from '../../components/ListView';
+import Screen from '../../components/Screen';
+import { Expense } from '../../data/entity-types';
+import { messagingService } from '../../services/_shared/messaging.service';
+import { expenseService } from '../../services/expense.service';
+import EntryForm from './EntryForm';
+import ExpenseEdit from './ExpenseEdit';
+import MonthTotal from './MonthTotal';
 
 const TotalSection = styled.View`
   padding: 5px 0;

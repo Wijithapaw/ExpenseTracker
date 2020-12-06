@@ -1,11 +1,12 @@
 import React from 'react';
 import { Modal as ReactModal } from 'react-native';
 import styled from 'styled-components/native';
+
 import { COLORS } from '../types/colors';
-import Text from './Text';
 import { FontSize } from '../types/enums';
-import IconButton from './IconButton';
 import Gradient from './Gradient';
+import IconButton from './IconButton';
+import Text from './Text';
 
 const Overlay = styled.View`
   flex: 1;

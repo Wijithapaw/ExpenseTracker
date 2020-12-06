@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { FlatList, TouchableHighlight, View } from 'react-native';
+import styled from 'styled-components/native';
+
+import Button from '../../components/Button';
+import Icon from '../../components/Icon';
+import IconButton from '../../components/IconButton';
 import Modal from '../../components/Modal';
 import Text from '../../components/Text';
-import { SimpleListItem, ListItemData } from '../../types/shared.types';
 import { categoryService } from '../../services/category.service';
-import { View, FlatList, TouchableHighlight } from 'react-native';
-import styled from 'styled-components/native';
-import Icon from '../../components/Icon';
-import Button from '../../components/Button';
+import { ListItemData, SimpleListItem } from '../../types/shared.types';
 import { rgba } from '../../utils/color.utils';
-import IconButton from '../../components/IconButton';
 
 interface Props {
   visible: boolean;

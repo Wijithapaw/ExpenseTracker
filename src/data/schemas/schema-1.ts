@@ -1,4 +1,5 @@
 import * as Realm from 'realm';
+
 import { utils } from '../../utils/utils';
 
 const SCHEMA_VERSION = 1;

@@ -1,6 +1,6 @@
-import { Expense, ExpenseType } from './schema-3';
-import { utils } from '../../utils/utils';
 import { ConfigSettings } from '../../types/constants';
+import { utils } from '../../utils/utils';
+import { Expense, ExpenseType } from './schema-3';
 
 const SCHEMA_VERSION = 4;
 
@@ -38,7 +38,7 @@ class ConfigSetting {
   }
 }
 
-export { Expense, ExpenseType, ConfigSetting };
+export { ConfigSetting, Expense, ExpenseType };
 
 const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
   // only apply this change if upgrading to schemaVersion 2

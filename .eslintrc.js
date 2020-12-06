@@ -23,7 +23,7 @@ module.exports = {
       arrowFunctions: true,
     },
   },
-  plugins: ['react', '@typescript-eslint', 'prettier', 'spellcheck'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'spellcheck', 'simple-import-sort', 'import'],
   settings: {
     react: {
       version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
@@ -42,6 +42,7 @@ module.exports = {
     'global-require': 'off', // https://eslint.org/docs/rules/global-require
     'import/no-dynamic-require': 'off', // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-dynamic-require.md
     'no-inner-declarations': 'off', // https://eslint.org/docs/rules/no-inner-declarations
+
     // New rules
     'class-methods-use-this': 'off',
     'import/extensions': 'off',
@@ -67,8 +68,24 @@ module.exports = {
         ],
         minLength: 3,
       },
-    ]
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "sort-imports": "off",
+    "import/order": "off",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
   },
+  overrides: [
+    {
+      "files": "server/**/*.js",
+      "env": { "node": true },
+      "rules": {
+        "simple-import-sort/imports": "off",
+        "import/order": ["error", { "newlines-between": "always" }]
+      }
+    }
+  ],
   globals: {
     '__CLIENT__': true,
     '__SERVER__': true,

@@ -1,6 +1,7 @@
-import styled from 'styled-components/native';
-import { darken } from '../utils/color.utils';
 import LinearGradient from 'react-native-linear-gradient';
+import styled from 'styled-components/native';
+
+import { darken } from '../utils/color.utils';
 
 export default styled(LinearGradient).attrs((props: any) => ({
   colors: [

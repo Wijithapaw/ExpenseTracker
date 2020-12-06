@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import Text from './Text';
+
 import { COLORS } from '../types/colors';
 import Gradient from './Gradient';
+import Text from './Text';
 
 const StyledText = styled(Text).attrs((props: any) => ({
   color: props.outline ? props.theme.button.primary : COLORS.white,

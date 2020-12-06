@@ -1,8 +1,9 @@
 import * as React from 'react';
+import styled from 'styled-components/native';
+
+import { COLORS } from '../types/colors';
 import { Icons } from '../types/icons';
 import IconButton from './IconButton';
-import styled from 'styled-components/native';
-import { COLORS } from '../types/colors';
 
 const Cell = styled.View`
   width: 40px;

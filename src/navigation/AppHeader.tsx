@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Image } from 'react-native';
-import Text from '../components/Text';
+import { Image, View } from 'react-native';
 import styled from 'styled-components/native';
+
+import Text from '../components/Text';
 import { FontSize } from '../types/enums';
 
 const HeaderContainer = styled.View`

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+
 import { LIGHT_THEME } from './themes';
 
 interface Props {

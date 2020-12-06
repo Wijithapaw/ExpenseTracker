@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { View } from 'react-native';
 import { useEffect, useState } from 'react';
-import { configService } from '../../../services/_shared/config.service';
-import { ConfigItem } from '../../../types/shared.types';
-import { FontSize } from '../../../types/enums';
+import { View } from 'react-native';
+import styled from 'styled-components/native';
+
 import Button from '../../../components/Button';
+import IconButton from '../../../components/IconButton';
+import Screen from '../../../components/Screen';
 import Text from '../../../components/Text';
 import TextInput from '../../../components/TextInput';
-import styled from 'styled-components/native';
-import Screen from '../../../components/Screen';
-import IconButton from '../../../components/IconButton';
 import showToast from '../../../components/Toast';
+import { configService } from '../../../services/_shared/config.service';
+import { FontSize } from '../../../types/enums';
+import { ConfigItem } from '../../../types/shared.types';
 
 const ItemRow = styled.View`
   flex-direction: row;

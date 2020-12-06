@@ -1,6 +1,6 @@
-import { realm } from '../../data/realm.service';
 import { ConfigSetting } from '../../data/entity-types';
-import { KeyValuePair, ConfigItem } from '../../types/shared.types';
+import { realm } from '../../data/realm.service';
+import { ConfigItem, KeyValuePair } from '../../types/shared.types';
 
 export const configService = {
   getValue,

@@ -1,12 +1,13 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import IconButton from './IconButton';
 import styled from 'styled-components/native';
-import Text from './Text';
+
 import { COLORS } from '../types/colors';
+import { darken } from '../utils/color.utils';
 import { utils } from '../utils/utils';
 import Gradient from './Gradient';
-import { darken } from '../utils/color.utils';
+import IconButton from './IconButton';
+import Text from './Text';
 
 const Container = styled.View``;
 

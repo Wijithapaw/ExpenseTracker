@@ -6,8 +6,9 @@
  * @flow strict-local
  */
 
-import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import * as React from 'react';
+
 import AppRoutes from './src/navigation';
 import ThemeProvider from './src/theme/ThemeProvider';
 

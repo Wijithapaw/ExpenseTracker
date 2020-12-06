@@ -1,5 +1,5 @@
-import { Theme } from '../types/theme.types';
 import { COLORS } from '../types/colors';
+import { Theme } from '../types/theme.types';
 import { rgba } from '../utils/color.utils';
 
 export const LIGHT_THEME: Theme = {

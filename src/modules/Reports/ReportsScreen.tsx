@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components/native';
+
+import ListView, {
+  ListAction,
+  ListActionType,
+  ListDataFormat,
+  ListViewColumn,
+} from '../../components/ListView';
 import { categoryService } from '../../services/category.service';
 import { expenseService } from '../../services/expense.service';
 import { MonthNames } from '../../types/constants';
 import {
+  CategorySummary,
   ExpenseCategoryMap,
   ExpenseDto,
   MonthlySummary,
-  CategorySummary,
 } from '../../types/expense.types';
-import styled from 'styled-components/native';
-import ListView, {
-  ListViewColumn,
-  ListDataFormat,
-  ListAction,
-  ListActionType,
-} from '../../components/ListView';
 import ExpensesChart from './ExpensesChart';
 
 const Container = styled.View`

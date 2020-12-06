@@ -1,18 +1,19 @@
-import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { SplashScreen } from './SampleScreens';
+import { withTheme } from 'styled-components';
+import styled from 'styled-components/native';
+
+import Gradient from '../components/Gradient';
+import CategoriesScreen from '../modules/categories/CategoriesScreen';
+import HomeScreen from '../modules/expenses/HomeScreen';
 import ReportsScreen from '../modules/Reports/ReportsScreen';
 import SettingsScreen from '../modules/settings/screens/SettingsScreen';
-import CategoriesScreen from '../modules/categories/CategoriesScreen';
 import { ScreenMode } from '../types/enums';
-import { withTheme } from 'styled-components';
 import { Theme } from '../types/theme.types';
-import HomeScreen from '../modules/expenses/HomeScreen';
 import AppHeader from './AppHeader';
-import Gradient from '../components/Gradient';
-import styled from 'styled-components/native';
+import { SplashScreen } from './SampleScreens';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

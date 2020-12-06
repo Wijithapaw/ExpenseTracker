@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
+
 import { FontSize, FontType } from '../types/enums';
-import { getFontSize } from '../utils/font.utils';
 import { Theme } from '../types/theme.types';
+import { getFontSize } from '../utils/font.utils';
 
 const StyledText = styled.Text`
     text-align-vertical: center;

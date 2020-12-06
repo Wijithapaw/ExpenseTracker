@@ -1,8 +1,8 @@
-import { realmService, realm } from '../data/realm.service';
-import { utils } from '../utils/utils';
 import { Expense } from '../data/entity-types';
-import { categoryService } from './category.service';
+import { realm, realmService } from '../data/realm.service';
 import { ExpenseDto } from '../types/expense.types';
+import { utils } from '../utils/utils';
+import { categoryService } from './category.service';
 
 export const expenseService = {
   getAllExpenses,

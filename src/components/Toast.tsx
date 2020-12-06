@@ -1,4 +1,5 @@
 import Toast from 'react-native-root-toast';
+
 import { COLORS } from '../types/colors';
 
 export enum ToastType {

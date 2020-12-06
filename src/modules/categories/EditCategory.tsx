@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { FlatListItemData } from '../../types/shared.types';
+import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { useState, useEffect } from 'react';
-import { categoryService } from '../../services/category.service';
-import IconButton from '../../components/IconButton';
-import Button from '../../components/Button';
-import TextInput from '../../components/TextInput';
 import styled from 'styled-components/native';
+
+import Button from '../../components/Button';
+import IconButton from '../../components/IconButton';
 import Text from '../../components/Text';
+import TextInput from '../../components/TextInput';
+import { categoryService } from '../../services/category.service';
+import { FlatListItemData } from '../../types/shared.types';
 
 const Row = styled.View`
   padding: 5px 0;

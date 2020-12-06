@@ -1,6 +1,7 @@
 import * as React from 'react';
-import EntryForm from './EntryForm';
+
 import Modal from '../../components/Modal';
+import EntryForm from './EntryForm';
 
 export interface Props {
   expenseId?: string;

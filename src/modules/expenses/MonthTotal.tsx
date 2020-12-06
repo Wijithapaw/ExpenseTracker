@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { utils } from '../../utils/utils';
 import styled from 'styled-components/native';
+
 import Text from '../../components/Text';
-import { FontSize } from '../../types/enums';
-import { MonthNames, ConfigSettings } from '../../types/constants';
 import { configService } from '../../services/_shared/config.service';
+import { ConfigSettings, MonthNames } from '../../types/constants';
+import { FontSize } from '../../types/enums';
 import { rgba } from '../../utils/color.utils';
+import { utils } from '../../utils/utils';
 
 const Container = styled.View<any>`
   justify-content: center;

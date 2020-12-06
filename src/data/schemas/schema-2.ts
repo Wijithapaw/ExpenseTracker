@@ -1,5 +1,5 @@
-import { Expense, ExpenseType } from './schema-1';
 import { utils } from '../../utils/utils';
+import { Expense, ExpenseType } from './schema-1';
 
 export { Expense, ExpenseType };
 

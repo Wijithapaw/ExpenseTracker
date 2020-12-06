@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import RNDatePicker from '@react-native-community/datetimepicker';
+import React, { useState } from 'react';
 import { View } from 'react-native';
+
 import Button from './Button';
 
 interface Props {

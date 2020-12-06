@@ -1,8 +1,8 @@
-import { realmService, realm } from '../data/realm.service';
-import { utils } from '../utils/utils';
 import { Expense, ExpenseType } from '../data/entity-types';
-import { ListItemData } from '../types/shared.types';
+import { realm, realmService } from '../data/realm.service';
 import { ExpenseCategoryMap } from '../types/expense.types';
+import { ListItemData } from '../types/shared.types';
+import { utils } from '../utils/utils';
 
 export const categoryService = {
   getAllCategories,

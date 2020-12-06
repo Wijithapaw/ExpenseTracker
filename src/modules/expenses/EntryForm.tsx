@@ -1,16 +1,17 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { useState, useEffect } from 'react';
-import { expenseService } from '../../services/expense.service';
-import { SimpleListItem } from '../../types/shared.types';
-import Button from '../../components/Button';
-import TextInput from '../../components/TextInput';
-import CategorySelect from '../categories/CategorySelect';
-import { InputType } from '../../types/enums';
-import DatePicker from '../../components/DatePicker';
-import showToast, { ToastType } from '../../components/Toast';
-import { utils } from '../../utils/utils';
 import styled from 'styled-components/native';
+
+import Button from '../../components/Button';
+import DatePicker from '../../components/DatePicker';
+import TextInput from '../../components/TextInput';
+import showToast, { ToastType } from '../../components/Toast';
+import { expenseService } from '../../services/expense.service';
+import { InputType } from '../../types/enums';
+import { SimpleListItem } from '../../types/shared.types';
+import { utils } from '../../utils/utils';
+import CategorySelect from '../categories/CategorySelect';
 
 const FormGroup = styled.View`
   padding: 5px 0;

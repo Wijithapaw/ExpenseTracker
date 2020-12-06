@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import {
-  ListItemData,
-  FlatListItemData,
-  SimpleListItem,
-} from '../../types/shared.types';
-import { Text, Alert } from 'react-native';
-import { ScreenMode } from '../../types/enums';
-import EditCategory from './EditCategory';
+import { Alert, Text } from 'react-native';
+import styled from 'styled-components/native';
+
+import Icon from '../../components/Icon';
+import IconButton from '../../components/IconButton';
+import IconPicker from '../../components/IconPicker';
+import Modal from '../../components/Modal';
+import Screen from '../../components/Screen';
 import { messagingService } from '../../services/_shared/messaging.service';
 import { categoryService } from '../../services/category.service';
-import Screen from '../../components/Screen';
-import IconButton from '../../components/IconButton';
-import styled from 'styled-components/native';
 import { COLORS } from '../../types/colors';
-import Modal from '../../components/Modal';
-import IconPicker from '../../components/IconPicker';
-import Icon from '../../components/Icon';
+import { ScreenMode } from '../../types/enums';
+import {
+  FlatListItemData,
+  ListItemData,
+  SimpleListItem,
+} from '../../types/shared.types';
+import EditCategory from './EditCategory';
 
 const ItemRow = styled.View<any>`
   flex-direction: row;

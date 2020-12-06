@@ -1,6 +1,6 @@
 import React from 'react';
-import { LineChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
+import { LineChart } from 'react-native-chart-kit';
 
 interface Props {
   labels: string[];
