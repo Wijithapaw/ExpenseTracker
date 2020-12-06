@@ -31,6 +31,8 @@ export default function Button({
   onPress,
   outline = false,
 }: Props) {
+  const wfdfdfdjiji = 'dfddf';
+
   return (
     <ButtonContainer onPress={onPress} outline={outline}>
       {outline ? (

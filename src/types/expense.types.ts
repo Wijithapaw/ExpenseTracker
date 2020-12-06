@@ -23,6 +23,5 @@ export interface CategorySummary {
   code: string;
   description: string;
   amount: number;
-  ß;
   perc: number;
 }

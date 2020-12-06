@@ -23,7 +23,7 @@ module.exports = {
       arrowFunctions: true,
     },
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'spellcheck'],
   settings: {
     react: {
       version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
@@ -50,6 +50,24 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'warn',
     'react/display-name': 'off',
     'react/prop-types': 'off',
+    'spellcheck/spell-checker': [
+      1,
+      {
+        comments: true,
+        strings: true,
+        identifiers: true,        
+        lang: 'en_US',
+        skipWords: ['dict', 'aff', 'hunspellchecker', 'hunspell', 'utils', 'aws'],
+        skipIfMatch: [
+          'http://[^s]*',
+          '^[-\\w]+/[-\\w\\.]+$', // For MIME Types
+        ],
+        skipWordIfMatch: [
+          '^foobar.*$', // words that begin with foobar will not be checked
+        ],
+        minLength: 3,
+      },
+    ]
   },
   globals: {
     '__CLIENT__': true,
