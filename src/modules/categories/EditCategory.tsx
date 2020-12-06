@@ -82,7 +82,7 @@ export default function EditCategory({
   };
 
   const validate = () => {
-    let valid = item.title && item.title.length > 0;
+    const valid = item.title && item.title.length > 0;
     setValid(valid);
     return valid;
   };
@@ -98,7 +98,7 @@ export default function EditCategory({
             maxLength={50}
             invalid={!valid}
             value={item.title}
-            placeholder=""
+            placeholder=''
             onChangeText={titleChanged}
           />
         </ValueCol>
@@ -129,13 +129,13 @@ export default function EditCategory({
       <ButtonRow>
         <ButtonContainer>
           <Button
-            title="Cancel"
+            title='Cancel'
             onPress={() => onCancel && onCancel()}
-            icon="save"
+            icon='save'
           />
         </ButtonContainer>
         <ButtonContainer>
-          <Button title="Save" onPress={save} icon="save" />
+          <Button title='Save' onPress={save} icon='save' />
         </ButtonContainer>
       </ButtonRow>
     </View>

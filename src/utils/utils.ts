@@ -15,7 +15,7 @@ function uuid() {
 }
 
 function formatCurrency(num, cutDecimal = false, hideSymbol = false) {
-  let currencySym = 'Rs. '; //configService.getValue(ConfigSettings.currencySymbol);
+  const currencySym = 'Rs. '; //configService.getValue(ConfigSettings.currencySymbol);
   return `${hideSymbol ? '' : currencySym}${formatNumber(
     num,
     cutDecimal,

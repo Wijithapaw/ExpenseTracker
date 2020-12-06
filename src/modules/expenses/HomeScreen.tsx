@@ -52,11 +52,11 @@ export default function HomeScreen() {
   );
 
   const getCurrentMonthTotal = () => {
-    var date = new Date(),
+    const date = new Date(),
       y = date.getFullYear(),
       m = date.getMonth();
-    var firstDay = new Date(y, m, 1);
-    var total =
+    const firstDay = new Date(y, m, 1);
+    const total =
       (expenses && expenses.filtered('date >= $0', firstDay).sum('amount')) ||
       0;
     return total;
@@ -107,7 +107,7 @@ export default function HomeScreen() {
           data={last5Records}
           columns={columns}
           actions={listActions}
-          listTitle="Last 5 Expenses..."
+          listTitle='Last 5 Expenses...'
         />
         <ExpenseEdit
           expenseId={editingExpenseId}

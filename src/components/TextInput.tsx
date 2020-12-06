@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {COLORS} from '../types/colors';
-import {InputType} from '../types/enums';
+import { COLORS } from '../types/colors';
+import { InputType } from '../types/enums';
 
 const StyledTextInput = styled.TextInput<any>`
   height: 35px;
@@ -29,7 +29,7 @@ export default function TextInput({
   onChangeText,
   invalid,
   type = InputType.Default,
-  textAlign = 'left'
+  textAlign = 'left',
 }: Props) {
   let keyboardType = 'default';
   switch (type) {
@@ -39,7 +39,7 @@ export default function TextInput({
   }
 
   return (
-    <StyledTextInput   
+    <StyledTextInput
       keyboardType={keyboardType}
       value={value}
       maxLength={maxLength}

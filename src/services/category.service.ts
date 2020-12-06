@@ -15,11 +15,11 @@ export const categoryService = {
 };
 
 function getAllCategories() {
-  let vals = realmService
+  const vals = realmService
     .getRealm()
     .objects<ExpenseType>(ExpenseType.schema.name)
     .sorted('displayText', false);
-  let rootItems: ListItemData[] = vals
+  const rootItems: ListItemData[] = vals
     .filter(c => c.parentType == undefined)
     .map(c => ({
       id: c.id,
@@ -33,7 +33,7 @@ function getAllCategories() {
 }
 
 function getCategoryCodeMap() {
-  let map: ExpenseCategoryMap = realmService
+  const map: ExpenseCategoryMap = realmService
     .getRealm()
     .objects<ExpenseType>(ExpenseType.schema.name)
     .map(t => ({ [t.code]: t }))
@@ -46,7 +46,7 @@ function getChildCategories(
   items: Realm.Results<ExpenseType>,
   parentId?: string,
 ) {
-  let children: ListItemData[] = items
+  const children: ListItemData[] = items
     .filter(i => i.parentType && i.parentType.id == parentId)
     .map(c => ({
       id: c.id,
@@ -58,7 +58,7 @@ function getChildCategories(
     }));
 
   if (children.length > 0) {
-    let parent = items.find(i => i.id == parentId);
+    const parent = items.find(i => i.id == parentId);
     children.push({
       id: parentId,
       title: `Other`,
@@ -71,7 +71,7 @@ function getChildCategories(
 }
 
 function getCategory(id: string) {
-  var type = realmService
+  const type = realmService
     .getRealm()
     .objects<ExpenseType>(ExpenseType.schema.name)
     .find(t => t.id == id);
@@ -80,7 +80,7 @@ function getCategory(id: string) {
 
 function updateCategory(id: string, title: string, icon?: string) {
   realm.write(() => {
-    let category = realm
+    const category = realm
       .objects<ExpenseType>(ExpenseType.schema.name)
       .find(c => c.id == id);
     category.displayText = title;
@@ -90,7 +90,7 @@ function updateCategory(id: string, title: string, icon?: string) {
 
 function createCategory(title: string, icon?: string, parentId?: string) {
   realm.write(() => {
-    let parentCategory = realm
+    const parentCategory = realm
       .objects<ExpenseType>(ExpenseType.schema.name)
       .find(c => c.id == parentId);
     realm.create(
@@ -108,10 +108,10 @@ function createCategory(title: string, icon?: string, parentId?: string) {
 }
 
 function deleteCategory(id: string) {
-  let hasUsed = isCategoryInUsed(id);
+  const hasUsed = isCategoryInUsed(id);
   if (!hasUsed) {
     realm.write(() => {
-      let category = realm
+      const category = realm
         .objects<ExpenseType>(ExpenseType.schema.name)
         .find(c => c.id == id);
       realm.delete(category);
@@ -120,10 +120,10 @@ function deleteCategory(id: string) {
 }
 
 function isCategoryInUsed(id: string) {
-  let hasUsed = realm
+  const hasUsed = realm
     .objects<Expense>(Expense.schema.name)
     .filter(e => e.type && e.type.id === id).length;
-  let isParent = realm
+  const isParent = realm
     .objects<ExpenseType>(ExpenseType.schema.name)
     .filter(c => c.parentType && c.parentType.id === id).length;
   return hasUsed || isParent;

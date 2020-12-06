@@ -8,8 +8,7 @@ import { utils } from '../utils/utils';
 import Gradient from './Gradient';
 import { darken } from '../utils/color.utils';
 
-const Container = styled.View`
-`;
+const Container = styled.View``;
 
 const ListRow = styled.View<any>`
   flex-direction: row;

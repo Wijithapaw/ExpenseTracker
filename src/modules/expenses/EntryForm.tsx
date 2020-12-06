@@ -1,15 +1,15 @@
 import * as React from 'react';
-import {View} from 'react-native';
-import {useState, useEffect} from 'react';
-import {expenseService} from '../../services/expense.service';
-import {SimpleListItem} from '../../types/shared.types';
+import { View } from 'react-native';
+import { useState, useEffect } from 'react';
+import { expenseService } from '../../services/expense.service';
+import { SimpleListItem } from '../../types/shared.types';
 import Button from '../../components/Button';
 import TextInput from '../../components/TextInput';
 import CategorySelect from '../categories/CategorySelect';
-import {InputType} from '../../types/enums';
+import { InputType } from '../../types/enums';
 import DatePicker from '../../components/DatePicker';
-import showToast, {ToastType} from '../../components/Toast';
-import {utils} from '../../utils/utils';
+import showToast, { ToastType } from '../../components/Toast';
+import { utils } from '../../utils/utils';
 import styled from 'styled-components/native';
 
 const FormGroup = styled.View`
@@ -32,7 +32,7 @@ interface Props {
   onSaved: () => void;
 }
 
-const EntryForm = ({expenseId, onSaved}: Props) => {
+const EntryForm = ({ expenseId, onSaved }: Props) => {
   const [value, setValue] = useState<string>();
   const [category, setCategory] = useState<SimpleListItem>();
   const [date, setDate] = useState(new Date());
@@ -41,9 +41,9 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
 
   useEffect(() => {
     if (expenseId) {
-      let expense = expenseService.getExpense(expenseId);
+      const expense = expenseService.getExpense(expenseId);
       setValue(utils.formatNumber(expense.amount));
-      let category: SimpleListItem = {
+      const category: SimpleListItem = {
         id: expense.type.id,
         title: expense.type.displayText,
         parentTitle:
@@ -56,7 +56,7 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
   }, []);
 
   const valueChange = (text: string) => {
-    let sanitized = text.replace(/[^0-9][.]/g, '');
+    const sanitized = text.replace(/[^0-9][.]/g, '');
     setValue(sanitized);
   };
 
@@ -116,7 +116,7 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
         <TextInput
           value={value}
           onChangeText={valueChange}
-          placeholder="Amount"
+          placeholder='Amount'
           textAlign={'center'}
           maxLength={12}
           type={InputType.Numeric}
@@ -144,7 +144,7 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
         <TextInput
           maxLength={50}
           value={description}
-          placeholder="Description (optional)"
+          placeholder='Description (optional)'
           onChangeText={descriptionChange}
           textAlign={'center'}
         />
@@ -153,7 +153,7 @@ const EntryForm = ({expenseId, onSaved}: Props) => {
         <Button
           title={expenseId ? 'Update' : 'Add'}
           onPress={save}
-          icon="save"
+          icon='save'
         />
       </FormGroup>
       <CategorySelect

@@ -5,8 +5,8 @@
  * @returns {string} - RGBA color
  */
 export function rgba(hex, alpha = 1) {
-  const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16))
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+  const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
 /**
@@ -16,7 +16,7 @@ export function rgba(hex, alpha = 1) {
  * @returns {string} - Darkened HEX color code
  */
 export function darken(hex, amount) {
-  return adjustColorBrightness(hex, -amount)
+  return adjustColorBrightness(hex, -amount);
 }
 
 /**
@@ -26,7 +26,7 @@ export function darken(hex, amount) {
  * @returns {string} - Brightened HEX color code
  */
 export function brighten(hex, amount) {
-  return adjustColorBrightness(hex, amount)
+  return adjustColorBrightness(hex, amount);
 }
 
 /**
@@ -42,5 +42,5 @@ function adjustColorBrightness(hex, amount) {
       `0${Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(
         16,
       )}`.substr(-2),
-    )}`
+    )}`;
 }

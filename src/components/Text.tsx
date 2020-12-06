@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {FontSize, FontType} from '../types/enums';
-import {getFontSize} from '../utils/font.utils';
-import {Theme} from '../types/theme.types';
+import { FontSize, FontType } from '../types/enums';
+import { getFontSize } from '../utils/font.utils';
+import { Theme } from '../types/theme.types';
 
 const StyledText = styled.Text`
     text-align-vertical: center;
@@ -36,7 +36,8 @@ export default function Text({
       size={size}
       type={type}
       color={color}
-      italic={italic}>
+      italic={italic}
+    >
       {children}
     </StyledText>
   );

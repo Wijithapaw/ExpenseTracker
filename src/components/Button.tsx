@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Text from './Text';
-import {COLORS} from '../types/colors';
+import { COLORS } from '../types/colors';
 import Gradient from './Gradient';
 
 const StyledText = styled(Text).attrs((props: any) => ({
@@ -25,7 +25,12 @@ interface Props {
   outline?: boolean;
 }
 
-export default function Button({title, icon, onPress, outline = false}: Props) {
+export default function Button({
+  title,
+  icon,
+  onPress,
+  outline = false,
+}: Props) {
   return (
     <ButtonContainer onPress={onPress} outline={outline}>
       {outline ? (

@@ -1,4 +1,4 @@
-import * as Realm from 'realm'
+import * as Realm from 'realm';
 
 const SCHEMA_VERSION = 0;
 
@@ -10,9 +10,9 @@ export class Expense {
       id: 'string',
       type: 'string',
       amount: 'float',
-      date: 'date'
-    }
-  }
+      date: 'date',
+    },
+  };
 
   public id: string;
   public type: string;
@@ -25,7 +25,7 @@ export class Expense {
     this.amount = amount;
     this.date = date;
   }
-};
+}
 
 export class ExpenseType {
   public static schema: Realm.ObjectSchema = {
@@ -36,9 +36,9 @@ export class ExpenseType {
       code: 'string',
       displayText: 'string',
       inactive: 'bool',
-      parentType: 'ExpenseType?'
-    }
-  }
+      parentType: 'ExpenseType?',
+    },
+  };
 
   id: string;
   code: string;
@@ -46,7 +46,13 @@ export class ExpenseType {
   inactive: boolean;
   parentType?: ExpenseType;
 
-  constructor(id: string, code: string, displayText: string, inactive: boolean, parentType?: ExpenseType) {
+  constructor(
+    id: string,
+    code: string,
+    displayText: string,
+    inactive: boolean,
+    parentType?: ExpenseType,
+  ) {
     this.id = id;
     this.code = code;
     this.displayText = displayText;
@@ -55,6 +61,7 @@ export class ExpenseType {
   }
 }
 
-export const schema0 = { schema: [Expense.schema, ExpenseType.schema], schemaVersion: SCHEMA_VERSION }
-
-
+export const schema0 = {
+  schema: [Expense.schema, ExpenseType.schema],
+  schemaVersion: SCHEMA_VERSION,
+};

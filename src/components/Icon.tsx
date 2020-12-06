@@ -12,9 +12,7 @@ interface Props {
   color?: string;
 }
 
-export default function Icon({name, size, color}: Props) {
+export default function Icon({ name, size, color }: Props) {
   const iconSize = size || 18;
-  return (
-      <StyledIcon name={name} size={iconSize} color={color} />
-  );
+  return <StyledIcon name={name} size={iconSize} color={color} />;
 }

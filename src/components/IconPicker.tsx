@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Icons} from '../types/icons';
+import { Icons } from '../types/icons';
 import IconButton from './IconButton';
 import styled from 'styled-components/native';
 import { COLORS } from '../types/colors';
@@ -22,12 +22,17 @@ interface Props {
   onHide?: () => void;
 }
 
-export default function IconPicker({onSelect, onHide}: Props) {
+export default function IconPicker({ onSelect, onHide }: Props) {
   return (
     <Container>
       {Icons.map(s => (
         <Cell key={s}>
-          <IconButton name={s} size={25} onPress={() => onSelect(s)} color={COLORS.black} />
+          <IconButton
+            name={s}
+            size={25}
+            onPress={() => onSelect(s)}
+            color={COLORS.black}
+          />
         </Cell>
       ))}
     </Container>

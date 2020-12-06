@@ -1,9 +1,9 @@
 import React from 'react';
-import {Modal as ReactModal} from 'react-native';
+import { Modal as ReactModal } from 'react-native';
 import styled from 'styled-components/native';
-import {COLORS} from '../types/colors';
+import { COLORS } from '../types/colors';
 import Text from './Text';
-import {FontSize} from '../types/enums';
+import { FontSize } from '../types/enums';
 import IconButton from './IconButton';
 import Gradient from './Gradient';
 
@@ -69,10 +69,11 @@ export default function Modal({
 }: Props) {
   return (
     <ReactModal
-      animationType="slide"
+      animationType='slide'
       transparent={transparent}
       visible={visible}
-      onRequestClose={onRequestClose}>
+      onRequestClose={onRequestClose}
+    >
       <Overlay>
         <Title>
           <TitleGradient>

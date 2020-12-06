@@ -10,6 +10,6 @@ interface Props {
   children: any;
 }
 
-export default function Screen({children}: Props) {
+export default function Screen({ children }: Props) {
   return <StyledView>{children}</StyledView>;
 }

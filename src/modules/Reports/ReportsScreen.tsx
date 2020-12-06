@@ -94,7 +94,7 @@ export default function ReportScreen() {
 
       const catSummaryMap = new Map<string, number>();
 
-      let monthlyTotal: number = 0;
+      let monthlyTotal = 0;
 
       for (const { category, amount } of monthlyData) {
         catSummaryMap.set(
@@ -151,7 +151,7 @@ export default function ReportScreen() {
         <ListView
           data={categorySummary}
           columns={columns}
-          listTitle="Expenses in Month"
+          listTitle='Expenses in Month'
           actions={listActions}
         />
       </Grid>

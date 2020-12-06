@@ -1,6 +1,6 @@
-import {Theme} from '../types/theme.types';
-import {COLORS} from '../types/colors';
-import {rgba} from '../utils/color.utils';
+import { Theme } from '../types/theme.types';
+import { COLORS } from '../types/colors';
+import { rgba } from '../utils/color.utils';
 
 export const LIGHT_THEME: Theme = {
   name: 'light',

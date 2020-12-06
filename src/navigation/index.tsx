@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {SplashScreen} from './SampleScreens';
+import { SplashScreen } from './SampleScreens';
 import ReportsScreen from '../modules/Reports/ReportsScreen';
 import SettingsScreen from '../modules/settings/screens/SettingsScreen';
 import CategoriesScreen from '../modules/categories/CategoriesScreen';
@@ -19,7 +19,7 @@ const Stack = createStackNavigator();
 
 const BackBtn = styled.View`
   padding: 0 20px;
-`
+`;
 
 interface Props {
   theme: Theme;
@@ -50,11 +50,12 @@ function MainTabsComponent({ theme }: Props) {
       tabBarOptions={{
         activeTintColor: theme.button.primary,
         inactiveTintColor: theme.button.secondary,
-      }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      }}
+    >
+      <Tab.Screen name='Home' component={HomeScreen} />
+      <Tab.Screen name='Settings' component={SettingsScreen} />
       <Tab.Screen
-        name="Reports"
+        name='Reports'
         component={ReportsScreen}
         initialParams={{ mode: ScreenMode.Edit }}
       />
@@ -69,20 +70,25 @@ export default function AppRoutes() {
     <Stack.Navigator
       screenOptions={{
         headerTitleAlign: 'left',
-      }}>
+      }}
+    >
       <Stack.Screen
-        name="MainTabs"
+        name='MainTabs'
         component={MainTabs}
-        options={{ headerTitle: props => <AppHeader />, }}
+        options={{ headerTitle: props => <AppHeader /> }}
       />
-      <Stack.Screen name="Splash" component={SplashScreen} />
+      <Stack.Screen name='Splash' component={SplashScreen} />
       <Stack.Screen
-        name="CategorySelect"
+        name='CategorySelect'
         component={CategoriesScreen}
         options={{
           title: 'Popup',
-          headerTitle: props => <AppHeader title="Edit Categories" />,
-          headerBackImage: props => <BackBtn><Icon name="arrow-left" size={18} color={props.tintColor} /></BackBtn>,
+          headerTitle: props => <AppHeader title='Edit Categories' />,
+          headerBackImage: props => (
+            <BackBtn>
+              <Icon name='arrow-left' size={18} color={props.tintColor} />
+            </BackBtn>
+          ),
           headerBackTitleVisible: false,
         }}
       />

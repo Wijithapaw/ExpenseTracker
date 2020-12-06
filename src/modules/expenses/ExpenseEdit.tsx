@@ -8,9 +8,9 @@ export interface Props {
   onClose: () => void;
 }
 
-export default function ExpenseEdit({expenseId, onSave, onClose}: Props) {
+export default function ExpenseEdit({ expenseId, onSave, onClose }: Props) {
   return (
-    <Modal title="Edit Expense" visible={!!expenseId} onRequestClose={onClose}>
+    <Modal title='Edit Expense' visible={!!expenseId} onRequestClose={onClose}>
       <EntryForm expenseId={expenseId} onSaved={onSave} />
     </Modal>
   );

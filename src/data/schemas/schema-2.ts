@@ -1,75 +1,213 @@
-
-import { Expense, ExpenseType } from './schema-1'
+import { Expense, ExpenseType } from './schema-1';
 import { utils } from '../../utils/utils';
 
-export { Expense, ExpenseType }
+export { Expense, ExpenseType };
 
 const SCHEMA_VERSION = 2;
 
 const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
-    // only apply this change if upgrading to schemaVersion 2
-    if (oldRealm.schemaVersion < SCHEMA_VERSION) {
-        //Car
-        let car = newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "CAR", "Car", false));
+  // only apply this change if upgrading to schemaVersion 2
+  if (oldRealm.schemaVersion < SCHEMA_VERSION) {
+    //Car
+    const car = newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'CAR', 'Car', false),
+    );
 
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "CAR_FUEL", "Fuel", false, car));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "CAR_MAINTENANCE", "Maintenance", false, car));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "CAR_TOLLS", "Tolls", false, car));
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'CAR_FUEL', 'Fuel', false, car),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(
+        utils.uuid(),
+        'CAR_MAINTENANCE',
+        'Maintenance',
+        false,
+        car,
+      ),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'CAR_TOLLS', 'Tolls', false, car),
+    );
 
-        //Foods
-        let food =  newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD", "Food", false));
+    //Foods
+    const food = newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'FOOD', 'Food', false),
+    );
 
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_FISH", "Fish", false, food));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_MEAT_EGG", "Meal and Egg", false, food));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_VEGITABLES", "Vegitables", false, food));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_EAT_OUT", "Eat Out", false, food));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "FOOD_SNACKS", "Snacks", false, food));
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'FOOD_FISH', 'Fish', false, food),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(
+        utils.uuid(),
+        'FOOD_MEAT_EGG',
+        'Meal and Egg',
+        false,
+        food,
+      ),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(
+        utils.uuid(),
+        'FOOD_VEGITABLES',
+        'Vegitables',
+        false,
+        food,
+      ),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'FOOD_EAT_OUT', 'Eat Out', false, food),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'FOOD_SNACKS', 'Snacks', false, food),
+    );
 
-        //Bills
-        let bills = newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS", "Bills", false));
+    //Bills
+    const bills = newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'BILLS', 'Bills', false),
+    );
 
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_WATER", "Water", false, bills));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_ELECTRICITY", "Electricity", false, bills));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_TELEPHONE", "Telephone", false, bills));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_INTERNET", "Internet", false, bills));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_TV", "TV", false, bills));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_RENT", "Rent", false, bills));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "BILLS_GAS", "Gas", false, bills));
-      
-        //Health care
-        let healthCare = new ExpenseType(utils.uuid(), "HEALTH", "Health Care", false);
-        newRealm.create(ExpenseType.schema.name, healthCare);
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'BILLS_WATER', 'Water', false, bills),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(
+        utils.uuid(),
+        'BILLS_ELECTRICITY',
+        'Electricity',
+        false,
+        bills,
+      ),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(
+        utils.uuid(),
+        'BILLS_TELEPHONE',
+        'Telephone',
+        false,
+        bills,
+      ),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'BILLS_INTERNET', 'Internet', false, bills),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'BILLS_TV', 'TV', false, bills),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'BILLS_RENT', 'Rent', false, bills),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'BILLS_GAS', 'Gas', false, bills),
+    );
 
-        //Toiletries
-        let toilatories = new ExpenseType(utils.uuid(), "TOILETRIES", "Toiletries", false);
-        newRealm.create(ExpenseType.schema.name, toilatories);
+    //Health care
+    const healthCare = new ExpenseType(
+      utils.uuid(),
+      'HEALTH',
+      'Health Care',
+      false,
+    );
+    newRealm.create(ExpenseType.schema.name, healthCare);
 
-        //Transpotation
-        let transpotation =  newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "TRANSPOTATION", "Transpotation", false));       
+    //Toiletries
+    const toilatories = new ExpenseType(
+      utils.uuid(),
+      'TOILETRIES',
+      'Toiletries',
+      false,
+    );
+    newRealm.create(ExpenseType.schema.name, toilatories);
 
-        newRealm.create(ExpenseType.schema.name,  new ExpenseType(utils.uuid(), "TRANSPOTATION_TAXI", "Taxi", false, transpotation));
-        newRealm.create(ExpenseType.schema.name, new ExpenseType(utils.uuid(), "TRANSPOTATION_PUBLIC", "Public", false, transpotation));
+    //Transpotation
+    const transpotation = newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(utils.uuid(), 'TRANSPOTATION', 'Transpotation', false),
+    );
 
-        //Entertainment
-        let entertainment = new ExpenseType(utils.uuid(), "ENTERTAINMENT", "Entertainment", false);
-        newRealm.create(ExpenseType.schema.name, entertainment);
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(
+        utils.uuid(),
+        'TRANSPOTATION_TAXI',
+        'Taxi',
+        false,
+        transpotation,
+      ),
+    );
+    newRealm.create(
+      ExpenseType.schema.name,
+      new ExpenseType(
+        utils.uuid(),
+        'TRANSPOTATION_PUBLIC',
+        'Public',
+        false,
+        transpotation,
+      ),
+    );
 
-        //Pet care
-        let petCare = new ExpenseType(utils.uuid(), "PER_CARE", "Pet Care", false);
-        newRealm.create(ExpenseType.schema.name, petCare);
+    //Entertainment
+    const entertainment = new ExpenseType(
+      utils.uuid(),
+      'ENTERTAINMENT',
+      'Entertainment',
+      false,
+    );
+    newRealm.create(ExpenseType.schema.name, entertainment);
 
-        //Stationary
-        let stationary = new ExpenseType(utils.uuid(), "STATIONARY", "Stationary", false);
-        newRealm.create(ExpenseType.schema.name, stationary);
+    //Pet care
+    const petCare = new ExpenseType(
+      utils.uuid(),
+      'PER_CARE',
+      'Pet Care',
+      false,
+    );
+    newRealm.create(ExpenseType.schema.name, petCare);
 
-        //Clothing
-        let clothing = new ExpenseType(utils.uuid(), "CLOTHING", "Clothing", false);
-        newRealm.create(ExpenseType.schema.name, clothing);
+    //Stationary
+    const stationary = new ExpenseType(
+      utils.uuid(),
+      'STATIONARY',
+      'Stationary',
+      false,
+    );
+    newRealm.create(ExpenseType.schema.name, stationary);
 
-        //Gifts
-        let gifts = new ExpenseType(utils.uuid(), "GIFTS", "Gifts", false);
-        newRealm.create(ExpenseType.schema.name, gifts);
-    }
-}
+    //Clothing
+    const clothing = new ExpenseType(
+      utils.uuid(),
+      'CLOTHING',
+      'Clothing',
+      false,
+    );
+    newRealm.create(ExpenseType.schema.name, clothing);
 
-export const schema2 = { schema: [Expense.schema, ExpenseType.schema], schemaVersion: SCHEMA_VERSION, migration: migrationFunc }
+    //Gifts
+    const gifts = new ExpenseType(utils.uuid(), 'GIFTS', 'Gifts', false);
+    newRealm.create(ExpenseType.schema.name, gifts);
+  }
+};
+
+export const schema2 = {
+  schema: [Expense.schema, ExpenseType.schema],
+  schemaVersion: SCHEMA_VERSION,
+  migration: migrationFunc,
+};

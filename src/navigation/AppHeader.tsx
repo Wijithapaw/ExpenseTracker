@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Image} from 'react-native';
+import { View, Image } from 'react-native';
 import Text from '../components/Text';
 import styled from 'styled-components/native';
-import {FontSize} from '../types/enums';
+import { FontSize } from '../types/enums';
 
 const HeaderContainer = styled.View`
   flex-direction: row;
@@ -14,10 +14,10 @@ const HeaderText = styled.View`
 `;
 
 const Title = styled(Text).attrs((props: any) => ({
-    color: props.theme.text.header,
-    size: FontSize.Huge,
-    bold: true,
-}))``
+  color: props.theme.text.header,
+  size: FontSize.Huge,
+  bold: true,
+}))``;
 
 const HeaderIcon = styled.View`
   padding-left: 5px;
@@ -32,7 +32,7 @@ interface Props {
   title?: string;
 }
 
-export default function AppHeader({title}: Props) {
+export default function AppHeader({ title }: Props) {
   return (
     <HeaderContainer>
       <HeaderText>

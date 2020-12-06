@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
 import Text from '../../components/Text';
-import {SimpleListItem, ListItemData} from '../../types/shared.types';
-import {categoryService} from '../../services/category.service';
-import {View, FlatList, TouchableHighlight} from 'react-native';
+import { SimpleListItem, ListItemData } from '../../types/shared.types';
+import { categoryService } from '../../services/category.service';
+import { View, FlatList, TouchableHighlight } from 'react-native';
 import styled from 'styled-components/native';
 import Icon from '../../components/Icon';
 import Button from '../../components/Button';
@@ -45,7 +45,7 @@ const BackButtonRow = styled.View`
 
 const ItemTitle = styled.View``;
 
-function CategoryItem({item, onPress}: ItemProps) {
+function CategoryItem({ item, onPress }: ItemProps) {
   return (
     <ItemRow onPress={() => onPress(item)}>
       <ItemContainer>
@@ -62,7 +62,7 @@ function CategoryItem({item, onPress}: ItemProps) {
   );
 }
 
-export default function CategorySelect({visible, onClose, onSelect}: Props) {
+export default function CategorySelect({ visible, onClose, onSelect }: Props) {
   const [categories, setCategories] = useState<ListItemData[]>();
   const [parentItem, setParentItem] = useState<ListItemData>();
 
@@ -89,17 +89,22 @@ export default function CategorySelect({visible, onClose, onSelect}: Props) {
     <Modal
       visible={visible}
       onRequestClose={onClose}
-      title={`Select Category${parentItem ? `: ${parentItem.title}` : ''}`}>
+      title={`Select Category${parentItem ? `: ${parentItem.title}` : ''}`}
+    >
       {parentItem && (
         <BackButtonRow>
           <View>
-            <IconButton name="arrow-left" size={25} onPress={() => setParentItem(undefined)} />
+            <IconButton
+              name='arrow-left'
+              size={25}
+              onPress={() => setParentItem(undefined)}
+            />
           </View>
         </BackButtonRow>
       )}
       <FlatList
         data={listShowing}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <CategoryItem item={item} onPress={selectCategory} />
         )}
       />

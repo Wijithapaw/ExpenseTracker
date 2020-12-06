@@ -78,7 +78,7 @@ export default function CategoriesScreen({ selectedId }: Props) {
   const flattenList = (data: ListItemData[]) => {
     const flatList: FlatListItemData[] = [];
 
-    data.map((val) => {
+    data.map(val => {
       const items = flattenSingleItem(val, 0);
       flatList.push(...items);
     });
@@ -93,9 +93,9 @@ export default function CategoriesScreen({ selectedId }: Props) {
     parentTitle?: string,
     show?: boolean,
   ) => {
-    let flatItems: FlatListItemData[] = [];
+    const flatItems: FlatListItemData[] = [];
 
-    let itemFlatten: FlatListItemData = {
+    const itemFlatten: FlatListItemData = {
       id: item.id,
       title: item.title,
       faIcon: item.faIcon,
@@ -110,9 +110,9 @@ export default function CategoriesScreen({ selectedId }: Props) {
       hasChildren: item.data && item.data.length > 0,
     };
 
-    let subItems =
+    const subItems =
       item.data &&
-      item.data.map((child) =>
+      item.data.map(child =>
         flattenSingleItem(
           child,
           level + 1,
@@ -133,7 +133,7 @@ export default function CategoriesScreen({ selectedId }: Props) {
 
   const toggleItems = (parentId: string) => {
     const newList = [...categories];
-    let item = categories.find(c => c.id == parentId);
+    const item = categories.find(c => c.id == parentId);
     if (item) {
       item.expanded = !item.expanded;
 
@@ -194,7 +194,7 @@ export default function CategoriesScreen({ selectedId }: Props) {
   return (
     <Screen>
       <AddNewRow>
-        <IconButton name="plus-circle" size={25} onPress={() => onAdd()} />
+        <IconButton name='plus-circle' size={25} onPress={() => onAdd()} />
       </AddNewRow>
       <Body>
         {categories
@@ -207,12 +207,12 @@ export default function CategoriesScreen({ selectedId }: Props) {
               </TextCol>
               {l.parentId == undefined && (
                 <ActionBtnCol>
-                  <IconButton name="plus-circle" onPress={() => onAdd(l)} />
+                  <IconButton name='plus-circle' onPress={() => onAdd(l)} />
                 </ActionBtnCol>
               )}
               <ActionBtnCol>
                 {!(l.parentId && l.id == l.parentId) && (
-                  <IconButton name="pencil" onPress={() => onEdit(l)} />
+                  <IconButton name='pencil' onPress={() => onEdit(l)} />
                 )}
               </ActionBtnCol>
               <ActionBtnCol>
@@ -223,7 +223,7 @@ export default function CategoriesScreen({ selectedId }: Props) {
                   />
                 )) ||
                   (!(l.parentId && l.id == l.parentId) && (
-                    <IconButton name="trash" onPress={() => onDelete(l.id)} />
+                    <IconButton name='trash' onPress={() => onDelete(l.id)} />
                   ))}
               </ActionBtnCol>
             </ItemRow>
@@ -236,14 +236,17 @@ export default function CategoriesScreen({ selectedId }: Props) {
         onRequestClose={() => setShowEdit(false)}
         title={
           showIconPicker
-            ? `Select Icon${(editingItem &&
-                editingItem.title &&
-                ` - ${editingItem.title}`) ||
-                ''}`
+            ? `Select Icon${
+                (editingItem &&
+                  editingItem.title &&
+                  ` - ${editingItem.title}`) ||
+                ''
+              }`
             : editingItem && editingItem.id
             ? 'Edit Category'
             : 'New Category'
-        }>
+        }
+      >
         {showIconPicker ? (
           <IconPicker
             onSelect={handleIconSelect}

@@ -17,7 +17,7 @@ interface Props {
   color?: string;
 }
 
-export default function IconButton({name, onPress, size, color}: Props) {
+export default function IconButton({ name, onPress, size, color }: Props) {
   const iconSize = size || 18;
   return (
     <IconContainer onPress={onPress} size={iconSize}>

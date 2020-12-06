@@ -13,13 +13,12 @@ import ThemeProvider from './src/theme/ThemeProvider';
 
 function App() {
   return (
-    <NavigationContainer >
+    <NavigationContainer>
       <ThemeProvider>
         <AppRoutes />
       </ThemeProvider>
     </NavigationContainer>
   );
 }
-
 
 export default App;

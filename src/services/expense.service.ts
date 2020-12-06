@@ -16,7 +16,7 @@ export const expenseService = {
 ß;
 
 function getAllExpenses() {
-  let vals = realmService.getRealm().objects<Expense>(Expense.schema.name);
+  const vals = realmService.getRealm().objects<Expense>(Expense.schema.name);
   return vals;
 }
 
@@ -27,9 +27,9 @@ function createExpense(
   description?: string,
 ) {
   realm.write(() => {
-    let id = utils.uuid();
-    let type = categoryService.getCategory(typeId);
-    let now = new Date();
+    const id = utils.uuid();
+    const type = categoryService.getCategory(typeId);
+    const now = new Date();
 
     realm.create(
       Expense.schema.name,
@@ -46,7 +46,7 @@ function updateExpense(
   description?: string,
 ) {
   realm.write(() => {
-    var expense = realm
+    const expense = realm
       .objects<Expense>(Expense.schema.name)
       .find(e => e.id == id);
     expense.amount = amount;
@@ -57,7 +57,7 @@ function updateExpense(
 }
 
 function getExpense(id: string) {
-  var expense = realm
+  const expense = realm
     .objects<Expense>(Expense.schema.name)
     .find(e => e.id == id);
   return expense;
@@ -65,7 +65,7 @@ function getExpense(id: string) {
 
 function deleteExpense(id: string) {
   realm.write(() => {
-    let item = realm
+    const item = realm
       .objects<Expense>(Expense.schema.name)
       .find(e => e.id == id);
     realm.delete(item);
@@ -73,12 +73,12 @@ function deleteExpense(id: string) {
 }
 
 function getExpenseSummary(month: Date) {
-  let startDate = new Date(month.getFullYear(), month.getMonth(), 1);
-  let endDate = new Date(month.getFullYear(), month.getMonth() + 1, 1);
+  const startDate = new Date(month.getFullYear(), month.getMonth(), 1);
+  const endDate = new Date(month.getFullYear(), month.getMonth() + 1, 1);
   console.log(startDate);
   console.log(endDate);
 
-  let expences = realm
+  const expences = realm
     .objects<Expense>(Expense.schema.name)
     .filtered('date >= $0 AND date < $1', startDate, endDate)
     .map(e => ({
@@ -86,14 +86,14 @@ function getExpenseSummary(month: Date) {
       amount: e.amount,
     }));
 
-  let uniqueCats = Array.from(new Set(expences.map(e => e.category.code)));
+  const uniqueCats = Array.from(new Set(expences.map(e => e.category.code)));
 
-  let catSummary = uniqueCats.map(code => {
-    let amount = expences
+  const catSummary = uniqueCats.map(code => {
+    const amount = expences
       .filter(e => e.category.code == code)
       .map(e => e.amount)
       .reduce((a, b) => a + b, 0);
-    let name = expences.filter(e => e.category.code == code)[0].category
+    const name = expences.filter(e => e.category.code == code)[0].category
       .displayText;
     return {
       amount,
@@ -108,7 +108,7 @@ function getExpenseSummary(month: Date) {
 }
 
 function getExpensesByDuration(startDate: Date, endDate: Date) {
-  let expences = realm
+  const expences = realm
     .objects<Expense>(Expense.schema.name)
     .filtered('date >= $0 AND date < $1', startDate, endDate);
   return expences.map(

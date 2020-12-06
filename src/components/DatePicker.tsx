@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import RNDatePicker from '@react-native-community/datetimepicker';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import Button from './Button';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   onChange?: (date: Date) => void;
 }
 
-export default function DatePicker2({date, onChange}: Props) {
+export default function DatePicker2({ date, onChange }: Props) {
   const [show, setShow] = useState(false);
 
   return (

@@ -24,8 +24,8 @@ export default function ExpensesChart({ labels, values }: Props) {
       }}
       width={Dimensions.get('window').width - 20} // from react-native
       height={200}
-      yAxisLabel=""
-      yAxisSuffix=""
+      yAxisLabel=''
+      yAxisSuffix=''
       yAxisInterval={1} // optional, defaults to 1
       chartConfig={{
         backgroundColor: '#e26a00',

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {View} from 'react-native';
-import {useEffect, useState} from 'react';
-import {configService} from '../../../services/_shared/config.service';
-import {ConfigItem} from '../../../types/shared.types';
-import {FontSize} from '../../../types/enums';
+import { View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { configService } from '../../../services/_shared/config.service';
+import { ConfigItem } from '../../../types/shared.types';
+import { FontSize } from '../../../types/enums';
 import Button from '../../../components/Button';
 import Text from '../../../components/Text';
 import TextInput from '../../../components/TextInput';
@@ -43,7 +43,7 @@ interface Props {
   navigation: any;
 }
 
-export default function SettingsScreen({navigation}: Props) {
+export default function SettingsScreen({ navigation }: Props) {
   const [configSettings, setConfigSettings] = useState<ConfigItem[]>();
   const [editingId, setEditingId] = useState<string>();
 
@@ -52,12 +52,12 @@ export default function SettingsScreen({navigation}: Props) {
   }, []);
 
   const loadItems = () => {
-    let data = configService.getAllConfigItems();
+    const data = configService.getAllConfigItems();
     setConfigSettings(data);
   };
 
   const update = () => {
-    let item = configSettings.find(c => c.id == editingId);
+    const item = configSettings.find(c => c.id == editingId);
     configService.updateValue(editingId, item.value);
     setEditingId(undefined);
     loadItems();
@@ -69,8 +69,8 @@ export default function SettingsScreen({navigation}: Props) {
   };
 
   const handleChange = (id: string, value: string) => {
-    let settings = [...configSettings];
-    let item = settings.find(c => c.id == id);
+    const settings = [...configSettings];
+    const item = settings.find(c => c.id == id);
     item.value = value;
     setConfigSettings(settings);
   };
@@ -101,12 +101,12 @@ export default function SettingsScreen({navigation}: Props) {
                 <IconCol>
                   {(editingId == c.id && (
                     <EditButtons>
-                      <IconButton name="ban" onPress={cancelEdit} />
-                      <IconButton name="save" onPress={update} />
+                      <IconButton name='ban' onPress={cancelEdit} />
+                      <IconButton name='save' onPress={update} />
                     </EditButtons>
                   )) || (
                     <IconButton
-                      name="pencil"
+                      name='pencil'
                       onPress={() => {
                         setEditingId(c.id);
                       }}
@@ -118,7 +118,7 @@ export default function SettingsScreen({navigation}: Props) {
           })}
       </View>
       <View>
-        <Button onPress={editCategories} title="Edit Categories" />
+        <Button onPress={editCategories} title='Edit Categories' />
       </View>
     </Screen>
   );

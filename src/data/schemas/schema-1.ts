@@ -1,4 +1,4 @@
-import * as Realm from 'realm'
+import * as Realm from 'realm';
 import { utils } from '../../utils/utils';
 
 const SCHEMA_VERSION = 1;
@@ -13,9 +13,9 @@ export class Expense {
       amount: 'float',
       date: 'date',
       createdDate: 'date',
-      description: 'string?'
-    }
-  }
+      description: 'string?',
+    },
+  };
 
   public id: string;
   public type?: ExpenseType;
@@ -24,7 +24,14 @@ export class Expense {
   public description?: string;
   public createdDate: Date;
 
-  constructor(id: string, amount: number, date: Date, createdDate: Date, type?: ExpenseType, description?: string) {
+  constructor(
+    id: string,
+    amount: number,
+    date: Date,
+    createdDate: Date,
+    type?: ExpenseType,
+    description?: string,
+  ) {
     this.id = id;
     this.type = type;
     this.amount = amount;
@@ -32,7 +39,7 @@ export class Expense {
     this.description = description;
     this.createdDate = createdDate;
   }
-};
+}
 
 export class ExpenseType {
   public static schema: Realm.ObjectSchema = {
@@ -43,9 +50,9 @@ export class ExpenseType {
       code: 'string',
       displayText: 'string',
       inactive: 'bool',
-      parentType: 'ExpenseType'
-    }
-  }
+      parentType: 'ExpenseType',
+    },
+  };
 
   id: string;
   code: string;
@@ -53,7 +60,13 @@ export class ExpenseType {
   inactive: boolean;
   parentType?: ExpenseType;
 
-  constructor(id: string, code: string, displayText: string, inactive: boolean, parentType?: ExpenseType) {
+  constructor(
+    id: string,
+    code: string,
+    displayText: string,
+    inactive: boolean,
+    parentType?: ExpenseType,
+  ) {
     this.id = id;
     this.code = code;
     this.displayText = displayText;
@@ -65,10 +78,15 @@ export class ExpenseType {
 const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
   // only apply this change if upgrading to schemaVersion 2
   if (oldRealm.schemaVersion < SCHEMA_VERSION) {
-    let generalType = new ExpenseType(utils.uuid(), "GENERAL", "General", false);
+    const generalType = new ExpenseType(
+      utils.uuid(),
+      'GENERAL',
+      'General',
+      false,
+    );
     newRealm.create(ExpenseType.schema.name, generalType);
 
-    const newObjects = newRealm.objects<Expense>(Expense.schema.name)
+    const newObjects = newRealm.objects<Expense>(Expense.schema.name);
 
     // loop through all objects and set the type property in the new schema as General
     for (let i = 0; i < newObjects.length; i++) {
@@ -76,6 +94,10 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
       newObjects[i].description = undefined;
     }
   }
-}
+};
 
-export const schema1 = { schema: [Expense.schema, ExpenseType.schema], schemaVersion: SCHEMA_VERSION, migration: migrationFunc }
+export const schema1 = {
+  schema: [Expense.schema, ExpenseType.schema],
+  schemaVersion: SCHEMA_VERSION,
+  migration: migrationFunc,
+};

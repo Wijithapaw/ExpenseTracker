@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {utils} from '../../utils/utils';
+import { utils } from '../../utils/utils';
 import styled from 'styled-components/native';
 import Text from '../../components/Text';
-import {FontSize} from '../../types/enums';
-import {MonthNames, ConfigSettings} from '../../types/constants';
-import {configService} from '../../services/_shared/config.service';
-import {rgba} from '../../utils/color.utils';
+import { FontSize } from '../../types/enums';
+import { MonthNames, ConfigSettings } from '../../types/constants';
+import { configService } from '../../services/_shared/config.service';
+import { rgba } from '../../utils/color.utils';
 
 const Container = styled.View<any>`
   justify-content: center;
@@ -32,11 +32,11 @@ interface Props {
   total: number;
 }
 
-export default function MonthTotal({total}: Props) {
-  var month = MonthNames[new Date().getMonth()];
-  var totalFormatted = utils.formatCurrency(total, true, true);
-  var budget = +configService.getValue(ConfigSettings.monthlyBudget);
-  var currencySymbol = configService.getValue(ConfigSettings.currencySymbol);
+export default function MonthTotal({ total }: Props) {
+  const month = MonthNames[new Date().getMonth()];
+  const totalFormatted = utils.formatCurrency(total, true, true);
+  const budget = +configService.getValue(ConfigSettings.monthlyBudget);
+  const currencySymbol = configService.getValue(ConfigSettings.currencySymbol);
 
   const overBudget = budget > 0 && total > budget;
 
@@ -48,7 +48,8 @@ export default function MonthTotal({total}: Props) {
       <StyledText
         orderBudger={overBudget}
         bold
-        size={totalFormatted.length > 8 ? FontSize.Regular : FontSize.Large}>
+        size={totalFormatted.length > 8 ? FontSize.Regular : FontSize.Large}
+      >
         {totalFormatted}
       </StyledText>
       <StyledText orderBudger={overBudget} size={FontSize.Regular}>
