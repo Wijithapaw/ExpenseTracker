@@ -1,7 +1,7 @@
 //import {configService} from '../services/_shared/config.service';
 import { ConfigSettings } from '../types/constants';
 
-const uuidv4 = require('uuid/v4');
+import uuidv4 = require('uuid/v4');
 
 export const utils = {
   uuid,
@@ -10,22 +10,26 @@ export const utils = {
   formatNumber,
 };
 
-function uuid() {
+function uuid(): string {
   return uuidv4();
 }
 
-function formatCurrency(num, cutDecimal = false, hideSymbol = false) {
-  const currencySym = 'Rs. '; //configService.getValue(ConfigSettings.currencySymbol);
-  return `${hideSymbol ? '' : currencySym}${formatNumber(
-    num,
+function formatCurrency(
+  value: number,
+  cutDecimal = false,
+  hideSymbol = false,
+): string {
+  const currencySymbol = 'Rs. '; //configService.getValue(ConfigSettings.currencySymbol);
+  return `${hideSymbol ? '' : currencySymbol}${formatNumber(
+    value,
     cutDecimal,
   ).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
 }
 
-function isFloat(n: any) {
-  return n === +n && n !== (n | 0);
+function isFloat(value: number): boolean {
+  return value === +value && value !== (value | 0);
 }
 
-function formatNumber(n: number, cutDecimal = false) {
-  return n.toFixed(!cutDecimal && isFloat(n) ? 2 : 0);
+function formatNumber(value: number, cutDecimal = false): string {
+  return value.toFixed(!cutDecimal && isFloat(value) ? 2 : 0);
 }
