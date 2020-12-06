@@ -52,7 +52,7 @@ module.exports = {
     'react/display-name': 'off',
     'react/prop-types': 'off',
     'spellcheck/spell-checker': [
-      1,
+      'warn',
       {
         comments: true,
         strings: true,

@@ -22,7 +22,7 @@ function formatCurrency(num, cutDecimal = false, hideSymbol = false) {
   ).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
 }
 
-function isFloat(n) {
+function isFloat(n: any) {
   return n === +n && n !== (n | 0);
 }
 
