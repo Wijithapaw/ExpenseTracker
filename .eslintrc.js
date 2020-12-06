@@ -13,6 +13,7 @@ module.exports = {
     browser: true,
     es6: true,
     jest: true,
+    node: true,
   },
   parserOptions: {
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
@@ -41,11 +42,18 @@ module.exports = {
     'global-require': 'off', // https://eslint.org/docs/rules/global-require
     'import/no-dynamic-require': 'off', // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-dynamic-require.md
     'no-inner-declarations': 'off', // https://eslint.org/docs/rules/no-inner-declarations
-// New rules
+    // New rules
     'class-methods-use-this': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-var-requires': 'warn',
+    'react/display-name': 'off',
+    'react/prop-types': 'off',
+  },
+  globals: {
+    '__CLIENT__': true,
+    '__SERVER__': true,
+    '__DEV__': true
   },
 };

@@ -119,7 +119,6 @@ export default function ReportScreen() {
       setCategorySummary(catSummary);
       console.log(catSummary);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, selectedMonth]);
 
   const monthLabels = Object.keys(monthlySummary);

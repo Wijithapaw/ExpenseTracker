@@ -59,7 +59,6 @@ export default function EditCategory({
 
   useEffect(() => {
     validate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
   const titleChanged = (e: string) => {

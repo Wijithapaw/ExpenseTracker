@@ -18,10 +18,6 @@ export default function showToast(
     hideOnPress: true,
     delay: 0,
     backgroundColor: type == ToastType.Error ? COLORS.red : undefined,
-    onShow: () => {},
-    onShown: () => {},
-    onHide: () => {},
-    onHidden: () => {},
   });
 
   return toast;

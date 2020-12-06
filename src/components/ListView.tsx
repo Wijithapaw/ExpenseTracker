@@ -93,7 +93,11 @@ function ListViewRow({ row, columns, actions }: ListViewItemProps) {
   );
 }
 
-function ListHeader({ title }) {
+interface HeaderProps {
+  title: string;
+}
+
+function ListHeader({ title }: HeaderProps) {
   return (
     <StyledHeader>
       <Text color={COLORS.white}>{title}</Text>
