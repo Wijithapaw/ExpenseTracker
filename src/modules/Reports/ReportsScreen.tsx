@@ -63,19 +63,22 @@ export default function ReportScreen() {
 
   useEffect(() => {
     if (dateRange && data) {
-      const mon = new Date(dateRange.startDate);
+      const month = new Date(dateRange.startDate);
       let monthlyTotal: MonthlySummary = {};
 
-      while (mon < dateRange.endDate) {
-        const monEnd = new Date(mon.getFullYear(), mon.getMonth() + 1, 1);
+      while (month < dateRange.endDate) {
+        const monthEnd = new Date(month.getFullYear(), month.getMonth() + 1, 1);
         const total = data
-          .filter(e => e.date >= mon && e.date < monEnd)
+          .filter(e => e.date >= month && e.date < monthEnd)
           .map(e => e.amount)
           .reduce((p, c) => p + c, 0);
 
-        monthlyTotal = { ...monthlyTotal, [MonthNames[mon.getMonth()]]: total };
+        monthlyTotal = {
+          ...monthlyTotal,
+          [MonthNames[month.getMonth()]]: total,
+        };
 
-        mon.setMonth(mon.getMonth() + 1);
+        month.setMonth(month.getMonth() + 1);
       }
       setMonthlySummary(monthlyTotal);
     }
@@ -100,7 +103,7 @@ export default function ReportScreen() {
       for (const { category, amount } of monthlyData) {
         catSummaryMap.set(
           category.code,
-          (catSummaryMap[category.code] || 0) + amount,
+          (catSummaryMap.get(category.code) || 0) + amount,
         );
         monthlyTotal += amount;
       }
@@ -114,7 +117,7 @@ export default function ReportScreen() {
           code: code,
           description: cat.displayText,
           amount,
-          perc: Math.round((amount * 100) / monthlyTotal),
+          percentage: Math.round((amount * 100) / monthlyTotal),
         };
       });
       setCategorySummary(catSummary);
@@ -127,7 +130,11 @@ export default function ReportScreen() {
 
   const columns: ListViewColumn[] = [
     { field: 'description' },
-    { field: 'perc', format: ListDataFormat.Percentage, textAlign: 'center' },
+    {
+      field: 'percentage',
+      format: ListDataFormat.Percentage,
+      textAlign: 'center',
+    },
     { field: 'amount', format: ListDataFormat.Currency, textAlign: 'right' },
   ];
 

@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 //import {configService} from '../services/_shared/config.service';
 import { ConfigSettings } from '../types/constants';
 
+// eslint-disable-next-line spellcheck/spell-checker
 const uuidv4 = require('uuid/v4');
 
 export const utils = {
@@ -11,6 +13,7 @@ export const utils = {
 };
 
 function uuid(): string {
+  // eslint-disable-next-line spellcheck/spell-checker
   return uuidv4();
 }
 
@@ -26,10 +29,10 @@ function formatCurrency(
   ).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
 }
 
-function isFloat(value: number): boolean {
+function isFloat(value: number) {
   return value === +value && value !== (value | 0);
 }
 
-function formatNumber(value: number, cutDecimal = false): string {
+function formatNumber(value: number, cutDecimal = false) {
   return value.toFixed(!cutDecimal && isFloat(value) ? 2 : 0);
 }

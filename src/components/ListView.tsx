@@ -194,6 +194,6 @@ function getActionIcon(action: ListActionType) {
     case ListActionType.View:
       return 'search';
     default:
-      return 'curcle';
+      return 'circle';
   }
 }

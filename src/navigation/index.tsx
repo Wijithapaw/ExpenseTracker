@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { withTheme } from 'styled-components';
 import styled from 'styled-components/native';
 
-import Gradient from '../components/Gradient';
 import CategoriesScreen from '../modules/categories/CategoriesScreen';
 import HomeScreen from '../modules/expenses/HomeScreen';
 import ReportsScreen from '../modules/Reports/ReportsScreen';
@@ -30,6 +29,7 @@ function MainTabsComponent({ theme }: Props) {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           switch (route.name) {
@@ -76,7 +76,7 @@ export default function AppRoutes() {
       <Stack.Screen
         name='MainTabs'
         component={MainTabs}
-        options={{ headerTitle: props => <AppHeader /> }}
+        options={{ headerTitle: () => <AppHeader /> }}
       />
       <Stack.Screen name='Splash' component={SplashScreen} />
       <Stack.Screen
@@ -84,7 +84,7 @@ export default function AppRoutes() {
         component={CategoriesScreen}
         options={{
           title: 'Popup',
-          headerTitle: props => <AppHeader title='Edit Categories' />,
+          headerTitle: () => <AppHeader title='Edit Categories' />,
           headerBackImage: props => (
             <BackBtn>
               <Icon name='arrow-left' size={18} color={props.tintColor} />

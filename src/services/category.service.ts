@@ -15,18 +15,19 @@ export const categoryService = {
 };
 
 function getAllCategories() {
-  const vals = realmService
+  const allCategories = realmService
     .getRealm()
     .objects<ExpenseType>(ExpenseType.schema.name)
     .sorted('displayText', false);
-  const rootItems: ListItemData[] = vals
+
+  const rootItems: ListItemData[] = allCategories
     .filter(c => c.parentType == undefined)
     .map(c => ({
       id: c.id,
       title: c.displayText,
       faIcon: c.faIcon,
       parentId: c.parentType && c.parentType.id,
-      data: getChildCategories(vals, c.id),
+      data: getChildCategories(allCategories, c.id),
     }));
 
   return rootItems;
@@ -37,7 +38,7 @@ function getCategoryCodeMap() {
     .getRealm()
     .objects<ExpenseType>(ExpenseType.schema.name)
     .map(t => ({ [t.code]: t }))
-    .reduce((prev, curr) => ({ ...prev, ...curr }), {});
+    .reduce((prev, cur) => ({ ...prev, ...cur }), {});
 
   return map;
 }

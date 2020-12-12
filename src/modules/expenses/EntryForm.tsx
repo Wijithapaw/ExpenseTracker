@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -95,10 +94,10 @@ const EntryForm = ({ expenseId, onSaved }: Props) => {
       if (!value) missingFields.push('Amount');
       if (!category) missingFields.push('Category');
 
-      const missingFieldsStr = missingFields.join(' and ');
+      const allMissingFields = missingFields.join(' and ');
 
       showToast(
-        `${missingFieldsStr} ${
+        `${allMissingFields} ${
           missingFields.length === 1 ? 'is' : 'are'
         } required`,
         ToastType.Error,
@@ -151,11 +150,7 @@ const EntryForm = ({ expenseId, onSaved }: Props) => {
         />
       </FormGroup>
       <FormGroup>
-        <Button
-          title={expenseId ? 'Update' : 'Add'}
-          onPress={save}
-          icon='save'
-        />
+        <Button title={expenseId ? 'Update' : 'Add'} onPress={save} />
       </FormGroup>
       <CategorySelect
         visible={showCategorySelect}

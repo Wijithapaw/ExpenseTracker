@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 export const Icons = [
   'book',
   'car',

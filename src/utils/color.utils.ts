@@ -4,7 +4,7 @@
  * @param {Number} alpha - Alpha number
  * @returns {string} - RGBA color
  */
-export function rgba(hex, alpha = 1) {
+export function rgba(hex: string, alpha = 1) {
   const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
@@ -15,7 +15,7 @@ export function rgba(hex, alpha = 1) {
  * @param {Number} amount Amount to darken
  * @returns {string} - Darkened HEX color code
  */
-export function darken(hex, amount) {
+export function darken(hex: string, amount: number) {
   return adjustColorBrightness(hex, -amount);
 }
 
@@ -25,7 +25,7 @@ export function darken(hex, amount) {
  * @param {Number} amount Amount to brighten
  * @returns {string} - Brightened HEX color code
  */
-export function brighten(hex, amount) {
+export function brighten(hex: string, amount: number) {
   return adjustColorBrightness(hex, amount);
 }
 
@@ -35,7 +35,7 @@ export function brighten(hex, amount) {
  * @param {Number} amount Amount to adjust
  * @returns {string} - Adjusted HEX color code
  */
-function adjustColorBrightness(hex, amount) {
+function adjustColorBrightness(hex: string, amount: number) {
   return `#${hex
     .replace(/^#/, '')
     .replace(/../g, color =>

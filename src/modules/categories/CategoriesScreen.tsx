@@ -140,7 +140,7 @@ export default function CategoriesScreen({ selectedId }: Props) {
 
       categories
         .filter(c => c.parentId == parentId)
-        .forEach(c => (c.show = item!.expanded));
+        .forEach(c => (c.show = item.expanded));
     }
     setCategories(newList);
   };

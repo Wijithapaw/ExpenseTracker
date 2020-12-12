@@ -1,6 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
-import * as Realm from 'realm';
+import Realm from 'realm';
 import styled from 'styled-components/native';
 
 import ListView, {

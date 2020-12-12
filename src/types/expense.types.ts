@@ -23,5 +23,5 @@ export interface CategorySummary {
   code: string;
   description: string;
   amount: number;
-  perc: number;
+  percentage: number;
 }

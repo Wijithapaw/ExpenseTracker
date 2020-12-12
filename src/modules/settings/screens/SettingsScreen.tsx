@@ -84,7 +84,7 @@ export default function SettingsScreen({ navigation }: Props) {
     <Screen>
       <View>
         {configSettings &&
-          configSettings.map((c, i) => {
+          configSettings.map(c => {
             return (
               <ItemRow key={c.id}>
                 <KeyCol>

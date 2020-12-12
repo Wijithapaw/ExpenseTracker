@@ -26,8 +26,8 @@ const Container = styled.View<any>`
 `;
 
 const StyledText = styled(Text).attrs((props: any) => ({
-  color: props.orderBudger ? props.theme.text.error : props.theme.text.success,
-}))<any>``;
+  color: props.overBudget ? props.theme.text.error : props.theme.text.success,
+}))<{ overBudget: boolean }>``;
 
 interface Props {
   total: number;
@@ -43,17 +43,17 @@ export default function MonthTotal({ total }: Props) {
 
   return (
     <Container overBudget={overBudget}>
-      <StyledText bold orderBudger={overBudget} size={FontSize.Regular}>
+      <StyledText bold overBudget={overBudget} size={FontSize.Regular}>
         {currencySymbol}
       </StyledText>
       <StyledText
-        orderBudger={overBudget}
+        overBudget={overBudget}
         bold
         size={totalFormatted.length > 8 ? FontSize.Regular : FontSize.Large}
       >
         {totalFormatted}
       </StyledText>
-      <StyledText orderBudger={overBudget} size={FontSize.Regular}>
+      <StyledText overBudget={overBudget} size={FontSize.Regular}>
         {month}
       </StyledText>
     </Container>

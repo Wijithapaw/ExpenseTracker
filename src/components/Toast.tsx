@@ -8,10 +8,11 @@ export enum ToastType {
 }
 
 export default function showToast(
-  msg: string,
+  message: string,
   type: ToastType = ToastType.Default,
 ) {
-  const toast = Toast.show(msg, {
+  const toast = Toast.show(message, {
+    // eslint-disable-next-line spellcheck/spell-checker
     duration: Toast.durations.LONG,
     position: Toast.positions.TOP,
     shadow: true,

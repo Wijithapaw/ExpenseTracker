@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { COLORS } from '../types/colors';
 import { InputType } from '../types/enums';
 
 const StyledTextInput = styled.TextInput<any>`

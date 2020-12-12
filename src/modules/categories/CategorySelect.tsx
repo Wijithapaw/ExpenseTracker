@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, TouchableHighlight, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import styled from 'styled-components/native';
 
-import Button from '../../components/Button';
 import Icon from '../../components/Icon';
 import IconButton from '../../components/IconButton';
 import Modal from '../../components/Modal';

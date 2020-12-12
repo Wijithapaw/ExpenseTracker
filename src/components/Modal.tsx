@@ -34,19 +34,19 @@ const TitleGradient = styled(Gradient)`
   padding: 5px 10px;
 `;
 
-const TiTleText = styled.View`
+const TitleText = styled.View`
   justify-content: center;
   align-items: center;
   flex: 1;
 `;
 
-const TiTleButton = styled.View`
+const TitleButton = styled.View`
   justify-content: center;
   align-items: center;
   width: 30px;
 `;
 
-const CloseButton = styled(IconButton).attrs((props: any) => ({
+const CloseButton = styled(IconButton).attrs(() => ({
   name: 'times',
   size: 15,
 }))`
@@ -78,15 +78,15 @@ export default function Modal({
       <Overlay>
         <Title>
           <TitleGradient>
-            <TiTleButton />
-            <TiTleText>
+            <TitleButton />
+            <TitleText>
               <Text bold size={FontSize.Increased} color={COLORS.white}>
                 {title}
               </Text>
-            </TiTleText>
-            <TiTleButton>
+            </TitleText>
+            <TitleButton>
               <CloseButton onPress={onRequestClose} />
-            </TiTleButton>
+            </TitleButton>
           </TitleGradient>
         </Title>
         <ModalArea>{children}</ModalArea>

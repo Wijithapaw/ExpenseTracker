@@ -47,8 +47,10 @@ module.exports = {
     'class-methods-use-this': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-var-requires': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
     'react/display-name': 'off',
     'react/prop-types': 'off',
     'spellcheck/spell-checker': [
@@ -58,7 +60,7 @@ module.exports = {
         strings: true,
         identifiers: true,        
         lang: 'en_US',
-        skipWords: ['dict', 'aff', 'hunspellchecker', 'hunspell', 'utils', 'aws'],
+        skipWords: ['dict', 'aff', 'lang', 'dto', 'hunspellchecker', 'hunspell', 'utils', 'aws'],
         skipIfMatch: [
           'http://[^s]*',
           '^[-\\w]+/[-\\w\\.]+$', // For MIME Types

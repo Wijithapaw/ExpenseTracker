@@ -10,12 +10,9 @@ interface Props {
 export default function ExpensesChart({ labels, values }: Props) {
   return (
     <LineChart
-      //   children={() => (
-      //     <View style={{ width: 50, height: 50, backgroundColor: 'red' }} />
-      //   )}
-      // onDataPointClick={(data) =>  Alert.alert('yey' + JSON.stringify(data))}
       data={{
         labels: labels,
+        // eslint-disable-next-line spellcheck/spell-checker
         datasets: [
           {
             data: values,
@@ -26,12 +23,12 @@ export default function ExpensesChart({ labels, values }: Props) {
       height={200}
       yAxisLabel=''
       yAxisSuffix=''
-      yAxisInterval={1} // optional, defaults to 1
+      yAxisInterval={1}
       chartConfig={{
         backgroundColor: '#e26a00',
         backgroundGradientFrom: '#fb8c00',
         backgroundGradientTo: '#ffa726',
-        decimalPlaces: 0, // optional, defaults to 2dp
+        decimalPlaces: 0,
         color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
         labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
         style: {
@@ -43,7 +40,6 @@ export default function ExpensesChart({ labels, values }: Props) {
           stroke: '#ffa726',
         },
       }}
-      // eslint-disable-next-line react-native/no-inline-styles
       style={{
         marginVertical: 0,
         borderRadius: 5,

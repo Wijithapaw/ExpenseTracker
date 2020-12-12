@@ -17,6 +17,7 @@ function confirm(
       { text: 'Yes', onPress: yesCallback },
       { text: 'No', onPress: () => noCallback, style: 'cancel' },
     ],
+    // eslint-disable-next-line spellcheck/spell-checker
     { cancelable: false },
   );
 }

@@ -128,14 +128,10 @@ export default function EditCategory({
         undefined}
       <ButtonRow>
         <ButtonContainer>
-          <Button
-            title='Cancel'
-            onPress={() => onCancel && onCancel()}
-            icon='save'
-          />
+          <Button title='Cancel' onPress={() => onCancel && onCancel()} />
         </ButtonContainer>
         <ButtonContainer>
-          <Button title='Save' onPress={save} icon='save' />
+          <Button title='Save' onPress={save} />
         </ButtonContainer>
       </ButtonRow>
     </View>
