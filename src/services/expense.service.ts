@@ -13,7 +13,6 @@ export const expenseService = {
   getExpenseSummary,
   getExpensesByDuration,
 };
-ß;
 
 function getAllExpenses() {
   const vals = realmService.getRealm().objects<Expense>(Expense.schema.name);

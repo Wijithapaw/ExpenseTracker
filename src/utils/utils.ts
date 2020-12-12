@@ -1,7 +1,7 @@
 //import {configService} from '../services/_shared/config.service';
 import { ConfigSettings } from '../types/constants';
 
-import uuidv4 = require('uuid/v4');
+const uuidv4 = require('uuid/v4');
 
 export const utils = {
   uuid,
