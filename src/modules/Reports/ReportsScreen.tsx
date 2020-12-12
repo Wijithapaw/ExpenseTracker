@@ -152,7 +152,9 @@ export default function ReportScreen() {
   return (
     <Container>
       <Chart>
-        <ExpensesChart labels={monthLabels} values={monthlyValues} />
+        {monthlyValues?.length && monthLabels?.length ? (
+          <ExpensesChart labels={monthLabels} values={monthlyValues} />
+        ) : null}
       </Chart>
       <Grid>
         <ListView
