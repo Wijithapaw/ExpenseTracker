@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../../../GlobalContext';
 import Button from '../../../components/Button';
 import IconButton from '../../../components/IconButton';
 import Screen from '../../../components/Screen';
@@ -40,11 +44,11 @@ const EditButtons = styled.View`
   padding-left: 10px;
 `;
 
-interface Props {
+interface Props extends GlobalContextType {
   navigation: any;
 }
 
-export default function SettingsScreen({ navigation }: Props) {
+function SettingsScreen({ navigation, refreshConfigSettings }: Props) {
   const [configSettings, setConfigSettings] = useState<ConfigItem[]>();
   const [editingId, setEditingId] = useState<string>();
 
@@ -62,6 +66,7 @@ export default function SettingsScreen({ navigation }: Props) {
     configService.updateValue(editingId, item.value);
     setEditingId(undefined);
     loadItems();
+    refreshConfigSettings();
     showToast('Settings updated');
   };
 
@@ -124,3 +129,5 @@ export default function SettingsScreen({ navigation }: Props) {
     </Screen>
   );
 }
+
+export default withGlobalContext(SettingsScreen);

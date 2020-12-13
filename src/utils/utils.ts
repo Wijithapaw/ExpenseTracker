@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-//import {configService} from '../services/_shared/config.service';
-import { ConfigSettings } from '../types/constants';
 
 // eslint-disable-next-line spellcheck/spell-checker
 const uuidv4 = require('uuid/v4');
@@ -18,15 +16,14 @@ function uuid(): string {
 }
 
 function formatCurrency(
-  value: number,
+  amount: number,
   cutDecimal = false,
-  hideSymbol = false,
+  currencySymbol = '',
 ): string {
-  const currencySymbol = 'Rs. '; //configService.getValue(ConfigSettings.currencySymbol);
-  return `${hideSymbol ? '' : currencySymbol}${formatNumber(
-    value,
-    cutDecimal,
-  ).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
+  return `${currencySymbol}${formatNumber(amount, cutDecimal).replace(
+    /(\d)(?=(\d{3})+(?!\d))/g,
+    '$1,',
+  )}`;
 }
 
 function isFloat(value: number) {

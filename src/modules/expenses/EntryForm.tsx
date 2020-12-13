@@ -30,10 +30,10 @@ const FormColSpace = styled.View`
 
 interface Props extends GlobalContextType {
   expenseId?: string;
-  onSaved: () => void;
+  onSaved?: () => void;
 }
 
-const EntryForm = ({ expenseId, onSaved }: Props) => {
+const EntryForm = ({ expenseId, onSaved, refreshData }: Props) => {
   const [value, setValue] = useState<string>();
   const [category, setCategory] = useState<SimpleListItem>();
   const [date, setDate] = useState(new Date());
@@ -89,6 +89,7 @@ const EntryForm = ({ expenseId, onSaved }: Props) => {
       setValue(undefined);
       setCategory(undefined);
       setDescription(undefined);
+      refreshData();
       onSaved && onSaved();
     } else {
       const missingFields = [];

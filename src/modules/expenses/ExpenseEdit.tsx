@@ -5,7 +5,7 @@ import EntryForm from './EntryForm';
 
 export interface Props {
   expenseId?: string;
-  onSave: () => void;
+  onSave?: () => void;
   onClose: () => void;
 }
 

@@ -1,8 +1,8 @@
-import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Realm from 'realm';
 import styled from 'styled-components/native';
 
+import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import ListView, {
   ListAction,
   ListActionType,
@@ -37,20 +37,13 @@ const columns: ListViewColumn[] = [
   { field: 'amount', format: ListDataFormat.Currency, textAlign: 'right' },
 ];
 
-export default function HomeScreen() {
+function HomeScreen({ refreshCounter, refreshData }: GlobalContextType) {
   const [expenses, setExpenses] = useState<Realm.Results<Expense>>();
-  const [refresh, toggleRefresh] = useState(false);
   const [editingExpenseId, setEditingExpenseId] = useState<string>();
 
-  // useEffect(() => {
-  //   setExpenses(expenseService.getAllExpenses());
-  // }, []);
-
-  useFocusEffect(
-    useCallback(() => {
-      setExpenses(expenseService.getAllExpenses());
-    }, []),
-  );
+  useEffect(() => {
+    setExpenses(expenseService.getAllExpenses());
+  }, [refreshCounter]);
 
   const getCurrentMonthTotal = () => {
     const date = new Date(),
@@ -87,13 +80,11 @@ export default function HomeScreen() {
       onPress: (item: any) => {
         messagingService.confirm('Delete Record', 'Are you sure?', () => {
           expenseService.deleteExpense(item.id);
-          refreshComponent();
+          refreshData();
         });
       },
     },
   ];
-
-  const refreshComponent = () => toggleRefresh(!refresh);
 
   return (
     <Screen>
@@ -101,20 +92,19 @@ export default function HomeScreen() {
         <MonthTotal total={getCurrentMonthTotal()} />
       </TotalSection>
       <EntrySection>
-        <EntryForm onSaved={() => refreshComponent()} />
+        <EntryForm />
       </EntrySection>
       <ListSection>
         <ListView
           data={last5Records}
           columns={columns}
           actions={listActions}
-          listTitle='Last 5 Expenses...'
+          listTitle='Last 5 Expenses'
         />
         <ExpenseEdit
           expenseId={editingExpenseId}
           onClose={() => setEditingExpenseId(undefined)}
           onSave={() => {
-            refreshComponent();
             setEditingExpenseId(undefined);
           }}
         />
@@ -122,3 +112,5 @@ export default function HomeScreen() {
     </Screen>
   );
 }
+
+export default withGlobalContext(HomeScreen);

@@ -34,8 +34,7 @@ export function GlobalContextProvider({ children }: Props) {
   const [refreshCounter, setRefreshCounter] = useState(0);
 
   useEffect(() => {
-    const configItems = configService.getAllConfigMap();
-    setConfigSettings(configItems);
+    refreshConfigSettings();
     setInitialized(true);
   }, []);
 
@@ -44,7 +43,8 @@ export function GlobalContextProvider({ children }: Props) {
   };
 
   const refreshConfigSettings = () => {
-    setRefreshCounter(refreshCounter + 1);
+    const configItems = configService.getAllConfigMap();
+    setConfigSettings(configItems);
   };
 
   return (

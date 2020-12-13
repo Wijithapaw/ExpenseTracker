@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 
+import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import ListView, {
   ListAction,
   ListActionType,
@@ -32,8 +33,8 @@ const Grid = styled.View`
   margin-top: 20px;
 `;
 
-export default function ReportScreen() {
-  const [data, setData] = useState<ExpenseDto[]>();
+function ReportScreen({ refreshCounter }: GlobalContextType) {
+  const [expenses, setExpenses] = useState<ExpenseDto[]>();
   const [dateRange, setDateRange] = useState(undefined);
   const [selectedMonth, setSelectedMonth] = useState<Date>();
   const [categorySummary, setCategorySummary] = useState<CategorySummary[]>();
@@ -53,22 +54,22 @@ export default function ReportScreen() {
 
   useEffect(() => {
     if (dateRange) {
-      const expenses = expenseService.getExpensesByDuration(
+      const expensesOfDuration = expenseService.getExpensesByDuration(
         dateRange.startDate,
         dateRange.endDate,
       );
-      setData(expenses);
+      setExpenses(expensesOfDuration);
     }
-  }, [dateRange]);
+  }, [dateRange, refreshCounter]);
 
   useEffect(() => {
-    if (dateRange && data) {
+    if (dateRange && expenses) {
       const month = new Date(dateRange.startDate);
       let monthlyTotal: MonthlySummary = {};
 
       while (month < dateRange.endDate) {
         const monthEnd = new Date(month.getFullYear(), month.getMonth() + 1, 1);
-        const total = data
+        const total = expenses
           .filter(e => e.date >= month && e.date < monthEnd)
           .map(e => e.amount)
           .reduce((p, c) => p + c, 0);
@@ -82,17 +83,17 @@ export default function ReportScreen() {
       }
       setMonthlySummary(monthlyTotal);
     }
-  }, [data, dateRange]);
+  }, [expenses, dateRange]);
 
   useEffect(() => {
-    if (selectedMonth && data && data.length) {
+    if (selectedMonth && expenses && expenses.length) {
       const selectedMonthEnd = new Date(
         selectedMonth.getFullYear(),
         selectedMonth.getMonth() + 1,
         1,
       );
 
-      const monthlyData = data.filter(
+      const monthlyData = expenses.filter(
         e => e.date >= selectedMonth && e.date < selectedMonthEnd,
       );
 
@@ -121,9 +122,8 @@ export default function ReportScreen() {
         };
       });
       setCategorySummary(catSummary);
-      console.log(catSummary);
     }
-  }, [data, selectedMonth]);
+  }, [expenses, selectedMonth]);
 
   const monthLabels = Object.keys(monthlySummary);
   const monthlyValues = Object.values(monthlySummary);
@@ -149,6 +149,8 @@ export default function ReportScreen() {
     },
   ];
 
+  const MonthName = selectedMonth.toLocaleString('default', { month: 'long' });
+
   return (
     <Container>
       <Chart>
@@ -160,10 +162,12 @@ export default function ReportScreen() {
         <ListView
           data={categorySummary}
           columns={columns}
-          listTitle='Expenses in Month'
+          listTitle={`Expenses in ${MonthName}`}
           actions={listActions}
         />
       </Grid>
     </Container>
   );
 }
+
+export default withGlobalContext(ReportScreen);

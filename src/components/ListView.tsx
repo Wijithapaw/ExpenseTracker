@@ -162,7 +162,7 @@ export interface ListAction {
 function formatData(data: any, format?: ListDataFormat) {
   switch (format) {
     case ListDataFormat.Currency:
-      return `${utils.formatCurrency(data, false, true)}`;
+      return `${utils.formatCurrency(data, false)}`;
     case ListDataFormat.Date:
       return data.toLocaleDateString();
     case ListDataFormat.Percentage:

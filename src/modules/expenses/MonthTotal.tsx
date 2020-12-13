@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
 
+import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Text from '../../components/Text';
-import { configService } from '../../services/_shared/config.service';
 import { ConfigSettings, MonthNames } from '../../types/constants';
 import { FontSize } from '../../types/enums';
 import { rgba } from '../../utils/color.utils';
@@ -29,15 +29,18 @@ const StyledText = styled(Text).attrs((props: any) => ({
   color: props.overBudget ? props.theme.text.error : props.theme.text.success,
 }))<{ overBudget: boolean }>``;
 
-interface Props {
+interface Props extends GlobalContextType {
   total: number;
 }
 
-export default function MonthTotal({ total }: Props) {
+function MonthTotal({ total, configSettings }: Props) {
   const month = MonthNames[new Date().getMonth()];
-  const totalFormatted = utils.formatCurrency(total, true, true);
-  const budget = +configService.getValue(ConfigSettings.monthlyBudget);
-  const currencySymbol = configService.getValue(ConfigSettings.currencySymbol);
+
+  const budget = +configSettings.get(ConfigSettings.monthlyBudget) || 0;
+  const currencySymbol =
+    configSettings.get(ConfigSettings.currencySymbol) || '';
+
+  const totalFormatted = utils.formatCurrency(total, true);
 
   const overBudget = budget > 0 && total > budget;
 
@@ -59,3 +62,5 @@ export default function MonthTotal({ total }: Props) {
     </Container>
   );
 }
+
+export default withGlobalContext(MonthTotal);
