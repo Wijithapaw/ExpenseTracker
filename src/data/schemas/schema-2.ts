@@ -5,7 +5,7 @@ export { Expense, ExpenseType };
 
 const SCHEMA_VERSION = 2;
 
-const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
+const migrations = (oldRealm: Realm, newRealm: Realm) => {
   // only apply this change if upgrading to schemaVersion 2
   if (oldRealm.schemaVersion < SCHEMA_VERSION) {
     //Car
@@ -57,8 +57,8 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
       ExpenseType.schema.name,
       new ExpenseType(
         utils.uuid(),
-        'FOOD_VEGITABLES',
-        'Vegitables',
+        'FOOD_VEGETABLES',
+        'Vegetables',
         false,
         food,
       ),
@@ -129,18 +129,18 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
     newRealm.create(ExpenseType.schema.name, healthCare);
 
     //Toiletries
-    const toilatories = new ExpenseType(
+    const toiletries = new ExpenseType(
       utils.uuid(),
       'TOILETRIES',
       'Toiletries',
       false,
     );
-    newRealm.create(ExpenseType.schema.name, toilatories);
+    newRealm.create(ExpenseType.schema.name, toiletries);
 
-    //Transpotation
-    const transpotation = newRealm.create(
+    //Transportation
+    const transportation = newRealm.create(
       ExpenseType.schema.name,
-      new ExpenseType(utils.uuid(), 'TRANSPOTATION', 'Transpotation', false),
+      new ExpenseType(utils.uuid(), 'TRANSPOTATION', 'Transportation', false),
     );
 
     newRealm.create(
@@ -150,7 +150,7 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
         'TRANSPOTATION_TAXI',
         'Taxi',
         false,
-        transpotation,
+        transportation,
       ),
     );
     newRealm.create(
@@ -160,7 +160,7 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
         'TRANSPOTATION_PUBLIC',
         'Public',
         false,
-        transpotation,
+        transportation,
       ),
     );
 
@@ -209,5 +209,5 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
 export const schema2 = {
   schema: [Expense.schema, ExpenseType.schema],
   schemaVersion: SCHEMA_VERSION,
-  migration: migrationFunc,
+  migration: migrations,
 };

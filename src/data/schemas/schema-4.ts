@@ -40,7 +40,7 @@ class ConfigSetting {
 
 export { ConfigSetting, Expense, ExpenseType };
 
-const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
+const migrations = (oldRealm: Realm, newRealm: Realm) => {
   // only apply this change if upgrading to schemaVersion 2
   if (oldRealm.schemaVersion < SCHEMA_VERSION) {
     newRealm.create(
@@ -67,5 +67,5 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
 export const schema4 = {
   schema: [Expense.schema, ExpenseType.schema, ConfigSetting.schema],
   schemaVersion: SCHEMA_VERSION,
-  migration: migrationFunc,
+  migration: migrations,
 };

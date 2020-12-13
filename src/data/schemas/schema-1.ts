@@ -76,7 +76,7 @@ export class ExpenseType {
   }
 }
 
-const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
+const migrations = (oldRealm: Realm, newRealm: Realm) => {
   // only apply this change if upgrading to schemaVersion 2
   if (oldRealm.schemaVersion < SCHEMA_VERSION) {
     const generalType = new ExpenseType(
@@ -100,5 +100,5 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
 export const schema1 = {
   schema: [Expense.schema, ExpenseType.schema],
   schemaVersion: SCHEMA_VERSION,
-  migration: migrationFunc,
+  migration: migrations,
 };

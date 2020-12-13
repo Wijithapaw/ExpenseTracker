@@ -1,9 +1,9 @@
+import Realm from 'realm';
+
 import { schemas } from './schemas';
 
-const Realm = require('realm');
-
 export const realmService = {
-  closeRelm,
+  closeRealm,
   getRealm,
 };
 
@@ -20,7 +20,7 @@ while (nextSchemaIndex < latestSchemaIndex) {
 
 export const realm: Realm = new Realm(schemas[latestSchemaIndex]);
 
-function closeRelm() {
+function closeRealm() {
   realm.close();
 }
 

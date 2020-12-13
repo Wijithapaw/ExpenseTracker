@@ -42,7 +42,7 @@ class ExpenseType {
 
 export { Expense, ExpenseType };
 
-const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
+const migrations = (oldRealm: Realm, newRealm: Realm) => {
   // only apply this change if upgrading to schemaVersion 2
   if (oldRealm.schemaVersion < SCHEMA_VERSION) {
     //Car
@@ -70,16 +70,16 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
     healthCare.faIcon = 'plus-square';
 
     //Toiletries
-    const toilatories = newRealm
+    const toiletries = newRealm
       .objects<ExpenseType>(ExpenseType.schema.name)
       .find(t => t.code == 'TOILETRIES');
-    toilatories.faIcon = 'bath';
+    toiletries.faIcon = 'bath';
 
-    //Transpotation
-    const transpotation = newRealm
+    //Transportation
+    const transportation = newRealm
       .objects<ExpenseType>(ExpenseType.schema.name)
       .find(t => t.code == 'TRANSPOTATION');
-    transpotation.faIcon = 'bus';
+    transportation.faIcon = 'bus';
 
     //Entertainment
     const entertainment = newRealm
@@ -100,10 +100,10 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
     stationary.faIcon = 'book';
 
     //Clothing
-    const cloting = newRealm
+    const clothing = newRealm
       .objects<ExpenseType>(ExpenseType.schema.name)
       .find(t => t.code == 'CLOTHING');
-    cloting.faIcon = 'suitcase';
+    clothing.faIcon = 'suitcase';
 
     //Gifts
     const gifts = newRealm
@@ -122,5 +122,5 @@ const migrationFunc = (oldRealm: Realm, newRealm: Realm) => {
 export const schema3 = {
   schema: [Expense.schema, ExpenseType.schema],
   schemaVersion: SCHEMA_VERSION,
-  migration: migrationFunc,
+  migration: migrations,
 };

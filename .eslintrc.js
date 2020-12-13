@@ -60,7 +60,7 @@ module.exports = {
         strings: true,
         identifiers: true,        
         lang: 'en_US',
-        skipWords: ['dict', 'aff', 'lang', 'dto', 'hunspellchecker', 'hunspell', 'utils', 'aws'],
+        skipWords: ['dict', 'aff', 'lang', 'dto', 'hunspellchecker', 'hunspell', 'utils', 'aws', 'schemas', 'bool'],
         skipIfMatch: [
           'http://[^s]*',
           '^[-\\w]+/[-\\w\\.]+$', // For MIME Types
