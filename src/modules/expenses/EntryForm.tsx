@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 
+import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Button from '../../components/Button';
 import DatePicker from '../../components/DatePicker';
 import TextInput from '../../components/TextInput';
@@ -27,7 +28,7 @@ const FormColSpace = styled.View`
   width: 10px;
 `;
 
-interface Props {
+interface Props extends GlobalContextType {
   expenseId?: string;
   onSaved: () => void;
 }
@@ -161,4 +162,4 @@ const EntryForm = ({ expenseId, onSaved }: Props) => {
   );
 };
 
-export default EntryForm;
+export default withGlobalContext(EntryForm);

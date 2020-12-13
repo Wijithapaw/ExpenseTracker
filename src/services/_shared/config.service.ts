@@ -6,6 +6,7 @@ export const configService = {
   getValue,
   updateValue,
   getAllConfigItems,
+  getAllConfigMap,
 };
 
 let allConfigs: KeyValuePair[];
@@ -22,6 +23,14 @@ function getAllConfigItems() {
     .objects<ConfigItem>(ConfigSetting.schema.name)
     .map(c => ({ id: c.id, description: c.description, value: c.value }));
   return configs;
+}
+
+function getAllConfigMap() {
+  const configs = realm
+    .objects<ConfigSetting>(ConfigSetting.schema.name)
+    .map((c): [string, string] => [c.code, c.value]);
+
+  return new Map<string, string>(configs);
 }
 
 function getValue(key: string) {
