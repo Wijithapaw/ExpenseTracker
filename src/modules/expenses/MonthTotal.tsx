@@ -4,11 +4,12 @@ import styled from 'styled-components/native';
 import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Text from '../../components/Text';
 import { ConfigSettings, MonthNames } from '../../types/constants';
-import { FontSize } from '../../types/enums';
+import { FontSize, FontType } from '../../types/enums';
+import { Theme } from '../../types/theme.types';
 import { rgba } from '../../utils/color.utils';
 import { utils } from '../../utils/utils';
 
-const Container = styled.View<any>`
+const Container = styled.View<{ overBudget: boolean; theme: Theme }>`
   justify-content: center;
   align-items: center;
   border-radius: 60px;
@@ -16,18 +17,14 @@ const Container = styled.View<any>`
   height: 90px;
   width: 90px;
   padding: 4px;
-  border-color: ${(props: any) =>
+  border-color: ${props =>
     props.overBudget ? props.theme.border.error : props.theme.border.success};
-  background-color: ${(props: any) =>
+  background-color: ${props =>
     rgba(
       props.overBudget ? props.theme.border.error : props.theme.border.success,
       0.1,
     )};
 `;
-
-const StyledText = styled(Text).attrs((props: any) => ({
-  color: props.overBudget ? props.theme.text.error : props.theme.text.success,
-}))<{ overBudget: boolean }>``;
 
 interface Props extends GlobalContextType {
   total: number;
@@ -43,22 +40,23 @@ function MonthTotal({ total, configSettings }: Props) {
   const totalFormatted = utils.formatCurrency(total, true);
 
   const overBudget = budget > 0 && total > budget;
+  const fontType = overBudget ? FontType.Error : FontType.Success;
 
   return (
     <Container overBudget={overBudget}>
-      <StyledText bold overBudget={overBudget} size={FontSize.Regular}>
+      <Text bold type={fontType} size={FontSize.Regular}>
         {currencySymbol}
-      </StyledText>
-      <StyledText
-        overBudget={overBudget}
+      </Text>
+      <Text
+        type={fontType}
         bold
         size={totalFormatted.length > 8 ? FontSize.Regular : FontSize.Large}
       >
         {totalFormatted}
-      </StyledText>
-      <StyledText overBudget={overBudget} size={FontSize.Regular}>
+      </Text>
+      <Text type={fontType} size={FontSize.Regular}>
         {month}
-      </StyledText>
+      </Text>
     </Container>
   );
 }

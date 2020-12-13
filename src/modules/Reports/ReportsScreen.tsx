@@ -17,6 +17,8 @@ import {
   ExpenseDto,
   MonthlySummary,
 } from '../../types/expense.types';
+import { DATE_FORMATS, formatDate } from '../../utils/date.utils';
+import { utils } from '../../utils/utils';
 import ExpensesChart from './ExpensesChart';
 
 const Container = styled.View`
@@ -36,7 +38,7 @@ const Grid = styled.View`
 function ReportScreen({ refreshCounter }: GlobalContextType) {
   const [expenses, setExpenses] = useState<ExpenseDto[]>();
   const [dateRange, setDateRange] = useState(undefined);
-  const [selectedMonth, setSelectedMonth] = useState<Date>();
+  const [selectedMonth, setSelectedMonth] = useState<Date>(new Date());
   const [categorySummary, setCategorySummary] = useState<CategorySummary[]>();
   const [categoryMap, setCategoryMap] = useState<ExpenseCategoryMap>();
   const [monthlySummary, setMonthlySummary] = useState<MonthlySummary>({});
@@ -109,18 +111,20 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
         monthlyTotal += amount;
       }
 
-      const catSummary = Array.from(catSummaryMap).map(v => {
-        const [code, amount] = v;
-        const cat = categoryMap[code];
+      const catSummary = Array.from(catSummaryMap)
+        .sort((a, b) => b[1] - a[1])
+        .map(v => {
+          const [code, amount] = v;
+          const cat = categoryMap[code];
 
-        return {
-          id: cat.id,
-          code: code,
-          description: cat.displayText,
-          amount,
-          percentage: Math.round((amount * 100) / monthlyTotal),
-        };
-      });
+          return {
+            id: cat.id,
+            code: code,
+            description: cat.displayText,
+            amount,
+            percentage: Math.round((amount * 100) / monthlyTotal),
+          };
+        });
       setCategorySummary(catSummary);
     }
   }, [expenses, selectedMonth]);
@@ -149,7 +153,7 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
     },
   ];
 
-  const MonthName = selectedMonth.toLocaleString('default', { month: 'long' });
+  const MonthName = formatDate(selectedMonth, DATE_FORMATS.monthYear);
 
   return (
     <Container>
@@ -162,7 +166,11 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
         <ListView
           data={categorySummary}
           columns={columns}
-          listTitle={`Expenses in ${MonthName}`}
+          listTitle={`${MonthName} | Total: ${utils.formatCurrency(
+            monthlySummary[MonthNames[selectedMonth.getMonth()]] || 0,
+            true,
+            'Rs.',
+          )}`}
           actions={listActions}
         />
       </Grid>
