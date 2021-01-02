@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+import { DateRange } from '../types/shared.types';
+
 export const DATE_FORMATS = {
   longDate: 'dddd, D MMM',
   shortDate: 'ddd D MMM',
@@ -37,4 +39,14 @@ export function formatDate(
 
 function formatDate2(d: Date, format: string) {
   return moment(d).local().format(format);
+}
+
+export function getBackwardMonthRange(date: Date, count: number): DateRange {
+  const ref = new Date(date.getFullYear(), date.getMonth(), 1);
+  const start = new Date(ref);
+  start.setMonth(ref.getMonth() - (count - 1));
+  const end = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+  end.setMilliseconds(end.getMilliseconds() - 1);
+
+  return { start, end };
 }

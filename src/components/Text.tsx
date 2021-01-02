@@ -15,6 +15,8 @@ function getColorByType(type: FontType, theme: Theme) {
       return theme.text.secondary;
     case FontType.Success:
       return theme.text.success;
+    case FontType.Header:
+      return theme.text.header;
     default:
       return theme.text.primary;
   }

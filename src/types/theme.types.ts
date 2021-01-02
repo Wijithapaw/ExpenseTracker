@@ -31,3 +31,7 @@ interface ThemeBorder {
   error: string;
   success: string;
 }
+
+export interface StyledProps {
+  theme: Theme;
+}

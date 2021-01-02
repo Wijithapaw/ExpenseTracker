@@ -36,3 +36,8 @@ export interface ConfigItem {
   description: string;
   value: string;
 }
+
+export interface DateRange {
+  start: Date;
+  end: Date;
+}

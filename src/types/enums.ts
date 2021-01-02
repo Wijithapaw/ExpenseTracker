@@ -16,6 +16,7 @@ export enum FontType {
   Secondary = 1,
   Error = 2,
   Success = 3,
+  Header = 4,
 }
 
 export enum InputType {

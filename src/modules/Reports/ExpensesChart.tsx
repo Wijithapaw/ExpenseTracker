@@ -5,9 +5,14 @@ import { LineChart } from 'react-native-chart-kit';
 interface Props {
   labels: string[];
   values: number[];
+  onDataPointClick?: (index: number) => void;
 }
 
-export default function ExpensesChart({ labels, values }: Props) {
+export default function ExpensesChart({
+  labels,
+  values,
+  onDataPointClick,
+}: Props) {
   return (
     <LineChart
       data={{
@@ -19,7 +24,8 @@ export default function ExpensesChart({ labels, values }: Props) {
           },
         ],
       }}
-      width={Dimensions.get('window').width - 20} // from react-native
+      onDataPointClick={data => onDataPointClick(data.index)}
+      width={Dimensions.get('window').width - 20}
       height={200}
       yAxisLabel=''
       yAxisSuffix=''

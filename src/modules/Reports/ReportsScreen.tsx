@@ -8,6 +8,7 @@ import ListView, {
   ListDataFormat,
   ListViewColumn,
 } from '../../components/ListView';
+import MonthRange from '../../components/MonthRange';
 import { categoryService } from '../../services/category.service';
 import { expenseService } from '../../services/expense.service';
 import { MonthNames } from '../../types/constants';
@@ -17,7 +18,12 @@ import {
   ExpenseDto,
   MonthlySummary,
 } from '../../types/expense.types';
-import { DATE_FORMATS, formatDate } from '../../utils/date.utils';
+import { DateRange } from '../../types/shared.types';
+import {
+  DATE_FORMATS,
+  formatDate,
+  getBackwardMonthRange,
+} from '../../utils/date.utils';
 import { utils } from '../../utils/utils';
 import ExpensesChart from './ExpensesChart';
 
@@ -26,50 +32,57 @@ const Container = styled.View`
   padding: 10px;
 `;
 
+const Range = styled.View``;
+
 const Chart = styled.View`
   align-items: center;
+  margin-top: 10px;
 `;
 
 const Grid = styled.View`
   flex: 1;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
+
+const getCurrentMonth = (): Date => {
+  const today = new Date();
+  const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  return currentMonth;
+};
 
 function ReportScreen({ refreshCounter }: GlobalContextType) {
   const [expenses, setExpenses] = useState<ExpenseDto[]>();
-  const [dateRange, setDateRange] = useState(undefined);
-  const [selectedMonth, setSelectedMonth] = useState<Date>(new Date());
+  const [dateRange, setDateRange] = useState<DateRange>(
+    getBackwardMonthRange(new Date(), 6),
+  );
+  const [selectedMonth, setSelectedMonth] = useState<Date>(getCurrentMonth());
   const [categorySummary, setCategorySummary] = useState<CategorySummary[]>();
   const [categoryMap, setCategoryMap] = useState<ExpenseCategoryMap>();
   const [monthlySummary, setMonthlySummary] = useState<MonthlySummary>({});
 
   useEffect(() => {
-    const today = new Date();
-    const startDate = new Date(today.getFullYear(), today.getMonth() - 5, 1);
-    const endDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-    const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-
-    setSelectedMonth(currentMonth);
-    setDateRange({ startDate, endDate });
     setCategoryMap(categoryService.getCategoryCodeMap());
   }, []);
 
   useEffect(() => {
     if (dateRange) {
       const expensesOfDuration = expenseService.getExpensesByDuration(
-        dateRange.startDate,
-        dateRange.endDate,
+        dateRange.start,
+        dateRange.end,
       );
       setExpenses(expensesOfDuration);
+      setSelectedMonth(
+        new Date(dateRange.end.getFullYear(), dateRange.end.getMonth(), 1),
+      );
     }
   }, [dateRange, refreshCounter]);
 
   useEffect(() => {
     if (dateRange && expenses) {
-      const month = new Date(dateRange.startDate);
+      const month = new Date(dateRange.start);
       let monthlyTotal: MonthlySummary = {};
 
-      while (month < dateRange.endDate) {
+      while (month < dateRange.end) {
         const monthEnd = new Date(month.getFullYear(), month.getMonth() + 1, 1);
         const total = expenses
           .filter(e => e.date >= month && e.date < monthEnd)
@@ -126,6 +139,8 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
           };
         });
       setCategorySummary(catSummary);
+    } else {
+      setCategorySummary([]);
     }
   }, [expenses, selectedMonth]);
 
@@ -142,6 +157,12 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
     { field: 'amount', format: ListDataFormat.Currency, textAlign: 'right' },
   ];
 
+  const handleDataPointClick = (index: number) => {
+    const month = new Date(dateRange.start);
+    month.setMonth(month.getMonth() + index);
+    setSelectedMonth(month);
+  };
+
   const handleViewCategory = (item: CategorySummary) => {
     console.log(item);
   };
@@ -157,9 +178,22 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
 
   return (
     <Container>
+      <Range>
+        {dateRange && (
+          <MonthRange
+            startDate={dateRange.start}
+            endDate={dateRange.end}
+            onChange={setDateRange}
+          />
+        )}
+      </Range>
       <Chart>
         {monthlyValues?.length && monthLabels?.length ? (
-          <ExpensesChart labels={monthLabels} values={monthlyValues} />
+          <ExpensesChart
+            labels={monthLabels}
+            values={monthlyValues}
+            onDataPointClick={handleDataPointClick}
+          />
         ) : null}
       </Chart>
       <Grid>
@@ -169,7 +203,6 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
           listTitle={`${MonthName} | Total: ${utils.formatCurrency(
             monthlySummary[MonthNames[selectedMonth.getMonth()]] || 0,
             true,
-            'Rs.',
           )}`}
           actions={listActions}
         />
