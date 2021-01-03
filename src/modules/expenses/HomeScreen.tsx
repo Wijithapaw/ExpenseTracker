@@ -99,7 +99,7 @@ function HomeScreen({ refreshCounter, refreshData }: GlobalContextType) {
           data={last5Records}
           columns={columns}
           actions={listActions}
-          listTitle='Last 5 Expenses'
+          title='Last 5 Expenses'
         />
         <ExpenseEdit
           expenseId={editingExpenseId}

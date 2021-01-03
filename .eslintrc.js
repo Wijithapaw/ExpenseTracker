@@ -77,6 +77,7 @@ module.exports = {
     "import/order": "off",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
+    'no-console': 'warn',
   },
   overrides: [
     {

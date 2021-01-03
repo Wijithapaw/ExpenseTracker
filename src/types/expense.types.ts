@@ -4,6 +4,8 @@ export interface ExpenseDto {
   id: string;
   category: ExpenseType;
   subCategory?: ExpenseType;
+  categoryDesc: string;
+  subCategoryDesc?: string;
   amount: number;
   date: Date;
   description?: string;

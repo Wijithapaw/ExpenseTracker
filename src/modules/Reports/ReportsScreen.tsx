@@ -9,9 +9,11 @@ import ListView, {
   ListViewColumn,
 } from '../../components/ListView';
 import MonthRange from '../../components/MonthRange';
+import Text from '../../components/Text';
 import { categoryService } from '../../services/category.service';
 import { expenseService } from '../../services/expense.service';
-import { MonthNames } from '../../types/constants';
+import { COLORS } from '../../types/colors';
+import { ConfigSettings, MonthNames } from '../../types/constants';
 import {
   CategorySummary,
   ExpenseCategoryMap,
@@ -27,9 +29,9 @@ import {
 import { utils } from '../../utils/utils';
 import ExpensesChart from './ExpensesChart';
 
-const Container = styled.View`
+const Container = styled.ScrollView`
   flex: 1;
-  padding: 10px;
+  margin: 10px;
 `;
 
 const Range = styled.View``;
@@ -44,13 +46,25 @@ const Grid = styled.View`
   margin-top: 10px;
 `;
 
+const HeaderRow = styled.View`
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+`;
+
+const HeaderCol = styled.View``;
+
 const getCurrentMonth = (): Date => {
   const today = new Date();
   const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   return currentMonth;
 };
 
-function ReportScreen({ refreshCounter }: GlobalContextType) {
+interface Props extends GlobalContextType {
+  navigation: any;
+}
+
+function ReportScreen({ refreshCounter, navigation, configSettings }: Props) {
   const [expenses, setExpenses] = useState<ExpenseDto[]>();
   const [dateRange, setDateRange] = useState<DateRange>(
     getBackwardMonthRange(new Date(), 6),
@@ -164,7 +178,11 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
   };
 
   const handleViewCategory = (item: CategorySummary) => {
-    console.log(item);
+    navigation.navigate('DetailedExpenses', {
+      expenseCode: item.code,
+      month: selectedMonth,
+      expenseDesc: item.description,
+    });
   };
 
   const listActions: ListAction[] = [
@@ -175,6 +193,26 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
   ];
 
   const MonthName = formatDate(selectedMonth, DATE_FORMATS.monthYear);
+
+  const currencySymbol =
+    configSettings.get(ConfigSettings.currencySymbol) || '';
+
+  const getHeader = () => (
+    <HeaderRow>
+      <HeaderCol>
+        <Text color={COLORS.white}>{MonthName}</Text>
+      </HeaderCol>
+      <HeaderCol>
+        <Text color={COLORS.white}>
+          {`Total: ${utils.formatCurrency(
+            monthlySummary[MonthNames[selectedMonth.getMonth()]] || 0,
+            true,
+            currencySymbol,
+          )}`}
+        </Text>
+      </HeaderCol>
+    </HeaderRow>
+  );
 
   return (
     <Container>
@@ -200,10 +238,11 @@ function ReportScreen({ refreshCounter }: GlobalContextType) {
         <ListView
           data={categorySummary}
           columns={columns}
-          listTitle={`${MonthName} | Total: ${utils.formatCurrency(
+          title={`${MonthName} | Total: ${utils.formatCurrency(
             monthlySummary[MonthNames[selectedMonth.getMonth()]] || 0,
             true,
           )}`}
+          headerComponent={getHeader()}
           actions={listActions}
         />
       </Grid>

@@ -7,6 +7,7 @@ import styled from 'styled-components/native';
 
 import CategoriesScreen from '../modules/categories/CategoriesScreen';
 import HomeScreen from '../modules/expenses/HomeScreen';
+import DetailedExpenses from '../modules/Reports/DetailedExpenses';
 import ReportsScreen from '../modules/Reports/ReportsScreen';
 import SettingsScreen from '../modules/settings/screens/SettingsScreen';
 import { ScreenMode } from '../types/enums';
@@ -85,6 +86,20 @@ export default function AppRoutes() {
         options={{
           title: 'Popup',
           headerTitle: () => <AppHeader title='Edit Categories' />,
+          headerBackImage: props => (
+            <BackBtn>
+              <Icon name='arrow-left' size={18} color={props.tintColor} />
+            </BackBtn>
+          ),
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name='DetailedExpenses'
+        component={DetailedExpenses}
+        options={{
+          title: 'Popup',
+          headerTitle: () => <AppHeader title='Expense Details' />,
           headerBackImage: props => (
             <BackBtn>
               <Icon name='arrow-left' size={18} color={props.tintColor} />

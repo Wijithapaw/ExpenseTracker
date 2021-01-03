@@ -3,6 +3,7 @@ import moment from 'moment';
 import { DateRange } from '../types/shared.types';
 
 export const DATE_FORMATS = {
+  dateUniversal: 'yyyy-MM-DD',
   longDate: 'dddd, D MMM',
   shortDate: 'ddd D MMM',
   time12h: 'h:mmA',

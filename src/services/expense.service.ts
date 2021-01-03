@@ -76,8 +76,6 @@ function deleteExpense(id: string) {
 function getExpenseSummary(month: Date) {
   const startDate = new Date(month.getFullYear(), month.getMonth(), 1);
   const endDate = new Date(month.getFullYear(), month.getMonth() + 1, 1);
-  console.log(startDate);
-  console.log(endDate);
 
   const expenses = realm
     .objects<Expense>(Expense.schema.name)
@@ -103,15 +101,27 @@ function getExpenseSummary(month: Date) {
     };
   });
 
-  console.log(catSummary);
-
   return catSummary;
 }
 
-function getExpensesByDuration(startDate: Date, endDate: Date) {
+function getExpensesByDuration(
+  startDate: Date,
+  endDate: Date,
+  expenseCode?: string,
+) {
   const expenses = realm
     .objects<Expense>(Expense.schema.name)
-    .filtered('date >= $0 AND date < $1', startDate, endDate);
+    .filtered(
+      `date >= $0 AND date < $1${
+        expenseCode
+          ? ' AND (type.code == $2 OR type.parentType.code == $2)'
+          : ''
+      }`,
+      startDate,
+      endDate,
+      expenseCode,
+    )
+    .sorted('date');
   return expenses.map(
     (e): ExpenseDto => ({
       id: e.id,
@@ -120,6 +130,8 @@ function getExpensesByDuration(startDate: Date, endDate: Date) {
       description: e.description,
       category: e.type.parentType || e.type,
       subCategory: e.type.parentType ? e.type : undefined,
+      categoryDesc: e.type.parentType?.displayText || e.type.displayText,
+      subCategoryDesc: e.type.parentType ? e.type.displayText : '',
       createdDate: e.createdDate,
     }),
   );

@@ -3,9 +3,9 @@ import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 
 import { COLORS } from '../types/colors';
-import { darken } from '../utils/color.utils';
+import { StyledProps } from '../types/theme.types';
+import { DATE_FORMATS, formatDate } from '../utils/date.utils';
 import { utils } from '../utils/utils';
-import Gradient from './Gradient';
 import IconButton from './IconButton';
 import Text from './Text';
 
@@ -18,13 +18,14 @@ const ListRow = styled.View<any>`
 `;
 
 const ListCol = styled.View<any>`
-  flex: 1;
   justify-content: center;
   align-items: ${(props: any) => getTextAlign(props.textAlign)};
+  flex: 1;
+  padding-right: 5px;
 `;
 
 const ListActions = styled.View<any>`
-  width: 100px;
+  padding-left: 10px;
   flex-direction: row;
   justify-content: flex-end;
 `;
@@ -47,16 +48,12 @@ const ListItemSeparator = styled.View`
   border-bottom-width: 1px;
 `;
 
-const StyledHeader = styled(Gradient).attrs((props: any) => ({
-  colors: [
-    darken(props.color || props.theme.background.secondary, 60),
-    props.color || props.theme.background.secondary,
-    20,
-  ],
-}))`
+const StyledHeader = styled.View`
   height: 30px;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
   padding: 5px 10px;
+  background: ${(props: StyledProps) => props.theme.background.secondary};
 `;
 
 const NoRecordsView = styled.View`
@@ -95,28 +92,38 @@ function ListViewRow({ row, columns, actions }: ListViewItemProps) {
 }
 
 interface HeaderProps {
-  title: string;
+  title?: string;
+  headerComponent?: any;
 }
 
-function ListHeader({ title }: HeaderProps) {
+function ListHeader({ title, headerComponent }: HeaderProps) {
   return (
     <StyledHeader>
-      <Text color={COLORS.white}>{title}</Text>
+      {headerComponent ? (
+        headerComponent
+      ) : (
+        <Text color={COLORS.white}>{title}</Text>
+      )}
     </StyledHeader>
   );
 }
 
-interface Props {
+interface Props extends HeaderProps {
   data?: any[];
   columns: ListViewColumn[];
   actions?: ListAction[];
-  listTitle?: string;
 }
 
-export default function ListView({ data, columns, actions, listTitle }: Props) {
+export default function ListView({
+  data,
+  columns,
+  actions,
+  title,
+  headerComponent,
+}: Props) {
   return (
     <Container>
-      {listTitle && <ListHeader title={listTitle} />}
+      {title && <ListHeader title={title} headerComponent={headerComponent} />}
       <FlatList
         ItemSeparatorComponent={ListItemSeparator}
         data={data}
@@ -164,11 +171,11 @@ function formatData(data: any, format?: ListDataFormat) {
     case ListDataFormat.Currency:
       return `${utils.formatCurrency(data, false)}`;
     case ListDataFormat.Date:
-      return data.toLocaleDateString();
+      return formatDate(data, DATE_FORMATS.dateUniversal);
     case ListDataFormat.Percentage:
       return `${data}%`;
     default:
-      return data.toString();
+      return data?.toString() || '';
   }
 }
 

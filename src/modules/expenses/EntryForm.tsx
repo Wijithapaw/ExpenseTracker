@@ -144,7 +144,7 @@ const EntryForm = ({ expenseId, onSaved, refreshData }: Props) => {
       </DoubleCol>
       <FormGroup>
         <TextInput
-          maxLength={50}
+          maxLength={20}
           value={description}
           placeholder='Description (optional)'
           onChangeText={descriptionChange}
