@@ -11,7 +11,7 @@
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "increment-version": "npm version patch",
     "set-version": "npx react-native-version --never-amend",
-    "version": "ncrement-version && set-version"
+    "upgrade-version": "ncrement-version && set-version"
   },
   "husky": {
     "hooks": {
