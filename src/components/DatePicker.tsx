@@ -2,6 +2,7 @@ import RNDatePicker from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 
+import { DATE_FORMATS, formatDate } from '../utils/date.utils';
 import Button from './Button';
 
 interface Props {
@@ -15,7 +16,10 @@ export default function DatePicker2({ date, onChange }: Props) {
   return (
     <View>
       <Button
-        title={(date && date.toLocaleDateString()) || 'Select Date'}
+        title={
+          (date && formatDate(date, DATE_FORMATS.dateUniversal)) ||
+          'Select Date'
+        }
         outline
         onPress={() => setShow(true)}
       />

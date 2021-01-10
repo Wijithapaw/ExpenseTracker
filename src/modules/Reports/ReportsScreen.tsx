@@ -64,7 +64,7 @@ interface Props extends GlobalContextType {
   navigation: any;
 }
 
-function ReportScreen({ refreshCounter, navigation, configSettings }: Props) {
+function ReportScreen({ refreshTrigger, navigation, configSettings }: Props) {
   const [expenses, setExpenses] = useState<ExpenseDto[]>();
   const [dateRange, setDateRange] = useState<DateRange>(
     getBackwardMonthRange(new Date(), 6),
@@ -89,7 +89,7 @@ function ReportScreen({ refreshCounter, navigation, configSettings }: Props) {
         new Date(dateRange.end.getFullYear(), dateRange.end.getMonth(), 1),
       );
     }
-  }, [dateRange, refreshCounter]);
+  }, [dateRange, refreshTrigger]);
 
   useEffect(() => {
     if (dateRange && expenses) {

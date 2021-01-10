@@ -37,13 +37,13 @@ const columns: ListViewColumn[] = [
   { field: 'amount', format: ListDataFormat.Currency, textAlign: 'right' },
 ];
 
-function HomeScreen({ refreshCounter, refreshData }: GlobalContextType) {
+function HomeScreen({ refreshTrigger, refreshData }: GlobalContextType) {
   const [expenses, setExpenses] = useState<Realm.Results<Expense>>();
   const [editingExpenseId, setEditingExpenseId] = useState<string>();
 
   useEffect(() => {
     setExpenses(expenseService.getAllExpenses());
-  }, [refreshCounter]);
+  }, [refreshTrigger]);
 
   const getCurrentMonthTotal = () => {
     const date = new Date(),

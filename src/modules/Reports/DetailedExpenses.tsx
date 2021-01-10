@@ -38,7 +38,7 @@ interface Props extends GlobalContextType {
 
 function DetailedExpenses({
   route,
-  refreshCounter,
+  refreshTrigger,
   refreshData,
   configSettings,
 }: Props) {
@@ -60,7 +60,7 @@ function DetailedExpenses({
 
     const monthlyTotal = data.reduce((sum, cur) => sum + cur.amount, 0);
     setTotal(monthlyTotal);
-  }, [refreshCounter]);
+  }, [refreshTrigger]);
 
   const columns: ListViewColumn[] = [
     { field: 'date', format: ListDataFormat.Date },

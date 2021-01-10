@@ -6,7 +6,7 @@ import { configService } from './src/services/_shared/config.service';
 export interface GlobalContextType {
   initialized: boolean;
   configSettings: Map<string, string>;
-  refreshCounter: number;
+  refreshTrigger: number;
 
   refreshData: () => void;
   refreshConfigSettings: () => void;
@@ -14,7 +14,7 @@ export interface GlobalContextType {
 
 const defaultContext: GlobalContextType = {
   initialized: false,
-  refreshCounter: 0,
+  refreshTrigger: 0,
   configSettings: new Map(),
   refreshData: () => {},
   refreshConfigSettings: () => {},
@@ -31,7 +31,7 @@ export function GlobalContextProvider({ children }: Props) {
   const [configSettings, setConfigSettings] = useState<Map<string, string>>(
     new Map(),
   );
-  const [refreshCounter, setRefreshCounter] = useState(0);
+  const [refreshTrigger, setRefreshCounter] = useState(0);
 
   useEffect(() => {
     refreshConfigSettings();
@@ -39,7 +39,7 @@ export function GlobalContextProvider({ children }: Props) {
   }, []);
 
   const refreshData = () => {
-    setRefreshCounter(refreshCounter + 1);
+    setRefreshCounter(refreshTrigger + 1);
   };
 
   const refreshConfigSettings = () => {
@@ -52,7 +52,7 @@ export function GlobalContextProvider({ children }: Props) {
       value={{
         initialized,
         configSettings,
-        refreshCounter,
+        refreshTrigger,
         refreshData,
         refreshConfigSettings,
       }}

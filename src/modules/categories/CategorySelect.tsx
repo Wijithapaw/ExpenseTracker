@@ -63,13 +63,13 @@ function CategoryItem({ item, onPress }: ItemProps) {
   );
 }
 
-function CategorySelect({ visible, onClose, onSelect, refreshCounter }: Props) {
+function CategorySelect({ visible, onClose, onSelect, refreshTrigger }: Props) {
   const [categories, setCategories] = useState<ListItemData[]>();
   const [parentItem, setParentItem] = useState<ListItemData>();
 
   useEffect(() => {
     loadData();
-  }, [refreshCounter]);
+  }, [refreshTrigger]);
 
   const loadData = () => {
     const categories = categoryService.getAllCategories();
