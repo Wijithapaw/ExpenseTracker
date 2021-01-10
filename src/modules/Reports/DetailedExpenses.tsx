@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 
-import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import ListView, {
   ListAction,
   ListActionType,
@@ -11,6 +10,10 @@ import ListView, {
 import Text from '../../components/Text';
 import { messagingService } from '../../services/_shared/messaging.service';
 import { expenseService } from '../../services/expense.service';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../store/GlobalContext';
 import { COLORS } from '../../types/colors';
 import { ConfigSettings } from '../../types/constants';
 import { ExpenseDto } from '../../types/expense.types';

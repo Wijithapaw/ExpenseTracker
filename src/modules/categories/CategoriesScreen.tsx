@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Text } from 'react-native';
 import styled from 'styled-components/native';
 
-import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Icon from '../../components/Icon';
 import IconButton from '../../components/IconButton';
 import IconPicker from '../../components/IconPicker';
@@ -10,6 +9,10 @@ import Modal from '../../components/Modal';
 import Screen from '../../components/Screen';
 import { messagingService } from '../../services/_shared/messaging.service';
 import { categoryService } from '../../services/category.service';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../store/GlobalContext';
 import { COLORS } from '../../types/colors';
 import { ScreenMode } from '../../types/enums';
 import {

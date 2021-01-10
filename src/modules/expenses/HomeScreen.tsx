@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Realm from 'realm';
 import styled from 'styled-components/native';
 
-import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import ListView, {
   ListAction,
   ListActionType,
@@ -13,6 +12,10 @@ import Screen from '../../components/Screen';
 import { Expense } from '../../data/entity-types';
 import { messagingService } from '../../services/_shared/messaging.service';
 import { expenseService } from '../../services/expense.service';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../store/GlobalContext';
 import EntryForm from './EntryForm';
 import ExpenseEdit from './ExpenseEdit';
 import MonthTotal from './MonthTotal';

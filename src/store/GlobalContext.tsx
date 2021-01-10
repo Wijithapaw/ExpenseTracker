@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { createContext, useEffect, useState } from 'react';
 
-import { configService } from './src/services/_shared/config.service';
+import { configService } from '../services/_shared/config.service';
 
 export interface GlobalContextType {
   initialized: boolean;

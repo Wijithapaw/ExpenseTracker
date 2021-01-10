@@ -9,8 +9,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 
-import { GlobalContextProvider } from './GlobalContext';
 import AppRoutes from './src/navigation';
+import { GlobalContextProvider } from './src/store/GlobalContext';
 import ThemeProvider from './src/theme/ThemeProvider';
 
 function App() {

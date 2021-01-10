@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import styled from 'styled-components/native';
 
-import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Icon from '../../components/Icon';
 import IconButton from '../../components/IconButton';
 import Modal from '../../components/Modal';
 import Text from '../../components/Text';
 import { categoryService } from '../../services/category.service';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../store/GlobalContext';
 import { ListItemData, SimpleListItem } from '../../types/shared.types';
 import { rgba } from '../../utils/color.utils';
 

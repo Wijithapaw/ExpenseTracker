@@ -3,13 +3,16 @@ import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 
-import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
 import Text from '../../components/Text';
 import TextInput from '../../components/TextInput';
 import showToast, { ToastType } from '../../components/Toast';
 import { categoryService } from '../../services/category.service';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../store/GlobalContext';
 import { COLORS } from '../../types/colors';
 import { FlatListItemData } from '../../types/shared.types';
 

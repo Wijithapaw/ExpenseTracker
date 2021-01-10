@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 
-import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import ListView, {
   ListAction,
   ListActionType,
@@ -12,6 +11,10 @@ import MonthRange from '../../components/MonthRange';
 import Text from '../../components/Text';
 import { categoryService } from '../../services/category.service';
 import { expenseService } from '../../services/expense.service';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../store/GlobalContext';
 import { COLORS } from '../../types/colors';
 import { ConfigSettings, MonthNames } from '../../types/constants';
 import {

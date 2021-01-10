@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 
-import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Button from '../../components/Button';
 import DatePicker from '../../components/DatePicker';
 import TextInput from '../../components/TextInput';
 import showToast, { ToastType } from '../../components/Toast';
 import { expenseService } from '../../services/expense.service';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../store/GlobalContext';
 import { InputType } from '../../types/enums';
 import { SimpleListItem } from '../../types/shared.types';
 import { utils } from '../../utils/utils';

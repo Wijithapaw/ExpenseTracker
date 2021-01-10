@@ -1,8 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
 
-import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Text from '../../components/Text';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../store/GlobalContext';
 import { ConfigSettings, MonthNames } from '../../types/constants';
 import { FontSize, FontType } from '../../types/enums';
 import { Theme } from '../../types/theme.types';

@@ -3,10 +3,6 @@ import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 
-import {
-  GlobalContextType,
-  withGlobalContext,
-} from '../../../../GlobalContext';
 import Button from '../../../components/Button';
 import IconButton from '../../../components/IconButton';
 import Screen from '../../../components/Screen';
@@ -14,6 +10,10 @@ import Text from '../../../components/Text';
 import TextInput from '../../../components/TextInput';
 import showToast from '../../../components/Toast';
 import { configService } from '../../../services/_shared/config.service';
+import {
+  GlobalContextType,
+  withGlobalContext,
+} from '../../../store/GlobalContext';
 import { FontSize } from '../../../types/enums';
 import { ConfigItem } from '../../../types/shared.types';
 
