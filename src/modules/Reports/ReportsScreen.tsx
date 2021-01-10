@@ -31,7 +31,7 @@ import ExpensesChart from './ExpensesChart';
 
 const Container = styled.ScrollView`
   flex: 1;
-  margin: 10px;
+  padding: 10px;
 `;
 
 const Range = styled.View``;

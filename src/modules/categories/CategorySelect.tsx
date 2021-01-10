@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import styled from 'styled-components/native';
 
+import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Icon from '../../components/Icon';
 import IconButton from '../../components/IconButton';
 import Modal from '../../components/Modal';
@@ -10,7 +11,7 @@ import { categoryService } from '../../services/category.service';
 import { ListItemData, SimpleListItem } from '../../types/shared.types';
 import { rgba } from '../../utils/color.utils';
 
-interface Props {
+interface Props extends GlobalContextType {
   visible: boolean;
   onClose: () => void;
   onSelect: (id: SimpleListItem) => void;
@@ -62,13 +63,13 @@ function CategoryItem({ item, onPress }: ItemProps) {
   );
 }
 
-export default function CategorySelect({ visible, onClose, onSelect }: Props) {
+function CategorySelect({ visible, onClose, onSelect, refreshCounter }: Props) {
   const [categories, setCategories] = useState<ListItemData[]>();
   const [parentItem, setParentItem] = useState<ListItemData>();
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [refreshCounter]);
 
   const loadData = () => {
     const categories = categoryService.getAllCategories();
@@ -111,3 +112,5 @@ export default function CategorySelect({ visible, onClose, onSelect }: Props) {
     </Modal>
   );
 }
+
+export default withGlobalContext(CategorySelect);

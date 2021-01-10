@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Text } from 'react-native';
 import styled from 'styled-components/native';
 
+import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Icon from '../../components/Icon';
 import IconButton from '../../components/IconButton';
 import IconPicker from '../../components/IconPicker';
@@ -53,13 +54,13 @@ const AddNewRow = styled.View`
   justify-content: flex-end;
 `;
 
-export interface Props {
+export interface Props extends GlobalContextType {
   callback?: (id: SimpleListItem) => void;
   selectedId?: string;
   mode?: ScreenMode;
 }
 
-export default function CategoriesScreen({ selectedId }: Props) {
+function CategoriesScreen({ selectedId, refreshData }: Props) {
   const [categories, setCategories] = useState<FlatListItemData[]>([]);
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [editingItem, setEditingItem] = useState<FlatListItemData>();
@@ -156,6 +157,7 @@ export default function CategoriesScreen({ selectedId }: Props) {
       messagingService.confirm('Delete Category', 'Are you sure?', () => {
         categoryService.deleteCategory(id);
         loadData();
+        refreshData();
       });
     } else {
       Alert.alert(
@@ -267,3 +269,5 @@ export default function CategoriesScreen({ selectedId }: Props) {
     </Screen>
   );
 }
+
+export default withGlobalContext(CategoriesScreen);

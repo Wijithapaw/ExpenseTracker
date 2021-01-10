@@ -3,11 +3,14 @@ import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 
+import { GlobalContextType, withGlobalContext } from '../../../GlobalContext';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
 import Text from '../../components/Text';
 import TextInput from '../../components/TextInput';
+import showToast, { ToastType } from '../../components/Toast';
 import { categoryService } from '../../services/category.service';
+import { COLORS } from '../../types/colors';
 import { FlatListItemData } from '../../types/shared.types';
 
 const Row = styled.View`
@@ -36,7 +39,7 @@ const ButtonContainer = styled.View`
   margin: 5px;
 `;
 
-interface Props {
+interface Props extends GlobalContextType {
   item?: FlatListItemData;
   onSave?: () => void;
   onCancel?: () => void;
@@ -45,21 +48,22 @@ interface Props {
   parentItem?: FlatListItemData;
 }
 
-export default function EditCategory({
+function EditCategory({
   item,
   onSave,
   onCancel,
   onChangeIcon,
   onChange,
   parentItem,
+  refreshData,
 }: Props) {
-  const [valid, setValid] = useState(true);
+  const [errors, setErrors] = useState({ title: false, icon: false });
 
   const parentTitle = (parentItem && parentItem.title) || item.parentTitle;
   const rootCategory = !parentTitle;
 
   useEffect(() => {
-    validate();
+    checkErrors();
   }, [item]);
 
   const titleChanged = (e: string) => {
@@ -67,7 +71,7 @@ export default function EditCategory({
   };
 
   const save = () => {
-    if (validate()) {
+    if (!checkErrors()) {
       if (!item.id) {
         categoryService.createCategory(
           item.title,
@@ -78,13 +82,17 @@ export default function EditCategory({
         categoryService.updateCategory(item.id, item.title, item.faIcon);
       }
       onSave && onSave();
+      refreshData();
+    } else {
+      showToast('Fill required fields', ToastType.Error);
     }
   };
 
-  const validate = () => {
-    const valid = item.title && item.title.length > 0;
-    setValid(valid);
-    return valid;
+  const checkErrors = () => {
+    const title = !item.title;
+    const icon = !item.faIcon;
+    setErrors({ title, icon });
+    return title || icon;
   };
 
   return (
@@ -96,7 +104,7 @@ export default function EditCategory({
         <ValueCol>
           <TextInput
             maxLength={50}
-            invalid={!valid}
+            invalid={errors.title}
             value={item.title}
             placeholder=''
             onChangeText={titleChanged}
@@ -121,6 +129,7 @@ export default function EditCategory({
               name={item.faIcon || 'question-circle'}
               size={20}
               onPress={onChangeIcon}
+              color={errors.icon ? COLORS.red : undefined}
             />
           </ValueCol>
         </Row>
@@ -137,3 +146,5 @@ export default function EditCategory({
     </View>
   );
 }
+
+export default withGlobalContext(EditCategory);

@@ -79,7 +79,7 @@ function getCategory(id: string) {
   return type;
 }
 
-function updateCategory(id: string, title: string, icon?: string) {
+function updateCategory(id: string, title: string, icon = '') {
   realm.write(() => {
     const category = realm
       .objects<ExpenseType>(ExpenseType.schema.name)
@@ -89,7 +89,7 @@ function updateCategory(id: string, title: string, icon?: string) {
   });
 }
 
-function createCategory(title: string, icon?: string, parentId?: string) {
+function createCategory(title: string, icon = '', parentId?: string) {
   realm.write(() => {
     const parentCategory = realm
       .objects<ExpenseType>(ExpenseType.schema.name)
